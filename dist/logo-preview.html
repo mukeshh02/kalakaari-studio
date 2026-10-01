@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalakaari Studios - Creative Matched Font Styles</title>
+  
+  <!-- Google Fonts for Matched Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;1,6..96,700&family=Cinzel+Decorative:wght@700&family=Gotu&family=Kadwa:wght@700&family=Montserrat:wght@800;900&family=Orbitron:wght@800;900&family=Outfit:wght@700;800&family=Poppins:wght@700;800&family=Rajdhani:wght@700&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #08090b;
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+    .header h1 {
+      font-size: 2.4rem;
+      background: linear-gradient(90deg, #FB686A, #FF9B5D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .header p {
+      color: #9ca3af;
+      font-size: 1.15rem;
+    }
+    .badge-sub {
+      display: inline-block;
+      margin-top: 10px;
+      background: rgba(255, 155, 93, 0.12);
+      color: #FF9B5D;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 155, 93, 0.3);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 1150px;
+    }
+    .card {
+      background: #12141a;
+      border: 1px solid #232733;
+      border-radius: 18px;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FF9B5D, transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .card:hover {
+      border-color: #FF9B5D;
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(255, 155, 93, 0.18);
+    }
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .opt-tag {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      background: #1c202b;
+      color: #FF9B5D;
+      padding: 4px 14px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .match-label {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      color: #10b981;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .preview-area {
+      margin: 45px 0 35px 0;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+    }
+
+    /* --- STYLE 1: CYBERPUNK GEOMETRIC FUTURISTIC --- */
+    .style1-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .style1-hi {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(180deg, #ffffff 0%, #FF9B5D 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .style1-en {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      color: #00f2fe;
+      text-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+      text-transform: uppercase;
+    }
+
+    /* --- STYLE 2: CINEMATIC ARTISTIC BRUSH & SERIF --- */
+    .style2-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .style2-hi {
+      font-family: 'Yatra One', cursive;
+      font-size: 3rem;
+      background: linear-gradient(90deg, #FB686A, #FF9B5D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .style2-en {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      letter-spacing: 4px;
+    }
+
+    /* --- STYLE 3: ULTRA BOLD MONOLITHIC --- */
+    .style3-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 0.9;
+    }
+    .style3-hi {
+      font-family: 'Kadwa', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    }
+    .style3-en {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 12px;
+      background: linear-gradient(90deg, #FF9B5D, #FB686A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 8px;
+    }
+
+    /* --- STYLE 4: ROYAL LUXURY SERIF --- */
+    .style4-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .style4-hi {
+      font-family: 'Rozha One', serif;
+      font-size: 3rem;
+      color: #f3f4f6;
+    }
+    .style4-en {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: #FF9B5D;
+      border-left: 2px solid #FF9B5D;
+      padding-left: 14px;
+    }
+
+    /* --- STYLE 5: MODERN HARMONIC GEOMETRIC --- */
+    .style5-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .style5-hi {
+      font-family: 'Gotu', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+    .style5-en {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 7px;
+      background: linear-gradient(90deg, #FB686A, #FF9B5D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+    }
+
+    .info-box {
+      background: #171a23;
+      padding: 14px 18px;
+      border-radius: 10px;
+      width: 100%;
+      text-align: center;
+    }
+    .info-box h4 {
+      color: #ffffff;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+    .info-box p {
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>कलाकारी STUDIOS — Creative Matched Font Pairings</h1>
+    <p>Dono Hindi aur English fonts aapas me perfectly match honge</p>
+    <div class="badge-sub">✨ 5 Unique & Harmonious Studio Concepts</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- OPTION 1 -->
+    <div class="card">
+      <span class="opt-tag">OPTION 1</span>
+      <span class="match-label">✓ Sharp Geometric Harmony</span>
+      <div class="preview-area">
+        <div class="style1-wrap">
+          <span class="style1-hi">कलाकारी</span>
+          <span class="style1-en">STUDIOS</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <h4>1. Futuristic Tech & Cyberpunk</h4>
+        <p>Rajdhani Sharp Devanagari + Orbitron Cyberpunk English. Cut angles & cyan-orange glow match.</p>
+      </div>
+    </div>
+
+    <!-- OPTION 2 -->
+    <div class="card">
+      <span class="opt-tag">OPTION 2</span>
+      <span class="match-label">✓ Artistic Brush Harmony</span>
+      <div class="preview-area">
+        <div class="style2-wrap">
+          <span class="style2-hi">कलाकारी</span>
+          <span class="style2-en">STUDIOS</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <h4>2. Cinematic Film House</h4>
+        <p>Yatra Calligraphy Hindi + Cinzel Decorative Serif English. Curved flourishes match.</p>
+      </div>
+    </div>
+
+    <!-- OPTION 3 -->
+    <div class="card">
+      <span class="opt-tag">OPTION 3</span>
+      <span class="match-label">✓ Ultra-Bold Heavy Weight</span>
+      <div class="preview-area">
+        <div class="style3-wrap">
+          <span class="style3-hi">कलाकारी</span>
+          <span class="style3-en">STUDIOS</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <h4>3. Heavyweight Blockbuster (Stacked)</h4>
+        <p>Kadwa Heavy Solid Devanagari + Anton Condensed Ultra-Bold English. Heavy visual impact.</p>
+      </div>
+    </div>
+
+    <!-- OPTION 4 -->
+    <div class="card">
+      <span class="opt-tag">OPTION 4</span>
+      <span class="match-label">✓ Luxury High-Contrast Serif</span>
+      <div class="preview-area">
+        <div class="style4-wrap">
+          <span class="style4-hi">कलाकारी</span>
+          <span class="style4-en">STUDIOS</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <h4>4. Royal Vogue & Film Festival</h4>
+        <p>Rozha One Regal Serif + Bodoni Moda Italic Serif with divider line. Premium luxury feel.</p>
+      </div>
+    </div>
+
+    <!-- OPTION 5 -->
+    <div class="card">
+      <span class="opt-tag">OPTION 5</span>
+      <span class="match-label">✓ Clean Geometric Rounded</span>
+      <div class="preview-area">
+        <div class="style5-wrap">
+          <span class="style5-hi">कलाकारी</span>
+          <span class="style5-en">STUDIOS</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <h4>5. Modern Fluid Soft Sans</h4>
+        <p>Gotu Smooth Fluid Devanagari + Outfit Gradient Extended English. Sleek modern studio look.</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
