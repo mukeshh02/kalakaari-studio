@@ -990,17 +990,9 @@ html.echo-on .logo-echo .echo-g3 {
   }
 }
 
-/* Pause Conditions */
+/* Pause Conditions (Hidden browser tab only) */
 html.echo-paused-tab .logo-echo .kalakaari-navbar-logo,
-html.echo-paused-tab .logo-echo .echo-ghost,
-html.echo-paused-offscreen .logo-echo .kalakaari-navbar-logo,
-html.echo-paused-offscreen .logo-echo .echo-ghost,
-html.echo-paused-shrunk .logo-echo .kalakaari-navbar-logo,
-html.echo-paused-shrunk .logo-echo .echo-ghost,
-html.echo-paused-menu .logo-echo .kalakaari-navbar-logo,
-html.echo-paused-menu .logo-echo .echo-ghost,
-html:has(#kalakaari-fullscreen-menu.menu-active) .logo-echo .kalakaari-navbar-logo,
-html:has(#kalakaari-fullscreen-menu.menu-active) .logo-echo .echo-ghost {
+html.echo-paused-tab .logo-echo .echo-ghost {
   animation-play-state: paused !important;
 }
 
@@ -2220,7 +2212,6 @@ function openFullscreenMenu() {
     menu.style.display = 'flex';
     void menu.offsetWidth;
     menu.classList.add('menu-active');
-    document.documentElement.classList.add('echo-paused-menu');
     document.body.style.overflow = 'hidden';
   }
 }
@@ -2229,7 +2220,6 @@ function closeFullscreenMenu() {
   const menu = document.getElementById('kalakaari-fullscreen-menu');
   if (menu) {
     menu.classList.remove('menu-active');
-    document.documentElement.classList.remove('echo-paused-menu');
     setTimeout(() => {
       if (!menu.classList.contains('menu-active')) {
         menu.style.display = 'none';
@@ -2285,34 +2275,10 @@ function closeDrawer() {
     }, 3800);
   }
 
-  // 1. Pause on hidden tab
+  // 1. Pause only on hidden tab
   document.addEventListener('visibilitychange', function() {
     document.documentElement.classList.toggle('echo-paused-tab', document.hidden);
   });
-
-  // 2. Pause when logo is off-screen
-  var logo = document.querySelector('.kalakaari-navbar-logo') || document.querySelector('.logo-echo');
-  if (logo && 'IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        document.documentElement.classList.toggle('echo-paused-offscreen', !entry.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    io.observe(logo);
-  }
-
-  // 3. Pause when navbar is shrunk on scroll down
-  var scrollTicking = false;
-  window.addEventListener('scroll', function() {
-    if (!scrollTicking) {
-      window.requestAnimationFrame(function() {
-        var isShrunk = window.scrollY > 180;
-        document.documentElement.classList.toggle('echo-paused-shrunk', isShrunk);
-        scrollTicking = false;
-      });
-      scrollTicking = true;
-    }
-  }, { passive: true });
 
   // 4. Safe buffer from Services link on desktop
   function updateAmplitude() {
