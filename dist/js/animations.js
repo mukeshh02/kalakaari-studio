@@ -123,6 +123,43 @@
     if (!element || element.dataset.splitDone) return;
     element.dataset.splitDone = 'true';
 
+    // Support line breaks (e.g. <br>)
+    const lineParts = element.innerHTML.split(/<br\s*[\/]?>/i);
+    if (lineParts.length > 1) {
+      const fullText = element.textContent.replace(/\s+/g, ' ').trim();
+      element.setAttribute('aria-label', fullText);
+      element.innerHTML = '';
+      const allWords = [];
+      lineParts.forEach((part) => {
+        const temp = document.createElement('div');
+        temp.innerHTML = part;
+        const lineText = temp.textContent.trim();
+        if (!lineText) return;
+
+        const mask = document.createElement('span');
+        mask.className = 'split-line-mask';
+
+        const words = lineText.split(/\s+/);
+        words.forEach((w, idx) => {
+          const wordSpan = document.createElement('span');
+          wordSpan.className = 'split-word';
+          wordSpan.textContent = w;
+          mask.appendChild(wordSpan);
+          allWords.push(wordSpan);
+
+          if (idx < words.length - 1) {
+            const space = document.createElement('span');
+            space.className = 'split-word-space';
+            space.innerHTML = '&nbsp;';
+            mask.appendChild(space);
+          }
+        });
+
+        element.appendChild(mask);
+      });
+      return allWords;
+    }
+
     const rawText = element.textContent.trim();
     if (!rawText) return;
 
