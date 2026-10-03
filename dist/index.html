@@ -843,12 +843,179 @@ body,
 .elementor-element.elementor-element-b2e2be6 {
   transform-origin: center center;
 }
+
+/* ==========================================================================
+   ECHO GHOST TRAIL ANIMATION SYSTEM (AFTER EFFECTS ECHO EFFECT)
+   ========================================================================== */
+:root {
+  --echo-tx: 20px;
+  --echo-duration: 4s;
+}
+
+.logo-echo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.logo-echo .kalakaari-navbar-logo {
+  position: relative;
+  z-index: 4;
+  object-fit: contain;
+  object-position: center;
+  will-change: transform;
+}
+
+.echo-ghost {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: #ff7a3d;
+  -webkit-mask-image: url("./img/kalakaari-logo-light.svg");
+  mask-image: url("./img/kalakaari-logo-light.svg");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  will-change: transform;
+}
+
+.echo-g1 {
+  z-index: 3;
+  opacity: 0.5;
+}
+
+.echo-g2 {
+  z-index: 2;
+  opacity: 0.3;
+}
+
+.echo-g3 {
+  z-index: 1;
+  opacity: 0.15;
+}
+
+/* Keyframes: 0% translateX(0), 35% translateX(20px), 50% translateX(20px), 85% translateX(0), 100% translateX(0) */
+@keyframes logoEchoMove {
+  0% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(var(--echo-tx, 20px));
+  }
+  50% {
+    transform: translateX(var(--echo-tx, 20px));
+  }
+  85% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Loop Active only after .echo-on added to <html> */
+html.echo-on .logo-echo .kalakaari-navbar-logo {
+  animation: logoEchoMove var(--echo-duration, 4s) ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+html.echo-on .logo-echo .echo-g1 {
+  animation: logoEchoMove var(--echo-duration, 4s) ease-in-out infinite;
+  animation-delay: 0.1s;
+}
+
+html.echo-on .logo-echo .echo-g2 {
+  animation: logoEchoMove var(--echo-duration, 4s) ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+html.echo-on .logo-echo .echo-g3 {
+  animation: logoEchoMove var(--echo-duration, 4s) ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+
+/* Desktop Hover: Speed up loop to 2.4s */
+@media (hover: hover) and (min-width: 1025px) {
+  .logo-echo:hover,
+  .elementor-element-a274151:hover .logo-echo {
+    --echo-duration: 2.4s !important;
+  }
+}
+
+/* Tablet (<= 1024px): 14px */
+@media (max-width: 1024px) {
+  :root {
+    --echo-tx: 14px;
+  }
+}
+
+/* Mobile (<= 767px): 10px, 2 ghosts, 4.5s */
+@media (max-width: 767px) {
+  :root {
+    --echo-tx: 10px;
+    --echo-duration: 4.5s;
+  }
+  .echo-g3 {
+    display: none !important;
+  }
+}
+
+/* Pause Conditions */
+html.echo-paused-tab .logo-echo .kalakaari-navbar-logo,
+html.echo-paused-tab .logo-echo .echo-ghost,
+html.echo-paused-offscreen .logo-echo .kalakaari-navbar-logo,
+html.echo-paused-offscreen .logo-echo .echo-ghost,
+html.echo-paused-shrunk .logo-echo .kalakaari-navbar-logo,
+html.echo-paused-shrunk .logo-echo .echo-ghost,
+html.echo-paused-menu .logo-echo .kalakaari-navbar-logo,
+html.echo-paused-menu .logo-echo .echo-ghost,
+html:has(#kalakaari-fullscreen-menu.menu-active) .logo-echo .kalakaari-navbar-logo,
+html:has(#kalakaari-fullscreen-menu.menu-active) .logo-echo .echo-ghost {
+  animation-play-state: paused !important;
+}
+
+/* Safety & Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .echo-ghost {
+    display: none !important;
+  }
+  .logo-echo .kalakaari-navbar-logo,
+  .logo-echo .echo-ghost {
+    animation: none !important;
+  }
+}
+
+@supports not (mask-image: url("")) and not (-webkit-mask-image: url("")) {
+  .echo-ghost {
+    display: none !important;
+  }
+  .logo-echo .kalakaari-navbar-logo {
+    animation: none !important;
+  }
+}
+
 </style>
 <link rel="stylesheet" href="./css/animations.css">
 <script>document.documentElement.classList.add('js-anim');</script>
 </head><body class="home wp-singular page-template-default page page-id-91168 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor wp-child-theme-hello-elementor-child hello-elementor-default elementor-default elementor-kit-6 elementor-page elementor-page-91168 e--ua-blink e--ua-chrome e--ua-webkit" data-elementor-device-mode="desktop">
 <div id="kalakaari-theme-curtain" style="position: fixed; inset: 0; background: #0E0E0E; z-index: 99998; pointer-events: none;"></div> <!-- Google Tag Manager (noscript) snippet added by Site Kit --> <noscript> <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5H4JXSK" height="0" width="0" style="display:none;visibility:hidden"></iframe> </noscript> <!-- End Google Tag Manager (noscript) snippet added by Site Kit --> <script src="https://chatsi.app/widget.js" data-merchant-id="af415de8-7c0b-41ad-b3b9-7a2894bb3945" data-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoiYWY0MTVkZTgtN2MwYi00MWFkLWIzYjktN2EyODk0YmIzOTQ1IiwiY3JlYXRlZEF0IjoxNzcyNTU5ODMwMzYwLCJpYXQiOjE3NzI1NTk4MzB9.PtylNpRJv_jNRo9BPFfSlfdHLNATkBETMXXfNs85c2A" type="pmdelayedscript" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1"></script> <a class="skip-link screen-reader-text" href="#content">Skip to content</a><header data-elementor-type="header" data-elementor-id="81838" class="elementor elementor-81838 elementor-location-header" data-elementor-post-type="elementor_library"><div class="elementor-element elementor-element-714c76d elementor-hidden-tablet elementor-hidden-mobile e-flex e-con-boxed e-con e-parent e-lazyloaded elementor-sticky elementor-sticky--active elementor-section--handles-inside elementor-sticky--effects" data-id="714c76d" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;sticky&quot;:&quot;top&quot;,&quot;sticky_anchor_link_offset&quot;:82,&quot;sticky_on&quot;:[&quot;widescreen&quot;,&quot;desktop&quot;,&quot;laptop&quot;,&quot;tablet&quot;,&quot;mobile&quot;],&quot;sticky_offset&quot;:0,&quot;sticky_effects_offset&quot;:0}" style="position: fixed; width: 1424.8px; margin-top: 0px; margin-bottom: 0px; top: 0px;"><div class="e-con-inner"><div class="elementor-element elementor-element-b2e2be6 e-con-full e-flex e-con e-child" data-id="b2e2be6" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-a274151 e-con-full e-flex e-con e-child" data-id="a274151" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-3d4f86d elementor-widget__width-inherit elementor-widget elementor-widget-image" data-id="3d4f86d" data-element_type="widget" data-e-type="widget" data-widget_type="image.default"><div class="elementor-widget-container"> <a href="#top" style="display: inline-flex; align-items: center; text-decoration: none;" aria-label="Kalakaari Studios">
-  <img src="./img/kalakaari-logo-light.svg" alt="Kalakaari Studio logo" class="kalakaari-navbar-logo" width="1054" height="361" style="width: auto; object-fit: contain; display: block;" loading="eager" fetchpriority="high">
+  <div class="logo-echo">
+    <div class="echo-ghost echo-g3" aria-hidden="true"></div>
+    <div class="echo-ghost echo-g2" aria-hidden="true"></div>
+    <div class="echo-ghost echo-g1" aria-hidden="true"></div>
+    <img src="./img/kalakaari-logo-light.svg" alt="Kalakaari Studio logo" class="kalakaari-navbar-logo" width="1054" height="361" style="width: auto; object-fit: contain; display: block;" loading="eager" fetchpriority="high">
+  </div>
 </a></div></div></div><div class="elementor-element elementor-element-5334454 e-con-full e-flex e-con e-child" data-id="5334454" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-3ce41d5 e-n-menu-none mega-menu-open e-full_width e-n-menu-layout-horizontal elementor-widget elementor-widget-n-menu" data-id="3ce41d5" data-element_type="widget" data-e-type="widget" data-settings="{&quot;menu_items&quot;:[{&quot;item_title&quot;:&quot;Services&quot;,&quot;_id&quot;:&quot;280d16b&quot;,&quot;item_dropdown_content&quot;:&quot;yes&quot;,&quot;item_icon&quot;:{&quot;value&quot;:{&quot;url&quot;:&quot;https:\/\/www.kalakaaristudios.com\/wp-content\/uploads\/2026\/03\/chevron-down.svg&quot;,&quot;id&quot;:81988},&quot;library&quot;:&quot;svg&quot;},&quot;item_icon_active&quot;:{&quot;value&quot;:{&quot;url&quot;:&quot;https:\/\/www.kalakaaristudios.com\/wp-content\/uploads\/2026\/03\/chevron-up.svg&quot;,&quot;id&quot;:81990},&quot;library&quot;:&quot;svg&quot;},&quot;item_link&quot;:{&quot;url&quot;:&quot;&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;},&quot;element_id&quot;:&quot;&quot;},{&quot;item_title&quot;:&quot;Use Cases&quot;,&quot;item_dropdown_content&quot;:&quot;yes&quot;,&quot;item_icon&quot;:{&quot;value&quot;:{&quot;url&quot;:&quot;https:\/\/www.kalakaaristudios.com\/wp-content\/uploads\/2026\/03\/chevron-down.svg&quot;,&quot;id&quot;:81988},&quot;library&quot;:&quot;svg&quot;},&quot;item_icon_active&quot;:{&quot;value&quot;:{&quot;url&quot;:&quot;https:\/\/www.kalakaaristudios.com\/wp-content\/uploads\/2026\/03\/chevron-up.svg&quot;,&quot;id&quot;:81990},&quot;library&quot;:&quot;svg&quot;},&quot;_id&quot;:&quot;3160449&quot;,&quot;item_link&quot;:{&quot;url&quot;:&quot;&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;},&quot;element_id&quot;:&quot;&quot;},{&quot;item_title&quot;:&quot;Resources&quot;,&quot;item_dropdown_content&quot;:&quot;yes&quot;,&quot;item_icon&quot;:{&quot;value&quot;:{&quot;url&quot;:&quot;https:\/\/www.kalakaaristudios.com\/wp-content\/uploads\/2026\/03\/chevron-down.svg&quot;,&quot;id&quot;:81988},&quot;library&quot;:&quot;svg&quot;},&quot;item_icon_active&quot;:{&quot;value&quot;:{&quot;url&quot;:&quot;https:\/\/www.kalakaaristudios.com\/wp-content\/uploads\/2026\/03\/chevron-up.svg&quot;,&quot;id&quot;:81990},&quot;library&quot;:&quot;svg&quot;},&quot;_id&quot;:&quot;2b2e1df&quot;,&quot;item_link&quot;:{&quot;url&quot;:&quot;&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;},&quot;element_id&quot;:&quot;&quot;},{&quot;item_title&quot;:&quot;Pricing&quot;,&quot;_id&quot;:&quot;85259b7&quot;,&quot;item_link&quot;:{&quot;url&quot;:&quot;https:\/\/www.kalakaaristudios.com\/pricing\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;},&quot;item_dropdown_content&quot;:&quot;no&quot;,&quot;item_icon&quot;:{&quot;value&quot;:&quot;&quot;,&quot;library&quot;:&quot;&quot;},&quot;item_icon_active&quot;:null,&quot;element_id&quot;:&quot;&quot;},{&quot;item_title&quot;:&quot;Contact Us&quot;,&quot;item_dropdown_content&quot;:&quot;yes&quot;,&quot;item_icon&quot;:{&quot;value&quot;:{&quot;url&quot;:&quot;https:\/\/www.kalakaaristudios.com\/wp-content\/uploads\/2026\/03\/chevron-down.svg&quot;,&quot;id&quot;:81988},&quot;library&quot;:&quot;svg&quot;},&quot;item_icon_active&quot;:{&quot;value&quot;:{&quot;url&quot;:&quot;https:\/\/www.kalakaaristudios.com\/wp-content\/uploads\/2026\/03\/chevron-up.svg&quot;,&quot;id&quot;:81990},&quot;library&quot;:&quot;svg&quot;},&quot;_id&quot;:&quot;22e448d&quot;,&quot;item_link&quot;:{&quot;url&quot;:&quot;&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;},&quot;element_id&quot;:&quot;&quot;}],&quot;breakpoint_selector&quot;:&quot;none&quot;,&quot;menu_item_title_distance_from_content&quot;:{&quot;unit&quot;:&quot;rem&quot;,&quot;size&quot;:2,&quot;sizes&quot;:[]},&quot;menu_item_title_distance_from_content_laptop&quot;:{&quot;unit&quot;:&quot;rem&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_item_title_distance_from_content_tablet&quot;:{&quot;unit&quot;:&quot;rem&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_item_title_distance_from_content_mobile&quot;:{&quot;unit&quot;:&quot;rem&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;content_width&quot;:&quot;full_width&quot;,&quot;item_layout&quot;:&quot;horizontal&quot;,&quot;open_on&quot;:&quot;hover&quot;,&quot;horizontal_scroll&quot;:&quot;disable&quot;,&quot;menu_item_title_distance_from_content_widescreen&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="mega-menu.default"><div class="elementor-widget-container"><nav class="e-n-menu" data-widget-number="638" aria-label="Menu" data-touch-mode="false" data-layout="horizontal"> <button class="e-n-menu-toggle" id="menu-toggle-638" aria-haspopup="true" aria-expanded="false" aria-controls="menubar-638" aria-label="Menu Toggle"> <span class="e-n-menu-toggle-icon e-open"> <svg class="e-font-icon-svg e-eicon-menu-bar" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M104 333H896C929 333 958 304 958 271S929 208 896 208H104C71 208 42 237 42 271S71 333 104 333ZM104 583H896C929 583 958 554 958 521S929 458 896 458H104C71 458 42 487 42 521S71 583 104 583ZM104 833H896C929 833 958 804 958 771S929 708 896 708H104C71 708 42 737 42 771S71 833 104 833Z"></path></svg> </span> <span class="e-n-menu-toggle-icon e-close"> <svg class="e-font-icon-svg e-eicon-close" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M742 167L500 408 258 167C246 154 233 150 217 150 196 150 179 158 167 167 154 179 150 196 150 212 150 229 154 242 171 254L408 500 167 742C138 771 138 800 167 829 196 858 225 858 254 829L496 587 738 829C750 842 767 846 783 846 800 846 817 842 829 829 842 817 846 804 846 783 846 767 842 750 829 737L588 500 833 258C863 229 863 200 833 171 804 137 775 137 742 167Z"></path></svg> </span> </button><div class="e-n-menu-wrapper" id="menubar-638" aria-labelledby="menu-toggle-638" style="--stretch-width: 1425px; --stretch-left: -424.5500183105469px; --n-menu-dropdown-content-box-height: 0;"><ul class="e-n-menu-heading"><li class="e-n-menu-item"><div id="e-n-menu-title-6381" class="e-n-menu-title"><div class="e-n-menu-title-container"> <span class="e-n-menu-icon"> <span class="icon-active"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 12.56 6.73"><path d="M6.28,0A2.3,2.3,0,0,0,4.64.68L.29,5a1,1,0,0,0,0,1.41,1,1,0,0,0,1.42,0L6.05,2.09a.27.27,0,0,1,.45,0l4.35,4.35a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.41L7.92.68A2.3,2.3,0,0,0,6.28,0Z"></path></svg></span> <span class="icon-inactive"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 12.56 6.73"><path d="M6.28,6.73a2.3,2.3,0,0,1-1.64-.68L.29,1.71A1,1,0,0,1,1.71.29L6.05,4.64a.27.27,0,0,0,.45,0L10.85.29a1,1,0,0,1,1.42,1.42L7.92,6.05a2.3,2.3,0,0,1-1.64.68Z"></path></svg></span> </span> <span class="e-n-menu-title-text"> Services </span></div> <button id="e-n-menu-dropdown-icon-6381" class="e-n-menu-dropdown-icon e-focus" data-tab-index="1" aria-haspopup="true" aria-expanded="false" aria-controls="e-n-menu-content-6381" data-focus-index="1"> <span class="e-n-menu-dropdown-icon-opened"> <span class="elementor-screen-only">Close Services</span> </span> <span class="e-n-menu-dropdown-icon-closed"> <span class="elementor-screen-only">Open Services</span> </span> </button></div><div class="e-n-menu-content"><div id="e-n-menu-content-6381" data-tab-index="1" aria-labelledby="e-n-menu-dropdown-icon-6381" class="elementor-element elementor-element-08b20ae e-flex e-con-boxed e-con e-child" data-id="08b20ae" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="e-con-inner"><div class="elementor-element elementor-element-24081ec elementor-widget elementor-widget-html" data-id="24081ec" data-element_type="widget" data-e-type="widget" data-widget_type="html.default"><div class="elementor-widget-container"><div data-elementor-type="container" data-elementor-id="82099" class="elementor elementor-82099" data-elementor-post-type="elementor_library"><div class="elementor-element elementor-element-52816073 e-con-full e-flex e-con e-child" data-id="52816073" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"> <a class="elementor-element elementor-element-6fa16c59 e-con-full menu-card-container-smaller e-flex e-con e-child" data-id="6fa16c59" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="#long-form-video-section"><div class="elementor-element elementor-element-5a66e9c5 elementor-widget elementor-widget-heading" data-id="5a66e9c5" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Long-Form Video Editing</h2></div></div><div class="elementor-element elementor-element-79442ac elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="79442ac" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">long-form horizontal videos for YouTube and other platforms; any style any niche</p></div></div><div class="elementor-element elementor-element-175e6bb e-con-full menu-card-icon-container e-flex e-con e-child" data-id="175e6bb" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-1cd80cb9 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="1cd80cb9" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-4a2be953 e-con-full menu-card-container-smaller e-flex e-con e-child" data-id="4a2be953" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="#photos-albums-portrait-section"><div class="elementor-element elementor-element-2a5d96a6 elementor-widget elementor-widget-heading" data-id="2a5d96a6" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Short-Form Video Editing</h2></div></div><div class="elementor-element elementor-element-7d21c054 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="7d21c054" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">short-form vertical videos for all platforms; original content and reformats</p></div></div><div class="elementor-element elementor-element-57d1f438 e-con-full menu-card-icon-container e-flex e-con e-child" data-id="57d1f438" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-70125fe2 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="70125fe2" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-4b29a86c e-con-full menu-card-container-smaller e-flex e-con e-child" data-id="4b29a86c" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="#long-form-video-section"><div class="elementor-element elementor-element-43e7dfe1 elementor-widget elementor-widget-heading" data-id="43e7dfe1" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">YouTube Channel Management</h2></div></div><div class="elementor-element elementor-element-64cb46e2 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="64cb46e2" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">our experts run and grow your YouTube channel so that you can focus on creating content</p></div></div><div class="elementor-element elementor-element-2f6c297 e-con-full menu-card-icon-container e-flex e-con e-child" data-id="2f6c297" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-31b410f6 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="31b410f6" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a></div></div></div></div></div></div></div></li><li class="e-n-menu-item"><div id="e-n-menu-title-6382" class="e-n-menu-title"><div class="e-n-menu-title-container"> <span class="e-n-menu-icon"> <span class="icon-active"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 12.56 6.73"><path d="M6.28,0A2.3,2.3,0,0,0,4.64.68L.29,5a1,1,0,0,0,0,1.41,1,1,0,0,0,1.42,0L6.05,2.09a.27.27,0,0,1,.45,0l4.35,4.35a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.41L7.92.68A2.3,2.3,0,0,0,6.28,0Z"></path></svg></span> <span class="icon-inactive"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 12.56 6.73"><path d="M6.28,6.73a2.3,2.3,0,0,1-1.64-.68L.29,1.71A1,1,0,0,1,1.71.29L6.05,4.64a.27.27,0,0,0,.45,0L10.85.29a1,1,0,0,1,1.42,1.42L7.92,6.05a2.3,2.3,0,0,1-1.64.68Z"></path></svg></span> </span> <span class="e-n-menu-title-text"> Use Cases </span></div> <button id="e-n-menu-dropdown-icon-6382" class="e-n-menu-dropdown-icon e-focus" data-tab-index="2" aria-haspopup="true" aria-expanded="false" aria-controls="e-n-menu-content-6382" data-focus-index="2"> <span class="e-n-menu-dropdown-icon-opened"> <span class="elementor-screen-only">Close Use Cases</span> </span> <span class="e-n-menu-dropdown-icon-closed"> <span class="elementor-screen-only">Open Use Cases</span> </span> </button></div><div class="e-n-menu-content"><div id="e-n-menu-content-6382" data-tab-index="2" aria-labelledby="e-n-menu-dropdown-icon-6382" class="elementor-element elementor-element-74f8af0 e-flex e-con-boxed e-con e-child" data-id="74f8af0" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="e-con-inner"><div class="elementor-element elementor-element-960d150 elementor-widget elementor-widget-html" data-id="960d150" data-element_type="widget" data-e-type="widget" data-widget_type="html.default"><div class="elementor-widget-container"><div data-elementor-type="container" data-elementor-id="93282" class="elementor elementor-93282" data-elementor-post-type="elementor_library"><div class="elementor-element elementor-element-347b5705 e-con-full mega-menu-inner e-flex e-con e-child" data-id="347b5705" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-aff35cf e-con-full e-flex e-con e-child" data-id="aff35cf" data-element_type="container" data-e-type="container"> <a class="elementor-element elementor-element-3ab1afc5 e-con-full menu-card-container-smaller e-flex e-con e-child" data-id="3ab1afc5" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="#long-form-video-section"><div class="elementor-element elementor-element-6cbd9ce1 elementor-widget elementor-widget-heading" data-id="6cbd9ce1" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">YouTubers</h2></div></div><div class="elementor-element elementor-element-2d0efbe6 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="2d0efbe6" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">for content creators of all sizes</p></div></div><div class="elementor-element elementor-element-1d401dc7 e-con-full menu-card-icon-container e-flex e-con e-child" data-id="1d401dc7" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-2f94e4ca menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="2f94e4ca" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-1b762980 e-con-full menu-card-container-smaller e-flex e-con e-child" data-id="1b762980" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="#long-form-video-section"><div class="elementor-element elementor-element-722783e2 elementor-widget elementor-widget-heading" data-id="722783e2" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Businesses</h2></div></div><div class="elementor-element elementor-element-36de117b elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="36de117b" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">for SMBs and enterprises who need video</p></div></div><div class="elementor-element elementor-element-38dc342 e-con-full menu-card-icon-container e-flex e-con e-child" data-id="38dc342" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-29aa2f0f menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="29aa2f0f" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-23b5563c e-con-full menu-card-container-smaller e-flex e-con e-child" data-id="23b5563c" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."><div class="elementor-element elementor-element-5a6e4ee8 elementor-widget elementor-widget-heading" data-id="5a6e4ee8" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Podcasters</h2></div></div><div class="elementor-element elementor-element-61588704 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="61588704" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">for video podcasters and short-form reformats</p></div></div><div class="elementor-element elementor-element-5fcf6dc0 e-con-full menu-card-icon-container e-flex e-con e-child" data-id="5fcf6dc0" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-4c26d683 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="4c26d683" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a></div> <a class="elementor-element elementor-element-310ff7b4 e-con-full menu-card-container-smallest e-flex e-con e-child" data-id="310ff7b4" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."><div class="elementor-element elementor-element-54cf1b0a elementor-widget elementor-widget-heading" data-id="54cf1b0a" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Realtors</h2></div></div><div class="elementor-element elementor-element-711b1370 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="711b1370" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">for individual agents and agencies</p></div></div><div class="elementor-element elementor-element-48fceddc e-con-full menu-card-icon-container e-flex e-con e-child" data-id="48fceddc" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-3c517dd0 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="3c517dd0" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-9aed31e e-con-full menu-card-container-smallest e-flex e-con e-child" data-id="9aed31e" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."><div class="elementor-element elementor-element-367fede8 elementor-widget elementor-widget-heading" data-id="367fede8" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Course Creators</h2></div></div><div class="elementor-element elementor-element-5085ed54 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="5085ed54" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">for experts creating course and promo content</p></div></div><div class="elementor-element elementor-element-6725f207 e-con-full menu-card-icon-container e-flex e-con e-child" data-id="6725f207" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-3765733 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="3765733" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-9ea12ff e-con-full menu-card-container-smallest e-flex e-con e-child" data-id="9ea12ff" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."><div class="elementor-element elementor-element-ee4de34 elementor-widget elementor-widget-heading" data-id="ee4de34" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Doctors</h2></div></div><div class="elementor-element elementor-element-4d1e6b1 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="4d1e6b1" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">for medical professionals, doctors, nurses and other health experts</p></div></div><div class="elementor-element elementor-element-149c96a e-con-full menu-card-icon-container e-flex e-con e-child" data-id="149c96a" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-55770d7 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="55770d7" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-78fc277 e-con-full menu-card-container-smallest e-flex e-con e-child" data-id="78fc277" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."><div class="elementor-element elementor-element-ea22b74 elementor-widget elementor-widget-heading" data-id="ea22b74" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Lawyers</h2></div></div><div class="elementor-element elementor-element-bdcb6d7 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="bdcb6d7" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">for law firms, lawyers, attorneys and other legal professionals</p></div></div><div class="elementor-element elementor-element-2f28cad e-con-full menu-card-icon-container e-flex e-con e-child" data-id="2f28cad" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-2e8e0b9 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="2e8e0b9" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a></div></div></div></div></div></div></div></li><li class="e-n-menu-item"><div id="e-n-menu-title-6383" class="e-n-menu-title"><div class="e-n-menu-title-container"> <span class="e-n-menu-icon"> <span class="icon-active"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 12.56 6.73"><path d="M6.28,0A2.3,2.3,0,0,0,4.64.68L.29,5a1,1,0,0,0,0,1.41,1,1,0,0,0,1.42,0L6.05,2.09a.27.27,0,0,1,.45,0l4.35,4.35a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.41L7.92.68A2.3,2.3,0,0,0,6.28,0Z"></path></svg></span> <span class="icon-inactive"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 12.56 6.73"><path d="M6.28,6.73a2.3,2.3,0,0,1-1.64-.68L.29,1.71A1,1,0,0,1,1.71.29L6.05,4.64a.27.27,0,0,0,.45,0L10.85.29a1,1,0,0,1,1.42,1.42L7.92,6.05a2.3,2.3,0,0,1-1.64.68Z"></path></svg></span> </span> <span class="e-n-menu-title-text"> Resources </span></div> <button id="e-n-menu-dropdown-icon-6383" class="e-n-menu-dropdown-icon e-focus" data-tab-index="3" aria-haspopup="true" aria-expanded="false" aria-controls="e-n-menu-content-6383" data-focus-index="3"> <span class="e-n-menu-dropdown-icon-opened"> <span class="elementor-screen-only">Close Resources</span> </span> <span class="e-n-menu-dropdown-icon-closed"> <span class="elementor-screen-only">Open Resources</span> </span> </button></div><div class="e-n-menu-content"><div id="e-n-menu-content-6383" data-tab-index="3" aria-labelledby="e-n-menu-dropdown-icon-6383" class="elementor-element elementor-element-31a8625 e-flex e-con-boxed e-con e-child" data-id="31a8625" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="e-con-inner"><div class="elementor-element elementor-element-827f0c6 elementor-widget elementor-widget-html" data-id="827f0c6" data-element_type="widget" data-e-type="widget" data-widget_type="html.default"><div class="elementor-widget-container"><div data-elementor-type="container" data-elementor-id="82107" class="elementor elementor-82107" data-elementor-post-type="elementor_library"><div class="elementor-element elementor-element-5cb08170 e-con-full e-flex e-con e-child" data-id="5cb08170" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"> <a class="elementor-element elementor-element-1701ecb1 e-con-full menu-card-container e-flex e-con e-child" data-id="1701ecb1" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."><div class="elementor-element elementor-element-3460c329 elementor-widget elementor-widget-heading" data-id="3460c329" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Example Videos</h2></div></div><div class="elementor-element elementor-element-36e48906 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="36e48906" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">long-form, short-form, and thumbnail examples</p></div></div><div class="elementor-element elementor-element-5190702e e-con-full menu-card-icon-container e-flex e-con e-child" data-id="5190702e" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-2004f02 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="2004f02" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-50460651 e-con-full menu-card-container e-flex e-con e-child" data-id="50460651" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."><div class="elementor-element elementor-element-62dd3bd9 elementor-widget elementor-widget-heading" data-id="62dd3bd9" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Client Case Studies</h2></div></div><div class="elementor-element elementor-element-5f5bd225 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="5f5bd225" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">see the results from real creators and businesses</p></div></div><div class="elementor-element elementor-element-711a442 e-con-full menu-card-icon-container e-flex e-con e-child" data-id="711a442" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-1da2c7b7 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="1da2c7b7" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-ba51779 e-con-full menu-card-container-smaller e-flex e-con e-child" data-id="ba51779" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."><div class="elementor-element elementor-element-4242a49 elementor-widget elementor-widget-heading" data-id="4242a49" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Testimonials</h2></div></div><div class="elementor-element elementor-element-0a42cb0 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="0a42cb0" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">hear why creators and businesses love Kalakaari Studios</p></div></div><div class="elementor-element elementor-element-e567fa3 e-con-full menu-card-icon-container e-flex e-con e-child" data-id="e567fa3" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-681cbe8 menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="681cbe8" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> <a class="elementor-element elementor-element-7c0c3bd e-con-full menu-card-container-smaller e-flex e-con e-child" data-id="7c0c3bd" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."><div class="elementor-element elementor-element-343bc65 elementor-widget elementor-widget-heading" data-id="343bc65" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">About Us</h2></div></div><div class="elementor-element elementor-element-fef58e7 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="fef58e7" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><p class="elementor-heading-title elementor-size-default">meet the Kalakaari Studios team</p></div></div><div class="elementor-element elementor-element-610b76d e-con-full menu-card-icon-container e-flex e-con e-child" data-id="610b76d" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-2bb470f menu-card-icon elementor-view-default elementor-widget elementor-widget-icon" data-id="2bb470f" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"><div class="elementor-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg></div></div></div></div></div> </a> </div></div></div></div></div></div></div></li><li class="e-n-menu-item"><div id="e-n-menu-title-6384" class="e-n-menu-title"> <a class="e-n-menu-title-container e-focus e-link" href="#pricing" data-focus-index="4"> <span class="e-n-menu-title-text"> Pricing </span> </a></div></li><li class="e-n-menu-item"><div id="e-n-menu-title-6385" class="e-n-menu-title"><div class="e-n-menu-title-container"> <span class="e-n-menu-icon"> <span class="icon-active"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 12.56 6.73"><path d="M6.28,0A2.3,2.3,0,0,0,4.64.68L.29,5a1,1,0,0,0,0,1.41,1,1,0,0,0,1.42,0L6.05,2.09a.27.27,0,0,1,.45,0l4.35,4.35a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.41L7.92.68A2.3,2.3,0,0,0,6.28,0Z"></path></svg></span> <span class="icon-inactive"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 12.56 6.73"><path d="M6.28,6.73a2.3,2.3,0,0,1-1.64-.68L.29,1.71A1,1,0,0,1,1.71.29L6.05,4.64a.27.27,0,0,0,.45,0L10.85.29a1,1,0,0,1,1.42,1.42L7.92,6.05a2.3,2.3,0,0,1-1.64.68Z"></path></svg></span> </span> <span class="e-n-menu-title-text"> Contact Us </span></div> <button id="e-n-menu-dropdown-icon-6385" class="e-n-menu-dropdown-icon e-focus" data-tab-index="5" aria-haspopup="true" aria-expanded="false" aria-controls="e-n-menu-content-6385" data-focus-index="5"> <span class="e-n-menu-dropdown-icon-opened"> <span class="elementor-screen-only">Close Contact Us</span> </span> <span class="e-n-menu-dropdown-icon-closed"> <span class="elementor-screen-only">Open Contact Us</span> </span> </button></div><div class="e-n-menu-content"><div id="e-n-menu-content-6385" data-tab-index="5" aria-labelledby="e-n-menu-dropdown-icon-6385" class="elementor-element elementor-element-19f5609 e-flex e-con-boxed e-con e-child" data-id="19f5609" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="e-con-inner"><div class="elementor-element elementor-element-e701d08 e-con-full e-flex e-con e-child" data-id="e701d08" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-39307a5 e-con-full e-flex e-con e-child" data-id="39307a5" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-3fd5ad3 elementor-widget elementor-widget-heading" data-id="3fd5ad3" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Information</h2></div></div><div class="elementor-element elementor-element-0741962 elementor-align-justify elementor-widget elementor-widget-button" data-id="0741962" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> <a class="elementor-button elementor-button-link elementor-size-sm" href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20editing%20services." target="_blank"> <span class="elementor-button-content-wrapper"> <span class="elementor-button-icon"> <svg xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg> </span> <span class="elementor-button-text">Get started</span> </span> </a></div></div></div></div></div></div></div></div></li></ul></div></nav></div></div></div><div id="kalakaari-header-hamburger-btn" title="Menu" onclick="openFullscreenMenu()" style="cursor: pointer;">
   <span class="kalakaari-menu-label">Menu</span>
   <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
@@ -2032,6 +2199,7 @@ function openFullscreenMenu() {
     menu.style.display = 'flex';
     void menu.offsetWidth;
     menu.classList.add('menu-active');
+    document.documentElement.classList.add('echo-paused-menu');
     document.body.style.overflow = 'hidden';
   }
 }
@@ -2040,6 +2208,7 @@ function closeFullscreenMenu() {
   const menu = document.getElementById('kalakaari-fullscreen-menu');
   if (menu) {
     menu.classList.remove('menu-active');
+    document.documentElement.classList.remove('echo-paused-menu');
     setTimeout(() => {
       if (!menu.classList.contains('menu-active')) {
         menu.style.display = 'none';
@@ -2053,4 +2222,100 @@ function closeDrawer() {
   closeFullscreenMenu();
 }
 </script>
+
+<script id="kalakaari-echo-controller">
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function startEchoTimer() {
+    if (document.documentElement.classList.contains('echo-on')) return;
+    setTimeout(function() {
+      document.documentElement.classList.add('echo-on');
+    }, 1500);
+  }
+
+  // Detect when existing intro timeline finishes
+  var pill = document.querySelector('.elementor-element-b2e2be6');
+  var introFinished = false;
+
+  function checkIntroComplete() {
+    if (introFinished) return true;
+    // masterTl.onComplete clears willChange to 'auto' when entire timeline completes
+    if (pill && pill.style.willChange === 'auto') {
+      introFinished = true;
+      startEchoTimer();
+      return true;
+    }
+    return false;
+  }
+
+  if (!checkIntroComplete()) {
+    var obs = new MutationObserver(function() {
+      if (checkIntroComplete()) {
+        obs.disconnect();
+      }
+    });
+    if (pill) {
+      obs.observe(pill, { attributes: true, attributeFilter: ['style'] });
+    }
+    setTimeout(function() {
+      obs.disconnect();
+      startEchoTimer();
+    }, 3800);
+  }
+
+  // 1. Pause on hidden tab
+  document.addEventListener('visibilitychange', function() {
+    document.documentElement.classList.toggle('echo-paused-tab', document.hidden);
+  });
+
+  // 2. Pause when logo is off-screen
+  var logo = document.querySelector('.kalakaari-navbar-logo') || document.querySelector('.logo-echo');
+  if (logo && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        document.documentElement.classList.toggle('echo-paused-offscreen', !entry.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    io.observe(logo);
+  }
+
+  // 3. Pause when navbar is shrunk on scroll down
+  var scrollTicking = false;
+  window.addEventListener('scroll', function() {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(function() {
+        var isShrunk = window.scrollY > 180;
+        document.documentElement.classList.toggle('echo-paused-shrunk', isShrunk);
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+
+  // 4. Safe buffer from Services link on desktop
+  function updateAmplitude() {
+    if (window.innerWidth >= 1025) {
+      var logoImg = document.querySelector('.kalakaari-navbar-logo');
+      var firstLink = document.querySelector('.elementor-element-5334454 .e-n-menu-item');
+      if (logoImg && firstLink) {
+        var space = firstLink.getBoundingClientRect().left - logoImg.getBoundingClientRect().right;
+        if (space < 32) {
+          var safeTx = Math.max(6, Math.floor(space - 12));
+          document.documentElement.style.setProperty('--echo-tx', safeTx + 'px');
+          return;
+        }
+      }
+      document.documentElement.style.setProperty('--echo-tx', '20px');
+    }
+  }
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateAmplitude, 120);
+  });
+  updateAmplitude();
+})();
+</script>
+
 </body></html>
