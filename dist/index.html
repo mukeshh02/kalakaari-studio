@@ -2216,6 +2216,12 @@ function openServicesSlide() {
   const backdrop = document.getElementById('kalakaari-services-backdrop');
   const drawer = document.getElementById('kalakaari-services-drawer');
   if (backdrop && drawer) {
+    if (window.KalakaariMotion && typeof window.KalakaariMotion.lenis === 'function') {
+      try {
+        const l = window.KalakaariMotion.lenis();
+        if (l && typeof l.stop === 'function') l.stop();
+      } catch (e) {}
+    }
     backdrop.style.display = 'block';
     void backdrop.offsetWidth;
     backdrop.style.opacity = '1';
@@ -2237,6 +2243,12 @@ function closeServicesSlide() {
       if (!document.getElementById('kalakaari-fullscreen-menu') || !document.getElementById('kalakaari-fullscreen-menu').classList.contains('menu-active')) {
         document.body.style.overflow = '';
       }
+      if (window.KalakaariMotion && typeof window.KalakaariMotion.lenis === 'function') {
+        try {
+          const l = window.KalakaariMotion.lenis();
+          if (l && typeof l.start === 'function') l.start();
+        } catch (e) {}
+      }
     }, 380);
   }
 }
@@ -2245,9 +2257,7 @@ function scrollToDrawerSection(id) {
   const drawer = document.getElementById('kalakaari-services-drawer');
   const target = document.getElementById(id);
   if (drawer && target) {
-    const headerHeight = 85;
-    const targetTop = target.offsetTop - headerHeight;
-    drawer.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     updateActiveDrawerTab(id);
   }
 }
@@ -2279,17 +2289,23 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!drawer) return;
   const sections = ['showcase-video-16x9', 'showcase-reel-9x16', 'showcase-wedding-films', 'showcase-photobooks', 'showcase-thumbnails-ops'];
   
+  // Guarantee wheel scrolling works even when Lenis/smooth-scroll library is active
+  drawer.addEventListener('wheel', function(e) {
+    e.stopPropagation();
+    drawer.scrollTop += e.deltaY;
+  }, { passive: true });
+
   drawer.addEventListener('scroll', function() {
     const isNearBottom = drawer.scrollHeight - drawer.scrollTop - drawer.clientHeight < 240;
     const textEl = document.getElementById('kalakaari-scroll-indicator-text');
     const iconEl = document.getElementById('kalakaari-scroll-indicator-icon');
     if (textEl && iconEl) {
       if (isNearBottom) {
-        textEl.textContent = 'Back to top ↑';
-        iconEl.textContent = '↑';
+        textEl.textContent = 'Back to top';
+        iconEl.innerHTML = '&#8593;';
       } else {
         textEl.textContent = 'Scroll to explore all 5 services';
-        iconEl.textContent = '↓';
+        iconEl.innerHTML = '&#8595;';
       }
     }
 
@@ -2303,6 +2319,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     updateActiveDrawerTab(currentId);
   }, { passive: true });
+
+  // Keyboard navigation inside drawer
+  window.addEventListener('keydown', function(e) {
+    if (!drawer || (drawer.style.transform !== 'translateX(0px)' && drawer.style.transform !== 'translateX(0)')) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      drawer.scrollBy({ top: 120, behavior: 'smooth' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      drawer.scrollBy({ top: -120, behavior: 'smooth' });
+    } else if (e.key === 'PageDown' || (e.key === ' ' && !e.target.matches('input, textarea'))) {
+      e.preventDefault();
+      drawer.scrollBy({ top: 480, behavior: 'smooth' });
+    } else if (e.key === 'PageUp') {
+      e.preventDefault();
+      drawer.scrollBy({ top: -480, behavior: 'smooth' });
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      drawer.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      drawer.scrollTo({ top: drawer.scrollHeight, behavior: 'smooth' });
+    }
+  });
 });
 
 function scrollToSection(id) {
@@ -2513,7 +2553,7 @@ document.addEventListener('DOMContentLoaded', function() {
   transition: opacity 0.35s ease;
 "></div>
 
-<section id="kalakaari-services-drawer" role="dialog" aria-modal="true" aria-label="Kalakaari Studios Video and Reel Services" style="
+<section id="kalakaari-services-drawer" data-lenis-prevent="true" data-lenis-prevent-wheel="true" data-lenis-prevent-touch="true" role="dialog" aria-modal="true" aria-label="Kalakaari Studios Video and Reel Services" style="
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -2603,24 +2643,29 @@ document.addEventListener('DOMContentLoaded', function() {
       transform: translateY(-1px);
     }
     .kalakaari-next-service-btn {
+      appearance: none !important;
+      -webkit-appearance: none !important;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 10px 18px;
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      color: #ffffff !important;
       font-size: 0.82rem;
-      font-weight: 600;
+      font-weight: 700;
+      font-family: inherit;
       cursor: pointer;
       transition: all 0.2s ease;
       text-decoration: none;
+      outline: none;
     }
     .kalakaari-next-service-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.28);
+      background: rgba(255, 94, 43, 0.2) !important;
+      color: #ffffff !important;
+      border-color: #FF5E2B !important;
+      transform: translateY(-1px);
     }
     .kalakaari-service-card-mini {
       background: #11131a;
@@ -2710,7 +2755,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </header>
 
   <!-- Main Content Area -->
-  <main style="
+  <main data-lenis-prevent="true" data-lenis-prevent-wheel="true" data-lenis-prevent-touch="true" style="
     max-width: 1300px;
     width: 100%;
     margin: 0 auto;
