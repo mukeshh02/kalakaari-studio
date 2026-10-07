@@ -695,6 +695,9 @@
       } catch (e) {}
     }
     masterTl.play();
+    setTimeout(() => {
+      document.documentElement.classList.add('nav-expanded');
+    }, 1200);
   }
 
   // --------------------------------------------------------------------------
@@ -711,16 +714,16 @@
         const currentScroll = self.scroll();
         if (currentScroll > 180 && self.direction === 1) {
           gsap.to(pillHeader, {
-            scale: 0.95,
+            scale: 0.98,
             duration: 0.35,
             ease: 'power2.out',
             overwrite: 'auto'
           });
           if (desktopCta) {
             gsap.to(desktopCta, {
-              autoAlpha: 0,
-              scale: 0.8,
-              pointerEvents: 'none',
+              scale: 0.96,
+              autoAlpha: 1,
+              pointerEvents: 'auto',
               duration: 0.25,
               ease: 'power2.out',
               overwrite: 'auto'

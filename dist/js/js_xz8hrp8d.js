@@ -43,7 +43,7 @@ container:document.querySelector(".lottie-1"),
 renderer:"svg",
 loop:false,
 autoplay:false,
-path:"/wp-content/uploads/2026/04/1.-log-in.json",
+path:"./js/1.-log-in.json",
 rendererSettings:{progressiveLoad:true}
 }),
 
@@ -52,7 +52,7 @@ container:document.querySelector(".lottie-2"),
 renderer:"svg",
 loop:false,
 autoplay:false,
-path:"/wp-content/uploads/2026/04/Place-Your-Order.json",
+path:"./js/Place-Your-Order.json",
 rendererSettings:{progressiveLoad:true}
 }),
 
@@ -61,7 +61,7 @@ container:document.querySelector(".lottie-3"),
 renderer:"svg",
 loop:false,
 autoplay:false,
-path:"/wp-content/uploads/2026/04/Review.json",
+path:"./js/Review.json",
 rendererSettings:{progressiveLoad:true}
 })
 

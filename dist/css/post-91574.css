@@ -279,24 +279,21 @@
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: normal;
-	font-display: auto;
-	src: url('https://www.tastyedits.com/wp-content/uploads/2026/02/inter-regular_subset.woff2') format('woff2'),
-		url('https://www.tastyedits.com/wp-content/uploads/2026/02/Inter-Regular.svg#Inter') format('svg');
+	font-display: swap;
+	src: url('../fonts/inter-regular_subset.woff2') format('woff2');
 }
 @font-face {
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 500;
-	font-display: auto;
-	src: url('https://www.tastyedits.com/wp-content/uploads/2026/02/inter-medium_subset.woff2') format('woff2'),
-		url('https://www.tastyedits.com/wp-content/uploads/2026/02/Inter-Medium.svg#Inter') format('svg');
+	font-display: swap;
+	src: url('../fonts/inter-medium_subset.woff2') format('woff2');
 }
 @font-face {
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 600;
-	font-display: auto;
-	src: url('https://www.tastyedits.com/wp-content/uploads/2026/02/inter-semibold_subset.woff2') format('woff2'),
-		url('https://www.tastyedits.com/wp-content/uploads/2026/02/Inter-SemiBold.svg#Inter') format('svg');
+	font-display: swap;
+	src: url('../fonts/inter-semibold_subset.woff2') format('woff2');
 }
 /* End Custom Fonts CSS */
