@@ -2430,13 +2430,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <!-- ==========================================
-     KALAKAARI STUDIOS - FULL-SCREEN SERVICES SLIDE EXPERIENCE
+     KALAKAARI STUDIOS - RECTANGLE VIDEO & REEL SHOWCASE
      ========================================== -->
 <div id="kalakaari-services-backdrop" onclick="closeServicesSlide()" style="
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 999998;
@@ -2444,7 +2444,7 @@ document.addEventListener('DOMContentLoaded', function() {
   transition: opacity 0.35s ease;
 "></div>
 
-<section id="kalakaari-services-drawer" role="dialog" aria-modal="true" aria-label="Kalakaari Studios Complete Services" style="
+<section id="kalakaari-services-drawer" role="dialog" aria-modal="true" aria-label="Kalakaari Studios Video and Reel Services" style="
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -2469,11 +2469,18 @@ document.addEventListener('DOMContentLoaded', function() {
       .kalakaari-services-center-badge { display: none !important; }
       .kalakaari-services-logo-text { display: none !important; }
       #kalakaari-services-drawer header { padding: 14px 18px !important; }
-      #kalakaari-services-drawer main { padding: 28px 16px 60px !important; }
+      #kalakaari-services-drawer main { padding: 24px 16px 60px !important; }
+      .kalakaari-rectangle-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+      .kalakaari-reel-frame { height: 340px !important; }
     }
     @media (min-width: 861px) {
       .kalakaari-services-center-badge { display: inline-flex !important; }
       .kalakaari-services-logo-text { display: inline !important; }
+      .kalakaari-rectangle-grid { grid-template-columns: 1.15fr 0.85fr !important; gap: 28px !important; }
+    }
+    .kalakaari-video-glow:hover {
+      border-color: rgba(255, 255, 255, 0.22) !important;
+      transform: translateY(-2px);
     }
   </style>
 
@@ -2496,10 +2503,10 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="kalakaari-services-logo-text" style="font-weight: 800; font-size: 1.1rem; letter-spacing: -0.3px; color: #ffffff; text-transform: uppercase;">Kalakaari Studios</span>
     </a>
 
-    <!-- Center Badge (Hidden on mobile) -->
+    <!-- Center Badge -->
     <div class="kalakaari-services-center-badge" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 9999px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.8rem; color: #94a3b8; font-weight: 600;">
       <span style="width: 7px; height: 7px; border-radius: 50%; background: #FF4A38;"></span>
-      Full Creative &amp; Post-Production Suite
+      Video &amp; Reel Post-Production Suite
     </div>
 
     <!-- Close Action -->
@@ -2528,348 +2535,344 @@ document.addEventListener('DOMContentLoaded', function() {
     max-width: 1240px;
     width: 100%;
     margin: 0 auto;
-    padding: 44px 24px 80px;
+    padding: 38px 24px 80px;
     box-sizing: border-box;
   ">
-    <!-- Intro Hero Block -->
-    <div style="margin-bottom: 40px; text-align: left;">
-      <div style="display: inline-flex; align-items: center; gap: 8px; color: #FF5E2B; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; background: rgba(255, 94, 43, 0.08); padding: 5px 12px; border-radius: 9999px; border: 1px solid rgba(255, 94, 43, 0.2);">
-        <span>✦</span> Everything We Provide
+    <!-- Intro Header -->
+    <div style="margin-bottom: 34px; text-align: left;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; color: #FF5E2B; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; background: rgba(255, 94, 43, 0.08); padding: 5px 12px; border-radius: 9999px; border: 1px solid rgba(255, 94, 43, 0.2);">
+        <span>✦</span> Services &amp; Formats
       </div>
-      <h1 style="font-size: clamp(1.85rem, 3.5vw, 2.85rem); font-weight: 800; color: #ffffff; letter-spacing: -0.8px; margin: 0 0 14px 0; line-height: 1.2;">
-        You Shoot. We Edit. Crafted For Creators &amp; Brands.
+      <h1 style="font-size: clamp(1.85rem, 3.2vw, 2.75rem); font-weight: 800; color: #ffffff; letter-spacing: -0.8px; margin: 0 0 10px 0; line-height: 1.2;">
+        You Shoot. We Edit.
       </h1>
-      <p style="font-size: clamp(0.95rem, 1.2vw, 1.1rem); color: #94a3b8; max-width: 760px; margin: 0; line-height: 1.6;">
-        From retention-driven viral reels to cinematic wedding films and full YouTube growth operations — our dedicated editing pipelines take the friction out of post-production.
+      <p style="font-size: clamp(0.95rem, 1.1vw, 1.05rem); color: #94a3b8; max-width: 720px; margin: 0; line-height: 1.55;">
+        Engineered specifically around the two defining formats of modern content: widescreen landscape <strong>Video</strong> and high-retention vertical <strong>Reel</strong>.
       </p>
     </div>
 
-    <!-- 7 Services Grid -->
-    <div style="
+    <!-- PRIMARY SHOWCASE: RECTANGLE VIDEO & REEL -->
+    <div class="kalakaari-rectangle-grid" style="
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 22px;
-      margin-bottom: 48px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      margin-bottom: 40px;
+      align-items: stretch;
     ">
-      <!-- 1. Long-Form Video Editing -->
-      <div class="kalakaari-service-card" style="
-        background: #12141c;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 26px 24px;
+      <!-- ==============================================
+           FORMAT 1: RECTANGLE VIDEO (16:9 Horizontal)
+           ============================================== -->
+      <div class="kalakaari-service-card kalakaari-video-glow" style="
+        background: #11131a;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 20px;
+        padding: 26px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        box-sizing: border-box;
         transition: all 0.25s ease;
-      " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)';">
+      ">
         <div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <div style="font-size: 1.7rem; line-height: 1;">🎬</div>
-            <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: #38bdf8; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">YouTube • Podcasts</span>
+          <!-- Top Tag -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.3rem;">🎬</span>
+              <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff; letter-spacing: 0.5px; text-transform: uppercase;">Video</span>
+            </div>
+            <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: #38bdf8; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.22); padding: 4px 10px; border-radius: 6px; text-transform: uppercase;">
+              16:9 Landscape Rectangle
+            </span>
           </div>
-          <h3 style="margin: 0 0 8px 0; font-size: 1.2rem; font-weight: 700; color: #ffffff;">Long-Form Video Editing</h3>
-          <p style="margin: 0 0 16px 0; color: #94a3b8; font-size: 0.9rem; line-height: 1.55;">
-            Master pacing, multi-camera switching, audio leveling, cinematic color treatment, and custom B-roll storytelling engineered to maximize average view duration.
+
+          <!-- 16:9 Realistic Video Frame Mockup -->
+          <div style="
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #181b26 0%, #0d0f17 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+          ">
+            <!-- Top Badges Inside Video -->
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.7rem; font-weight: 700; background: rgba(0, 0, 0, 0.75); color: #f1f5f9; padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.15);">
+                4K UHD • 60 FPS
+              </span>
+              <span style="font-size: 0.7rem; font-weight: 700; background: rgba(255, 51, 40, 0.2); color: #FF5E2B; padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(255, 51, 40, 0.4);">
+                ● REC
+              </span>
+            </div>
+
+            <!-- Center Play Icon & Cinematic Graphic -->
+            <div style="align-self: center; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="
+                width: 58px;
+                height: 58px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                backdrop-filter: blur(8px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+              ">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff" style="margin-left: 3px;">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+              <span style="font-size: 0.75rem; color: #cbd5e1; font-weight: 600; letter-spacing: 0.5px;">Long-Form / YouTube / Films</span>
+            </div>
+
+            <!-- Bottom Video Player Controls -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <!-- Scrubber Bar -->
+              <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; position: relative;">
+                <div style="width: 62%; height: 100%; background: #FF3328; border-radius: 2px;"></div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.7rem; color: #94a3b8; font-family: monospace;">
+                <span>09:24 / 18:40</span>
+                <span>Stereo 48kHz</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Description & Details -->
+          <h2 style="margin: 0 0 8px 0; font-size: 1.35rem; font-weight: 800; color: #ffffff;">
+            Long-Form Video Editing
+          </h2>
+          <p style="margin: 0 0 16px 0; color: #94a3b8; font-size: 0.92rem; line-height: 1.55;">
+            YouTube videos, podcasts, talking heads, cinematic wedding films, and documentaries. Multi-cam switching, color grading, sound design, and custom B-roll storytelling.
           </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;">
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">4K Master</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Color Grading</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Sound Design</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Dedicated Editor</span>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px;">
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">YouTube Channels</span>
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">Wedding Films</span>
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">Podcasts &amp; Interviews</span>
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">Color Grading (LUTs)</span>
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">Studio Sound Mastering</span>
           </div>
         </div>
-        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Long-Form%20Video%20Editing" target="_blank" style="
+
+        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Video%20Editing%20(16:9%20Format)" target="_blank" style="
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 10px 14px;
-          border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          color: #e2e8f0;
+          padding: 13px 18px;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          color: #ffffff;
           text-decoration: none;
-          font-weight: 600;
-          font-size: 0.85rem;
+          font-weight: 700;
+          font-size: 0.92rem;
           transition: all 0.2s ease;
-        " onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.borderColor='rgba(37,211,102,0.3)';this.style.color='#4ade80';" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(255,255,255,0.08)';this.style.color='#e2e8f0';">
-          <span>Inquire for Long-Form</span>
+        " onmouseover="this.style.background='rgba(37,211,102,0.12)';this.style.borderColor='rgba(37,211,102,0.35)';this.style.color='#4ade80';" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='#ffffff';">
+          <span style="display: flex; align-items: center; gap: 8px;">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"></path></svg>
+            Inquire for Video Editing
+          </span>
           <span>&rarr;</span>
         </a>
       </div>
 
-      <!-- 2. Short-Form Viral Content -->
-      <div class="kalakaari-service-card" style="
-        background: #12141c;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 26px 24px;
+      <!-- ==============================================
+           FORMAT 2: RECTANGLE REEL (9:16 Vertical)
+           ============================================== -->
+      <div class="kalakaari-service-card kalakaari-video-glow" style="
+        background: #11131a;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 20px;
+        padding: 26px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        box-sizing: border-box;
         transition: all 0.25s ease;
-      " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)';">
+      ">
         <div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <div style="font-size: 1.7rem; line-height: 1;">⚡</div>
-            <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: #f59e0b; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Reels • Shorts • TikTok</span>
+          <!-- Top Tag -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.3rem;">⚡</span>
+              <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff; letter-spacing: 0.5px; text-transform: uppercase;">Reel</span>
+            </div>
+            <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: #f59e0b; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.22); padding: 4px 10px; border-radius: 6px; text-transform: uppercase;">
+              9:16 Vertical Rectangle
+            </span>
           </div>
-          <h3 style="margin: 0 0 8px 0; font-size: 1.2rem; font-weight: 700; color: #ffffff;">Short-Form Viral Reels</h3>
-          <p style="margin: 0 0 16px 0; color: #94a3b8; font-size: 0.9rem; line-height: 1.55;">
-            Retention-focused mobile editing: kinetic animated subtitles, hook optimization, dynamic sound effects, zooms, and fast viral pacing.
+
+          <!-- 9:16 Realistic Smartphone Reel Frame Mockup -->
+          <div class="kalakaari-reel-frame" style="
+            width: 100%;
+            max-width: 250px;
+            height: 290px;
+            margin: 0 auto 20px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, #1f2230 0%, #0e1017 100%);
+            border: 2px solid rgba(255, 255, 255, 0.14);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 12px 14px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+          ">
+            <!-- Phone Notch Top -->
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="width: 40px; height: 4px; background: rgba(255,255,255,0.25); border-radius: 3px; margin: 0 auto;"></div>
+            </div>
+
+            <!-- Kinetic Captions in Center -->
+            <div style="text-align: center; padding: 0 8px;">
+              <div style="
+                display: inline-block;
+                background: rgba(0, 0, 0, 0.75);
+                backdrop-filter: blur(6px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 8px 12px;
+                border-radius: 10px;
+                transform: rotate(-1deg);
+              ">
+                <div style="color: #ffea00; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                  YOU SHOOT.
+                </div>
+                <div style="color: #ffffff; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                  WE EDIT. 🔥
+                </div>
+              </div>
+            </div>
+
+            <!-- Right-Side Social Reel Icons & Bottom Handle -->
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; width: 100%;">
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-size: 0.75rem; font-weight: 700; color: #ffffff;">@kalakaaristudios</span>
+                <span style="font-size: 0.65rem; color: #94a3b8;">Viral Hook &amp; Captions</span>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.7rem; color: #e2e8f0;">
+                <span style="display: flex; flex-direction: column; align-items: center;">❤️ <small style="font-size: 0.55rem; color: #cbd5e1;">48K</small></span>
+                <span style="display: flex; flex-direction: column; align-items: center;">💬 <small style="font-size: 0.55rem; color: #cbd5e1;">1.8K</small></span>
+                <span style="display: flex; flex-direction: column; align-items: center;">↗️ <small style="font-size: 0.55rem; color: #cbd5e1;">Share</small></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reel Description & Details -->
+          <h2 style="margin: 0 0 8px 0; font-size: 1.35rem; font-weight: 800; color: #ffffff;">
+            Short-Form Viral Reels
+          </h2>
+          <p style="margin: 0 0 16px 0; color: #94a3b8; font-size: 0.92rem; line-height: 1.55;">
+            Instagram Reels, YouTube Shorts, and TikToks. Engineered for maximum retention: animated kinetic captions, hook pacing, dynamic zooms, and sound effects.
           </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;">
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Kinetic Captions</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Hook Polish</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Dynamic SFX</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">24–48h Delivery</span>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px;">
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">Instagram Reels</span>
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">YouTube Shorts</span>
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">Kinetic Subtitles</span>
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">Hook Optimization</span>
+            <span style="font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #cbd5e1;">24–48h Turnaround</span>
           </div>
         </div>
-        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Short-Form%20Viral%20Reels" target="_blank" style="
+
+        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Reel%20Editing%20(9:16%20Format)" target="_blank" style="
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 10px 14px;
-          border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          color: #e2e8f0;
+          padding: 13px 18px;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          color: #ffffff;
           text-decoration: none;
-          font-weight: 600;
-          font-size: 0.85rem;
+          font-weight: 700;
+          font-size: 0.92rem;
           transition: all 0.2s ease;
-        " onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.borderColor='rgba(37,211,102,0.3)';this.style.color='#4ade80';" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(255,255,255,0.08)';this.style.color='#e2e8f0';">
-          <span>Inquire for Viral Reels</span>
+        " onmouseover="this.style.background='rgba(37,211,102,0.12)';this.style.borderColor='rgba(37,211,102,0.35)';this.style.color='#4ade80';" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='#ffffff';">
+          <span style="display: flex; align-items: center; gap: 8px;">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"></path></svg>
+            Inquire for Reel Editing
+          </span>
           <span>&rarr;</span>
         </a>
       </div>
+    </div>
 
-      <!-- 3. Wedding Films & Highlights -->
-      <div class="kalakaari-service-card" style="
-        background: #12141c;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 26px 24px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: all 0.25s ease;
-      " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)';">
-        <div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <div style="font-size: 1.7rem; line-height: 1;">💍</div>
-            <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: #ec4899; background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.2); padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Cinematic Films</span>
-          </div>
-          <h3 style="margin: 0 0 8px 0; font-size: 1.2rem; font-weight: 700; color: #ffffff;">Wedding Highlights &amp; Films</h3>
-          <p style="margin: 0 0 16px 0; color: #94a3b8; font-size: 0.9rem; line-height: 1.55;">
-            Emotive storytelling: cinematic teaser trailers, ceremony highlights, audio vows sync, multi-camera ceremony cuts, and warm romantic color grading.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;">
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Cinematic LUTs</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Speech Sync</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Teaser Reels</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Drone Matching</span>
-          </div>
-        </div>
-        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Wedding%20Video%20Editing" target="_blank" style="
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 10px 14px;
-          border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          color: #e2e8f0;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 0.85rem;
-          transition: all 0.2s ease;
-        " onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.borderColor='rgba(37,211,102,0.3)';this.style.color='#4ade80';" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(255,255,255,0.08)';this.style.color='#e2e8f0';">
-          <span>Inquire for Wedding Films</span>
-          <span>&rarr;</span>
-        </a>
+    <!-- ADDITIONAL RECTANGULAR SERVICES BAR -->
+    <div style="margin-bottom: 40px;">
+      <div style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px;">
+        Additional Creative Services
       </div>
-
-      <!-- 4. Luxury Photobook Albums & Retouching -->
-      <div class="kalakaari-service-card" style="
-        background: #12141c;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 26px 24px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: all 0.25s ease;
-      " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)';">
-        <div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <div style="font-size: 1.7rem; line-height: 1;">📖</div>
-            <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: #a855f7; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.2); padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Albums • Print</span>
-          </div>
-          <h3 style="margin: 0 0 8px 0; font-size: 1.2rem; font-weight: 700; color: #ffffff;">Photos &amp; Photobook Albums</h3>
-          <p style="margin: 0 0 16px 0; color: #94a3b8; font-size: 0.9rem; line-height: 1.55;">
-            Luxury photobook design layouts, magazine-grade spreads, portrait color toning, skin frequency separation, and high-res print-ready CMYK files.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;">
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Print-Ready CMYK</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">High-End Retouch</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Custom Spreads</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Cover Design</span>
-          </div>
-        </div>
-        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Photobook%20Albums%20and%20Retouching" target="_blank" style="
+      <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+      ">
+        <!-- Card: Photobook Albums -->
+        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Photobooks%20and%20Albums" target="_blank" style="
+          background: #11131a;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 14px;
+          padding: 18px 20px;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          padding: 10px 14px;
-          border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          color: #e2e8f0;
+          gap: 14px;
           text-decoration: none;
-          font-weight: 600;
-          font-size: 0.85rem;
           transition: all 0.2s ease;
-        " onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.borderColor='rgba(37,211,102,0.3)';this.style.color='#4ade80';" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(255,255,255,0.08)';this.style.color='#e2e8f0';">
-          <span>Inquire for Albums</span>
-          <span>&rarr;</span>
+        " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.background='#141722';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='#11131a';">
+          <span style="font-size: 1.5rem;">📖</span>
+          <div>
+            <div style="color: #ffffff; font-weight: 700; font-size: 0.95rem;">Photos &amp; Albums</div>
+            <div style="color: #94a3b8; font-size: 0.8rem;">Wedding Spreads • Skin Retouching</div>
+          </div>
         </a>
-      </div>
 
-      <!-- 5. YouTube Growth & Channel Management -->
-      <div class="kalakaari-service-card" style="
-        background: #12141c;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 26px 24px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: all 0.25s ease;
-      " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)';">
-        <div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <div style="font-size: 1.7rem; line-height: 1;">🚀</div>
-            <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: #ef4444; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Channel Ops</span>
-          </div>
-          <h3 style="margin: 0 0 8px 0; font-size: 1.2rem; font-weight: 700; color: #ffffff;">YouTube Channel Management</h3>
-          <p style="margin: 0 0 16px 0; color: #94a3b8; font-size: 0.9rem; line-height: 1.55;">
-            Complete end-to-end channel operations: high-CTR title formulas, SEO-optimized descriptions, tags, upload scheduling, and playlist structuring.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;">
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">SEO Optimization</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Publishing Workflow</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">A/B Titles</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Hands-Off Ops</span>
-          </div>
-        </div>
-        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20YouTube%20Channel%20Management" target="_blank" style="
+        <!-- Card: High-CTR Thumbnails -->
+        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Thumbnails%20Design" target="_blank" style="
+          background: #11131a;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 14px;
+          padding: 18px 20px;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          padding: 10px 14px;
-          border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          color: #e2e8f0;
+          gap: 14px;
           text-decoration: none;
-          font-weight: 600;
-          font-size: 0.85rem;
           transition: all 0.2s ease;
-        " onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.borderColor='rgba(37,211,102,0.3)';this.style.color='#4ade80';" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(255,255,255,0.08)';this.style.color='#e2e8f0';">
-          <span>Inquire for YouTube Ops</span>
-          <span>&rarr;</span>
+        " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.background='#141722';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='#11131a';">
+          <span style="font-size: 1.5rem;">🎨</span>
+          <div>
+            <div style="color: #ffffff; font-weight: 700; font-size: 0.95rem;">Thumbnails &amp; Graphics</div>
+            <div style="color: #94a3b8; font-size: 0.8rem;">High-CTR Framing • 3D Compositing</div>
+          </div>
         </a>
-      </div>
 
-      <!-- 6. High-CTR Thumbnails & Graphic Design -->
-      <div class="kalakaari-service-card" style="
-        background: #12141c;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 26px 24px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: all 0.25s ease;
-      " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)';">
-        <div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <div style="font-size: 1.7rem; line-height: 1;">🎨</div>
-            <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: #10b981; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Design • CTR</span>
-          </div>
-          <h3 style="margin: 0 0 8px 0; font-size: 1.2rem; font-weight: 700; color: #ffffff;">Thumbnails &amp; Graphic Design</h3>
-          <p style="margin: 0 0 16px 0; color: #94a3b8; font-size: 0.9rem; line-height: 1.55;">
-            Attention-stopping YouTube thumbnails designed for 8%+ CTR, channel art banners, event posters, and complete social media asset packs.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;">
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">High-CTR Framing</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">3D Compositing</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Facial Polish</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Multi-Concepts</span>
-          </div>
-        </div>
-        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20High-CTR%20Thumbnails%20Design" target="_blank" style="
+        <!-- Card: Motion Graphics & VFX -->
+        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Motion%20Graphics" target="_blank" style="
+          background: #11131a;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 14px;
+          padding: 18px 20px;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          padding: 10px 14px;
-          border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          color: #e2e8f0;
+          gap: 14px;
           text-decoration: none;
-          font-weight: 600;
-          font-size: 0.85rem;
           transition: all 0.2s ease;
-        " onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.borderColor='rgba(37,211,102,0.3)';this.style.color='#4ade80';" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(255,255,255,0.08)';this.style.color='#e2e8f0';">
-          <span>Inquire for Thumbnails</span>
-          <span>&rarr;</span>
-        </a>
-      </div>
-
-      <!-- 7. Motion Graphics & Visual Effects -->
-      <div class="kalakaari-service-card" style="
-        background: #12141c;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 26px 24px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: all 0.25s ease;
-      " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='translateY(0)';">
-        <div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <div style="font-size: 1.7rem; line-height: 1;">✨</div>
-            <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: #818cf8; background: rgba(129, 140, 248, 0.1); border: 1px solid rgba(129, 140, 248, 0.2); padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Motion • VFX</span>
+        " onmouseover="this.style.borderColor='rgba(255,255,255,0.2)';this.style.background='#141722';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='#11131a';">
+          <span style="font-size: 1.5rem;">✨</span>
+          <div>
+            <div style="color: #ffffff; font-weight: 700; font-size: 0.95rem;">Motion Graphics &amp; VFX</div>
+            <div style="color: #94a3b8; font-size: 0.8rem;">Kinetic Typography • Logo Reveals</div>
           </div>
-          <h3 style="margin: 0 0 8px 0; font-size: 1.2rem; font-weight: 700; color: #ffffff;">Motion Graphics &amp; VFX</h3>
-          <p style="margin: 0 0 16px 0; color: #94a3b8; font-size: 0.9rem; line-height: 1.55;">
-            Dynamic animated lower-thirds, kinetic typography, bespoke logo reveal animations, 3D device mockups, and infographic visual overlays.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;">
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Kinetic Type</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Logo Stings</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">3D Mockups</span>
-            <span style="font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">Alpha Transparency</span>
-          </div>
-        </div>
-        <a href="https://wa.me/917000371321?text=Hi%20Kalakaari%20Studios%2C%20I%20want%20to%20inquire%20about%20Motion%20Graphics%20and%20VFX" target="_blank" style="
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 10px 14px;
-          border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          color: #e2e8f0;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 0.85rem;
-          transition: all 0.2s ease;
-        " onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.borderColor='rgba(37,211,102,0.3)';this.style.color='#4ade80';" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(255,255,255,0.08)';this.style.color='#e2e8f0';">
-          <span>Inquire for Motion Graphics</span>
-          <span>&rarr;</span>
         </a>
       </div>
     </div>
@@ -2879,19 +2882,19 @@ document.addEventListener('DOMContentLoaded', function() {
       background: #11131a;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 18px;
-      padding: 32px 28px;
+      padding: 30px 26px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 18px;
+      gap: 16px;
       box-sizing: border-box;
     ">
       <div>
-        <h3 style="margin: 0 0 8px 0; font-size: 1.35rem; font-weight: 700; color: #ffffff;">
-          Need a Custom Package or Enterprise Dedicated Pipeline?
+        <h3 style="margin: 0 0 8px 0; font-size: 1.3rem; font-weight: 700; color: #ffffff;">
+          Need a Custom Project or High-Volume Pipeline?
         </h3>
-        <p style="margin: 0; color: #94a3b8; font-size: 0.95rem; max-width: 600px;">
+        <p style="margin: 0; color: #94a3b8; font-size: 0.92rem; max-width: 600px;">
           Message our team directly on WhatsApp to discuss your exact footage volume, turnaround requirements, and creative direction.
         </p>
       </div>
