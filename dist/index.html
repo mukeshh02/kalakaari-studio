@@ -2698,13 +2698,11 @@ document.addEventListener('DOMContentLoaded', function() {
         -webkit-overflow-scrolling: touch;
       }
       .kalakaari-services-center-badge { display: none !important; }
-      .kalakaari-services-logo-text { display: none !important; }
       #kalakaari-services-drawer header { padding: 14px 18px !important; }
       #kalakaari-services-drawer main { padding: 24px 14px 70px !important; }
     }
     @media (min-width: 981px) {
       .kalakaari-services-center-badge { display: inline-flex !important; }
-      .kalakaari-services-logo-text { display: inline !important; }
     }
   </style>
 
@@ -2722,9 +2720,8 @@ document.addEventListener('DOMContentLoaded', function() {
     box-sizing: border-box;
   ">
     <!-- Brand / Logo -->
-    <a href="#top" onclick="closeServicesSlide()" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+    <a href="#top" onclick="closeServicesSlide()" style="display: flex; align-items: center; text-decoration: none;" aria-label="Kalakaari Studio">
       <img src="./img/kalakaari-logo-light.svg" alt="Kalakaari Studio" style="height: 32px; width: auto; display: block;">
-      <span class="kalakaari-services-logo-text" style="font-weight: 800; font-size: 1.1rem; letter-spacing: -0.3px; color: #ffffff; text-transform: uppercase;">Kalakaari Studios</span>
     </a>
 
     <!-- Center Badge -->
