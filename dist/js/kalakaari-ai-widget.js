@@ -504,7 +504,7 @@
     },
     pricing: {
       match: ['pricing', 'price', 'cost', 'charge', 'rate', 'package', 'plan', 'how much'],
-      reply: '<strong>We offer flexible monthly plans and custom project rates:</strong><br><br>Whether you need high-volume short-form reels or cinematic YouTube long-form videos, we have packages tailored to creators and businesses.<br><br><a href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20pricing%20packages." target="_blank" class="kai-wa-btn">💬 Inquire on WhatsApp</a>'
+      reply: '<strong>We offer flexible monthly plans and custom project rates:</strong><br><br>Whether you need high-volume short-form reels or cinematic YouTube long-form videos, we have packages tailored to creators and businesses.<br><br><a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20pricing%20packages." target="_blank" class="kai-wa-btn">💬 Inquire on WhatsApp</a>'
     }
   };
 
@@ -516,7 +516,7 @@
         return item.reply;
       }
     }
-    return `Thank you for asking! Kalakaari Studios is your premier full-service video editing partner for creators, businesses, and YouTubers.<br><br>Would you like to speak directly with our team to discuss your project?<br><br><a href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20have%20a%20question:%20${encodeURIComponent(query)}" target="_blank" class="kai-wa-btn">💬 Chat with us on WhatsApp</a>`;
+    return `Thank you for asking! Kalakaari Studios is your premier full-service video editing partner for creators, businesses, and YouTubers.<br><br>Would you like to speak directly with our team to discuss your project?<br><br><a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20have%20a%20question:%20${encodeURIComponent(query)}" target="_blank" class="kai-wa-btn">💬 Chat with us on WhatsApp</a>`;
   }
 
   // 3. Create DOM Structure
@@ -553,7 +553,7 @@
 
         <!-- Options Menu -->
         <div class="kai-options-menu" id="kai-options-menu">
-          <a href="https://wa.me/917000371321?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20talk%20to%20your%20team." target="_blank" class="kai-menu-item">
+          <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20talk%20to%20your%20team." target="_blank" class="kai-menu-item">
             💬 Chat on WhatsApp
           </a>
           <div class="kai-menu-item" id="kai-menu-clear">
