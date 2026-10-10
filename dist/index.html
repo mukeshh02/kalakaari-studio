@@ -1475,16 +1475,16 @@ transform:scaleY(0);
   }
   .kalakaari-cat-tabs {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 32px;
   }
   .kalakaari-cat-tab {
     font-family: 'Space Mono', monospace !important;
-    font-size: 0.75rem !important;
+    font-size: 0.72rem !important;
     letter-spacing: 1px !important;
     text-transform: uppercase !important;
-    padding: 11px 22px !important;
+    padding: 11px 18px !important;
     border: 1px solid #2D3242 !important;
     border-radius: 30px !important;
     color: #A0AEC0 !important;
@@ -1623,15 +1623,15 @@ transform:scaleY(0);
   }
   .kalakaari-quick-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     margin-top: 48px;
   }
   .kalakaari-qcard {
     background: #12141a;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 18px;
-    padding: 32px 28px;
+    padding: 28px 22px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1645,20 +1645,20 @@ transform:scaleY(0);
   }
   .kalakaari-qcard h3 {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     font-weight: 600;
     color: #ffffff !important;
     margin: 0 0 10px 0;
   }
   .kalakaari-qcard p {
     color: #94a3b8 !important;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    margin: 0 0 24px 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0 0 20px 0;
   }
   .kalakaari-qcard a {
     color: #FF9B5D;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     text-decoration: none;
     display: inline-flex;
@@ -1670,11 +1670,13 @@ transform:scaleY(0);
     gap: 10px;
     color: #ffffff;
   }
+  @media (max-width: 1024px) {
+    .kalakaari-quick-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
   @media (max-width: 880px) {
     .kalakaari-calc-grid {
-      grid-template-columns: 1fr;
-    }
-    .kalakaari-quick-grid {
       grid-template-columns: 1fr;
     }
     .kalakaari-calc-title {
@@ -1687,6 +1689,11 @@ transform:scaleY(0);
       padding: 30px 22px;
     }
   }
+  @media (max-width: 580px) {
+    .kalakaari-quick-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 
 <div class="kalakaari-calc-section">
@@ -1697,7 +1704,7 @@ transform:scaleY(0);
   <div class="kalakaari-calc-header">
     <div class="kalakaari-calc-tc">✦ 01 — ESTIMATE CALCULATOR</div>
     <h2 class="kalakaari-calc-title">Build your <em>estimate.</em></h2>
-    <p class="kalakaari-calc-desc">Transparent, per-unit pricing for every service. Select your craft below for a live estimate, then book your slot when you're ready.</p>
+    <p class="kalakaari-calc-desc">Transparent, unit-based pricing for all wedding films, album designs, photo retouching, and commercial projects. Select your service for a live quote.</p>
   </div>
 
   <!-- Calculator 2-Column Grid -->
@@ -1707,10 +1714,11 @@ transform:scaleY(0);
     <div class="kalakaari-calc-box">
       <!-- Category Tabs -->
       <div class="kalakaari-cat-tabs" id="kalakaari-cat-tabs">
-        <button type="button" class="kalakaari-cat-tab active" data-cat="video">FILM EDITING</button>
-        <button type="button" class="kalakaari-cat-tab" data-cat="album">ALBUM</button>
-        <button type="button" class="kalakaari-cat-tab" data-cat="carousel">CAROUSEL</button>
-        <button type="button" class="kalakaari-cat-tab" data-cat="traditional">TRADITIONAL</button>
+        <button type="button" class="kalakaari-cat-tab active" data-cat="wedding">WEDDING</button>
+        <button type="button" class="kalakaari-cat-tab" data-cat="album">ALBUM DESIGN</button>
+        <button type="button" class="kalakaari-cat-tab" data-cat="photo">PHOTO EDITING</button>
+        <button type="button" class="kalakaari-cat-tab" data-cat="social">SOCIAL MEDIA</button>
+        <button type="button" class="kalakaari-cat-tab" data-cat="commercial">COMMERCIAL</button>
       </div>
 
       <!-- Service Selection -->
@@ -1719,9 +1727,9 @@ transform:scaleY(0);
         <select id="kalakaari-svc-sel" class="kalakaari-calc-select"></select>
       </div>
 
-      <!-- Quantity (For Album, Carousel, Traditional) -->
+      <!-- Quantity (For Sheets, Photos, Hours, Videos) -->
       <div class="kalakaari-calc-field" id="kalakaari-qty-wrap" style="display: none;">
-        <label class="kalakaari-calc-label" id="kalakaari-qty-label">QUANTITY (SHEETS)</label>
+        <label class="kalakaari-calc-label" id="kalakaari-qty-label">QUANTITY</label>
         <input type="number" id="kalakaari-qty-input" class="kalakaari-calc-input" min="1" value="30">
       </div>
     </div>
@@ -1730,7 +1738,7 @@ transform:scaleY(0);
     <div class="kalakaari-est-box">
       <div class="kalakaari-est-lbl">ESTIMATED TOTAL</div>
       <div class="kalakaari-est-amt" id="kalakaari-est-amt">₹5,000</div>
-      <div class="kalakaari-est-sub" id="kalakaari-est-sub">Highlight</div>
+      <div class="kalakaari-est-sub" id="kalakaari-est-sub">Highlights</div>
       <a class="kalakaari-est-btn" id="kalakaari-est-book" href="#" target="_blank">Book this slot →</a>
     </div>
 
@@ -1743,19 +1751,24 @@ transform:scaleY(0);
     <div class="kalakaari-calc-tc">✦ 02 — PICK A CRAFT, GET A QUOTE</div>
     <div class="kalakaari-quick-grid">
       <div class="kalakaari-qcard">
+        <h3>Wedding Video Editing</h3>
+        <p>Highlights, documentary cuts, reels &amp; traditional full-length 4K master edits.</p>
+        <a href="javascript:void(0)" onclick="selectCategory('wedding')">Calculate Estimate →</a>
+      </div>
+      <div class="kalakaari-qcard">
         <h3>Album Designing</h3>
-        <p>Designer wedding albums, priced per sheet across multiple styles &amp; custom layouts.</p>
+        <p>Basic, Medium &amp; Pro designer wedding spreads priced transparently per sheet.</p>
         <a href="javascript:void(0)" onclick="selectCategory('album')">Calculate Estimate →</a>
       </div>
       <div class="kalakaari-qcard">
-        <h3>Video Editing</h3>
-        <p>Highlights, teasers, reels, and cinematic traditional 4K/HD edits crafted for creators.</p>
-        <a href="javascript:void(0)" onclick="selectCategory('video')">Calculate Estimate →</a>
+        <h3>Photo Editing</h3>
+        <p>Baby shoots, maternity sessions &amp; pre-wedding color grading and retouching.</p>
+        <a href="javascript:void(0)" onclick="selectCategory('photo')">Calculate Estimate →</a>
       </div>
       <div class="kalakaari-qcard">
-        <h3>Instagram Carousels</h3>
-        <p>Scroll-stopping branded viral carousels, expertly designed and priced per slide.</p>
-        <a href="javascript:void(0)" onclick="selectCategory('carousel')">Calculate Estimate →</a>
+        <h3>Social &amp; Commercial</h3>
+        <p>High-conversion social media reels, ads, and brand commercial videos.</p>
+        <a href="javascript:void(0)" onclick="selectCategory('social')">Calculate Estimate →</a>
       </div>
     </div>
   </div>
@@ -1767,36 +1780,32 @@ transform:scaleY(0);
   const WHATSAPP_NUM = "918654989156";
 
   const RATES = {
-    video: [
-      { name: "Highlight", price: 5000, suffix: "" },
-      { name: "Short Highlight", price: 4000, suffix: "" },
-      { name: "Prewedding", price: 4500, suffix: "" },
-      { name: "Teaser", price: 1500, suffix: "" },
-      { name: "Reel", price: 600, suffix: "" },
-      { name: "Long Reel", price: 1000, suffix: "" },
-      { name: "Cinematic Story", price: 7000, suffix: "" }
+    wedding: [
+      { name: "Highlights", price: 5000, suffix: "", showQty: false, unitText: "project", defaultQty: 1 },
+      { name: "Documentary highlight", price: 7000, suffix: "", showQty: false, unitText: "project", defaultQty: 1 },
+      { name: "Short reels (upto-40sec)", price: 800, suffix: "", showQty: true, label: "QUANTITY (REELS)", unitText: "reels", defaultQty: 1 },
+      { name: "Long reels (90 sec)", price: 1500, suffix: "", showQty: true, label: "QUANTITY (REELS)", unitText: "reels", defaultQty: 1 },
+      { name: "Traditional full length video", price: 1200, suffix: "/hr", showQty: true, label: "DURATION (HOURS)", unitText: "hours", defaultQty: 2 },
+      { name: "Wedding film documentary", price: 7000, suffix: "", showQty: false, unitText: "project", defaultQty: 1 }
     ],
     album: [
-      { name: "Basic Designing", price: 47, suffix: "/sheet" },
-      { name: "Creative Designing", price: 55, suffix: "/sheet" },
-      { name: "Premium Designing", price: 65, suffix: "/sheet" }
+      { name: "Basic", price: 45, suffix: "/sheet", showQty: true, label: "QUANTITY (SHEETS)", unitText: "sheets", defaultQty: 30 },
+      { name: "Medium", price: 55, suffix: "/sheet", showQty: true, label: "QUANTITY (SHEETS)", unitText: "sheets", defaultQty: 30 },
+      { name: "Pro design", price: 70, suffix: "/sheet", showQty: true, label: "QUANTITY (SHEETS)", unitText: "sheets", defaultQty: 30 }
     ],
-    carousel: [
-      { name: "Carousel Per Slide", price: 80, suffix: "/slide" }
+    photo: [
+      { name: "Basic (Baby/Maternity/Pre-wedding)", price: 60, suffix: "/photo", showQty: true, label: "QUANTITY (PHOTOS)", unitText: "photos", defaultQty: 20 },
+      { name: "Pro editing (Baby/Maternity/Pre-wedding)", price: 80, suffix: "/photo", showQty: true, label: "QUANTITY (PHOTOS)", unitText: "photos", defaultQty: 20 }
     ],
-    traditional: [
-      { name: "Traditional Video Editing", price: 800, suffix: "/hr" }
+    social: [
+      { name: "Social media video", price: 3000, suffix: "", showQty: true, label: "QUANTITY (VIDEOS)", unitText: "videos", defaultQty: 1 }
+    ],
+    commercial: [
+      { name: "Commercial video", price: 4999, suffix: "", showQty: true, label: "QUANTITY (PROJECTS)", unitText: "projects", defaultQty: 1 }
     ]
   };
 
-  const UNIT_CONFIG = {
-    video: { label: "Quantity", unitText: "project", defaultQty: 1, showQty: false },
-    album: { label: "Quantity (Sheets)", unitText: "sheets", defaultQty: 30, showQty: true },
-    carousel: { label: "Quantity (Slides)", unitText: "slides", defaultQty: 5, showQty: true },
-    traditional: { label: "Duration (Hours)", unitText: "hours", defaultQty: 2, showQty: true }
-  };
-
-  let currentCategory = "video";
+  let currentCategory = "wedding";
 
   const tabsContainer = document.getElementById("kalakaari-cat-tabs");
   const svcSel = document.getElementById("kalakaari-svc-sel");
@@ -1811,6 +1820,12 @@ transform:scaleY(0);
     return "₹" + Math.round(n).toLocaleString("en-IN");
   }
 
+  function getSelectedItem() {
+    if (!svcSel) return null;
+    const items = RATES[currentCategory] || [];
+    return items[svcSel.selectedIndex] || items[0] || null;
+  }
+
   function setCategory(catKey) {
     currentCategory = catKey;
     if (!tabsContainer || !svcSel) return;
@@ -1820,40 +1835,46 @@ transform:scaleY(0);
     });
 
     const items = RATES[catKey] || [];
-    svcSel.innerHTML = items.map(item => {
-      const displayLabel = item.name + " — " + formatINR(item.price) + item.suffix;
-      return '<option value="' + item.name + '" data-price="' + item.price + '">' + displayLabel + '</option>';
+    svcSel.innerHTML = items.map((item, index) => {
+      const displayLabel = item.name + " — " + formatINR(item.price) + (item.suffix || "");
+      return '<option value="' + item.name + '" data-index="' + index + '">' + displayLabel + '</option>';
     }).join("");
 
-    const config = UNIT_CONFIG[catKey];
-    qtyLabel.textContent = config.label.toUpperCase();
-    qtyInput.value = config.defaultQty;
-    qtyWrap.style.display = config.showQty ? "flex" : "none";
-
+    updateQuantityVisibility();
     calculate();
   }
 
-  function calculate() {
-    if (!svcSel) return;
-    const selectedOption = svcSel.options[svcSel.selectedIndex];
-    if (!selectedOption) return;
+  function updateQuantityVisibility() {
+    const item = getSelectedItem();
+    if (!item) return;
 
-    const price = parseFloat(selectedOption.dataset.price) || 0;
-    const config = UNIT_CONFIG[currentCategory];
-    const qty = config.showQty ? Math.max(1, parseInt(qtyInput.value || "1", 10)) : 1;
+    if (item.showQty) {
+      qtyLabel.textContent = item.label || "QUANTITY";
+      qtyInput.value = item.defaultQty || 1;
+      qtyWrap.style.display = "flex";
+    } else {
+      qtyWrap.style.display = "none";
+    }
+  }
+
+  function calculate() {
+    const item = getSelectedItem();
+    if (!item) return;
+
+    const price = item.price || 0;
+    const qty = item.showQty ? Math.max(1, parseInt(qtyInput.value || "1", 10)) : 1;
     const total = price * qty;
 
     estAmt.textContent = formatINR(total);
 
-    if (config.showQty) {
-      estSub.textContent = qty + " " + config.unitText + " × " + formatINR(price);
+    if (item.showQty && qty > 1) {
+      estSub.textContent = qty + " " + item.unitText + " × " + formatINR(price);
     } else {
-      estSub.textContent = selectedOption.value;
+      estSub.textContent = item.name;
     }
 
-    const serviceName = selectedOption.value;
-    const detailText = config.showQty ? " (" + qty + " " + config.unitText + ")" : "";
-    const message = "Hello Kalakaari Studios! I would like to book a slot for: " + serviceName + detailText + " - Estimated Total: " + formatINR(total) + ". Please share the next steps.";
+    const detailText = (item.showQty && qty > 1) ? " (" + qty + " " + item.unitText + ")" : "";
+    const message = "Hello Kalakaari Studios! I would like to book a slot for: " + item.name + detailText + " - Estimated Total: " + formatINR(total) + ". Please share the next steps.";
     estBook.href = "https://wa.me/" + WHATSAPP_NUM + "?text=" + encodeURIComponent(message);
   }
 
@@ -1863,7 +1884,13 @@ transform:scaleY(0);
     });
   }
 
-  if (svcSel) svcSel.addEventListener("change", calculate);
+  if (svcSel) {
+    svcSel.addEventListener("change", () => {
+      updateQuantityVisibility();
+      calculate();
+    });
+  }
+
   if (qtyInput) qtyInput.addEventListener("input", calculate);
 
   window.selectCategory = function(catKey) {
@@ -1872,7 +1899,7 @@ transform:scaleY(0);
     if (pricingEl) pricingEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  setCategory("video");
+  setCategory("wedding");
 })();
 </script>
 
