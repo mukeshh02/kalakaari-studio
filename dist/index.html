@@ -1400,8 +1400,10 @@ transform:scaleY(0);
 
 
 <style id="kalakaari-calc-styles">
-  #pricing {
+  #pricing, #channel-management, #features {
     scroll-margin-top: 110px;
+  }
+  #pricing {
     padding-top: 30px !important;
     background-color: #0B0C0E !important;
   }
@@ -1475,16 +1477,16 @@ transform:scaleY(0);
   }
   .kalakaari-cat-tabs {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 32px;
   }
   .kalakaari-cat-tab {
     font-family: 'Space Mono', monospace !important;
-    font-size: 0.75rem !important;
+    font-size: 0.72rem !important;
     letter-spacing: 1px !important;
     text-transform: uppercase !important;
-    padding: 11px 22px !important;
+    padding: 11px 18px !important;
     border: 1px solid #2D3242 !important;
     border-radius: 30px !important;
     color: #A0AEC0 !important;
@@ -1623,15 +1625,15 @@ transform:scaleY(0);
   }
   .kalakaari-quick-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     margin-top: 48px;
   }
   .kalakaari-qcard {
     background: #12141a;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 18px;
-    padding: 32px 28px;
+    padding: 28px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1645,20 +1647,20 @@ transform:scaleY(0);
   }
   .kalakaari-qcard h3 {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.75rem;
+    font-size: 1.65rem;
     font-weight: 600;
     color: #ffffff !important;
     margin: 0 0 10px 0;
   }
   .kalakaari-qcard p {
     color: #94a3b8 !important;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    margin: 0 0 24px 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0 0 20px 0;
   }
   .kalakaari-qcard a {
     color: #FF9B5D;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     text-decoration: none;
     display: inline-flex;
@@ -1670,7 +1672,193 @@ transform:scaleY(0);
     gap: 10px;
     color: #ffffff;
   }
-  @media (max-width: 880px) {
+
+  /* YTCM Section Styles */
+  .kalakaari-ytcm-wrap {
+    margin-top: 75px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 60px;
+  }
+  .kalakaari-ytcm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 36px;
+  }
+  .kalakaari-ytcm-card {
+    background: #12141a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 38px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .kalakaari-ytcm-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 155, 93, 0.4);
+  }
+  .kalakaari-ytcm-card.popular {
+    border-color: rgba(255, 155, 93, 0.5);
+    background: radial-gradient(ellipse at top right, rgba(255, 155, 93, 0.12), #12141a 70%);
+  }
+  .kalakaari-ytcm-badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(255, 155, 93, 0.15);
+    color: #FF9B5D;
+    font-weight: 700;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+  .kalakaari-ytcm-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+  }
+  .kalakaari-ytcm-desc {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin: 0 0 20px 0;
+  }
+  .kalakaari-ytcm-price {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #FF9B5D;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .kalakaari-ytcm-price-sub {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 26px;
+  }
+  .kalakaari-ytcm-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .kalakaari-ytcm-list li {
+    font-size: 0.92rem;
+    color: #cbd5e1;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.45;
+  }
+  .kalakaari-ytcm-list li span.check {
+    color: #FF9B5D;
+    font-weight: bold;
+  }
+
+  /* Full Feature Breakdown Accordion */
+  .kalakaari-breakdown-wrap {
+    margin-top: 50px;
+    background: #101218;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 36px 30px;
+  }
+  .kalakaari-breakdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .kalakaari-breakdown-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+  }
+  .kalakaari-accordion-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+  }
+  .kalakaari-accordion-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .kalakaari-accordion-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 12px 0;
+    user-select: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #ffffff;
+  }
+  .kalakaari-accordion-summary:hover {
+    color: #FF9B5D;
+  }
+  .kalakaari-accordion-subtext {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 400;
+    margin-left: 10px;
+  }
+  .kalakaari-accordion-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 16px 0 8px 0;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  .kalakaari-acc-col {
+    background: #141720;
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  .kalakaari-acc-col h5 {
+    font-size: 0.95rem;
+    color: #FF9B5D;
+    margin: 0 0 6px 0;
+    font-weight: 600;
+  }
+  .kalakaari-acc-col p {
+    margin: 0 0 10px 0;
+    color: #94a3b8;
+  }
+  .kalakaari-acc-col p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 980px) {
+    .kalakaari-quick-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .kalakaari-ytcm-grid {
+      grid-template-columns: 1fr;
+    }
+    .kalakaari-accordion-content {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 640px) {
     .kalakaari-calc-grid {
       grid-template-columns: 1fr;
     }
@@ -1684,14 +1872,16 @@ transform:scaleY(0);
       font-size: 3.3rem;
     }
     .kalakaari-calc-box, .kalakaari-est-box {
-      padding: 30px 22px;
+      padding: 30px 20px;
     }
   }
 </style>
 
 <div class="kalakaari-calc-section">
   
-  <!-- Header -->
+  <!-- ==========================================
+       SECTION 01: INTERACTIVE ESTIMATE CALCULATOR
+       ========================================== -->
   <div class="kalakaari-calc-header">
     <div class="kalakaari-calc-tc">✦ 01 — ESTIMATE CALCULATOR</div>
     <h2 class="kalakaari-calc-title">Build your <em>estimate.</em></h2>
@@ -1709,6 +1899,7 @@ transform:scaleY(0);
         <button type="button" class="kalakaari-cat-tab" data-cat="album">ALBUM</button>
         <button type="button" class="kalakaari-cat-tab" data-cat="carousel">CAROUSEL</button>
         <button type="button" class="kalakaari-cat-tab" data-cat="traditional">TRADITIONAL</button>
+        <button type="button" class="kalakaari-cat-tab" data-cat="channel">CHANNEL OPS</button>
       </div>
 
       <!-- Service Selection -->
@@ -1717,7 +1908,7 @@ transform:scaleY(0);
         <select id="kalakaari-svc-sel" class="kalakaari-calc-select"></select>
       </div>
 
-      <!-- Quantity (For Album, Carousel, Traditional) -->
+      <!-- Quantity (For Album, Carousel, Traditional, Months) -->
       <div class="kalakaari-calc-field" id="kalakaari-qty-wrap" style="display: none;">
         <label class="kalakaari-calc-label" id="kalakaari-qty-label">QUANTITY (SHEETS)</label>
         <input type="number" id="kalakaari-qty-input" class="kalakaari-calc-input" min="1" value="30">
@@ -1734,7 +1925,9 @@ transform:scaleY(0);
 
   </div>
 
-  <!-- Quick Craft Cards (Section 02) -->
+  <!-- ==========================================
+       SECTION 02: QUICK CRAFT CARDS
+       ========================================== -->
   <div style="margin-top: 55px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 45px;">
     <div class="kalakaari-calc-tc">✦ 02 — PICK A CRAFT, GET A QUOTE</div>
     <div class="kalakaari-quick-grid">
@@ -1753,6 +1946,217 @@ transform:scaleY(0);
         <p>Scroll-stopping branded viral carousels, expertly designed and priced per slide.</p>
         <a href="javascript:void(0)" onclick="selectCategory('carousel')">Calculate Estimate →</a>
       </div>
+      <div class="kalakaari-qcard">
+        <h3>Channel Management</h3>
+        <p>End-to-end YouTube operations, publishing logistics, SEO metadata &amp; audience strategy.</p>
+        <a href="#channel-management">View Plans &amp; Breakdown →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SECTION 03: YOUTUBE CHANNEL MANAGEMENT & BREAKDOWN (RESTORED LAST SLIDE)
+       ========================================== -->
+  <div id="channel-management" class="kalakaari-ytcm-wrap">
+    <div class="kalakaari-calc-tc">✦ 03 — YOUTUBE CHANNEL MANAGEMENT</div>
+    <h2 class="kalakaari-calc-title">YouTube Growth &amp; <em>Operations.</em></h2>
+    <p class="kalakaari-calc-desc">Full-service dedicated channel management, publishing logistics, algorithmic SEO metadata, community engagement, and monetization support.</p>
+
+    <!-- Plans Cards -->
+    <div class="kalakaari-ytcm-grid">
+      
+      <!-- Plan 1: Starter -->
+      <div class="kalakaari-ytcm-card">
+        <div>
+          <div class="kalakaari-ytcm-badge">OPERATIONS &amp; LOGISTICS</div>
+          <h3 class="kalakaari-ytcm-title">Starter Plan</h3>
+          <p class="kalakaari-ytcm-desc">Operations and logistics support to save you time and streamline your channel workflow.</p>
+          <div class="kalakaari-ytcm-price">$1,490<span style="font-size: 1.1rem; color: #94a3b8; font-weight: normal;"> / mo</span></div>
+          <div class="kalakaari-ytcm-price-sub">(Paid quarterly, $4,470 total or annual discounts)</div>
+          
+          <ul class="kalakaari-ytcm-list">
+            <li><span class="check">✓</span> <span><strong>Dedicated Channel Manager</strong>: SEO, community &amp; logistics</span></li>
+            <li><span class="check">✓</span> <span><strong>Video Uploading &amp; Scheduling</strong>: Up to 24 uploads/mo</span></li>
+            <li><span class="check">✓</span> <span><strong>Optimized Titles, Descriptions &amp; Tags</strong> for discovery</span></li>
+            <li><span class="check">✓</span> <span><strong>Community Moderation &amp; Replies</strong>: Up to 50 comments/mo</span></li>
+            <li><span class="check">✓</span> <span><strong>1-on-1 Monthly Video Call</strong> &amp; direct team chat</span></li>
+          </ul>
+        </div>
+        <a class="kalakaari-est-btn" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20am%20interested%20in%20the%20YouTube%20Channel%20Management%20Starter%20Plan." target="_blank">Book Starter Call →</a>
+      </div>
+
+      <!-- Plan 2: Pro -->
+      <div class="kalakaari-ytcm-card popular">
+        <div>
+          <div class="kalakaari-ytcm-badge">⭐ MOST POPULAR • STRATEGY &amp; GROWTH</div>
+          <h3 class="kalakaari-ytcm-title">Pro Plan</h3>
+          <p class="kalakaari-ytcm-desc">Everything from Starter + advanced growth strategy, retention pacing &amp; CTR testing to scale.</p>
+          <div class="kalakaari-ytcm-price">$2,370<span style="font-size: 1.1rem; color: #94a3b8; font-weight: normal;"> / mo</span></div>
+          <div class="kalakaari-ytcm-price-sub">(Paid quarterly, $7,110 total or annual discounts)</div>
+          
+          <ul class="kalakaari-ytcm-list">
+            <li><span class="check">✓</span> <span><strong>Everything in Starter Plan</strong> + Growth Strategy</span></li>
+            <li><span class="check">✓</span> <span><strong>High-Volume Publishing</strong>: Up to 56 uploads/mo</span></li>
+            <li><span class="check">✓</span> <span><strong>CTR &amp; A/B/C Thumbnail/Title Testing</strong></span></li>
+            <li><span class="check">✓</span> <span><strong>Audience Avatar &amp; Content Pillar Planning</strong></span></li>
+            <li><span class="check">✓</span> <span><strong>2x 1-on-1 Monthly Video Calls</strong> &amp; Priority 24/7 Chat</span></li>
+            <li><span class="check">✓</span> <span><strong>Monetization, Super Chats &amp; Store Setup</strong></span></li>
+          </ul>
+        </div>
+        <a class="kalakaari-est-btn" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20am%20interested%20in%20the%20YouTube%20Channel%20Management%20Pro%20Plan." target="_blank">Book Pro Growth Call →</a>
+      </div>
+
+    </div>
+
+    <!-- Full Feature Breakdown Accordion (Anchor #features) -->
+    <div id="features" class="kalakaari-breakdown-wrap">
+      <div class="kalakaari-breakdown-header">
+        <div>
+          <div class="kalakaari-calc-tc">✦ DETAILED COMPARISON</div>
+          <h3 class="kalakaari-breakdown-title">Full Feature Breakdown</h3>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a class="kalakaari-est-btn" style="padding: 10px 20px; font-size: 0.85rem; width: auto;" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20consult%20about%20Channel%20Management." target="_blank">Consult an Expert →</a>
+        </div>
+      </div>
+
+      <!-- Feature 1: Dedicated Channel Manager -->
+      <details class="kalakaari-accordion-item" open>
+        <summary class="kalakaari-accordion-summary">
+          <span>👑 Dedicated Channel Manager <span class="kalakaari-accordion-subtext">(Manager, Onboarding &amp; Strategy)</span></span>
+          <span style="color: #FF9B5D;">▾</span>
+        </summary>
+        <div class="kalakaari-accordion-content">
+          <div class="kalakaari-acc-col">
+            <h5>Starter Plan</h5>
+            <p><strong>Dedicated Manager:</strong> Runs daily channel logistics &amp; schedule.</p>
+            <p><strong>Kickoff Onboarding:</strong> 30-point channel audit.</p>
+            <p><strong>1-on-1 Calls:</strong> 1 strategy video call per month.</p>
+            <p><strong>Team Chat:</strong> Dedicated messaging channel.</p>
+          </div>
+          <div class="kalakaari-acc-col">
+            <h5>Pro Plan</h5>
+            <p><strong>Senior Growth Strategist:</strong> End-to-end channel direction.</p>
+            <p><strong>Deep Competitive Audit:</strong> Avatar &amp; monetization roadmap.</p>
+            <p><strong>1-on-1 Calls:</strong> 2 video strategy calls per month.</p>
+            <p><strong>Team Chat:</strong> Priority real-time direct access.</p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Feature 2: Publishing Logistics -->
+      <details class="kalakaari-accordion-item">
+        <summary class="kalakaari-accordion-summary">
+          <span>🚀 Publishing &amp; Distribution <span class="kalakaari-accordion-subtext">(Uploads, Scheduling &amp; Compliance)</span></span>
+          <span style="color: #FF9B5D;">▾</span>
+        </summary>
+        <div class="kalakaari-accordion-content">
+          <div class="kalakaari-acc-col">
+            <h5>Starter Plan</h5>
+            <p><strong>Video Uploads:</strong> Up to 24 uploads/month.</p>
+            <p><strong>Scheduling:</strong> Timing optimization based on viewer history.</p>
+            <p><strong>Community Posts:</strong> 2 posts/month.</p>
+            <p><strong>Copyright &amp; Claims:</strong> Monitoring &amp; claim resolution.</p>
+          </div>
+          <div class="kalakaari-acc-col">
+            <h5>Pro Plan</h5>
+            <p><strong>Video Uploads:</strong> Up to 56 uploads/month (Long-form + Shorts).</p>
+            <p><strong>Multi-Format Scheduling:</strong> Premiere &amp; countdown management.</p>
+            <p><strong>Community Posts:</strong> 8 engaging polls &amp; updates/month.</p>
+            <p><strong>Proactive Policy Audits:</strong> Full YouTube guideline protection.</p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Feature 3: Video SEO & Optimization -->
+      <details class="kalakaari-accordion-item">
+        <summary class="kalakaari-accordion-summary">
+          <span>🔍 Video SEO &amp; Discovery <span class="kalakaari-accordion-subtext">(Titles, Descriptions, Tags &amp; Chapters)</span></span>
+          <span style="color: #FF9B5D;">▾</span>
+        </summary>
+        <div class="kalakaari-accordion-content">
+          <div class="kalakaari-acc-col">
+            <h5>Starter Plan</h5>
+            <p><strong>Title &amp; Descriptions:</strong> High-CTR title &amp; description copywriting.</p>
+            <p><strong>Tags &amp; Hashtags:</strong> Keyword ranking research.</p>
+            <p><strong>Cards &amp; Endscreens:</strong> Interactive link setup.</p>
+            <p><strong>Old Video SEO:</strong> Up to 10 legacy videos re-optimized/mo.</p>
+          </div>
+          <div class="kalakaari-acc-col">
+            <h5>Pro Plan</h5>
+            <p><strong>A/B Title Testing:</strong> Multiple headline iterations &amp; testing.</p>
+            <p><strong>Google Search Chapters:</strong> Timestamp indexing for search rank.</p>
+            <p><strong>Binge-Watch Playlists:</strong> Algorithmic session time structuring.</p>
+            <p><strong>Backlog SEO:</strong> Continuous whole-library optimization.</p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Feature 4: Community Engagement -->
+      <details class="kalakaari-accordion-item">
+        <summary class="kalakaari-accordion-summary">
+          <span>💬 Community &amp; Audience Engagement <span class="kalakaari-accordion-subtext">(Replies, Hearts &amp; Moderation)</span></span>
+          <span style="color: #FF9B5D;">▾</span>
+        </summary>
+        <div class="kalakaari-accordion-content">
+          <div class="kalakaari-acc-col">
+            <h5>Starter Plan</h5>
+            <p><strong>Comment Replies:</strong> Up to 50 replies/mo in your creator voice.</p>
+            <p><strong>Hearts &amp; Pins:</strong> Strategic top comment pinning.</p>
+            <p><strong>Spam Filter:</strong> Bot &amp; hate speech filtering.</p>
+          </div>
+          <div class="kalakaari-acc-col">
+            <h5>Pro Plan</h5>
+            <p><strong>Comment Replies:</strong> Up to 150 replies/mo.</p>
+            <p><strong>Audience Retention Nurturing:</strong> Superfan relationship building.</p>
+            <p><strong>Competitor Outreach:</strong> Strategic comments to drive viewer crossover.</p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Feature 5: Content Strategy & Ideation -->
+      <details class="kalakaari-accordion-item">
+        <summary class="kalakaari-accordion-summary">
+          <span>💡 Content &amp; Channel Strategy <span class="kalakaari-accordion-subtext">(Ideation, Outlines &amp; Shorts Repurposing)</span></span>
+          <span style="color: #FF9B5D;">▾</span>
+        </summary>
+        <div class="kalakaari-accordion-content">
+          <div class="kalakaari-acc-col">
+            <h5>Starter Plan</h5>
+            <p><strong>Video Ideation:</strong> Researched trending topic proposals.</p>
+            <p><strong>Shorts Identification:</strong> Key moments flagged for vertical cuts.</p>
+            <p><strong>Content Calendar:</strong> Monthly publishing roadmap.</p>
+          </div>
+          <div class="kalakaari-acc-col">
+            <h5>Pro Plan</h5>
+            <p><strong>Complete Video Outlining:</strong> Hook, retention &amp; story bullet points.</p>
+            <p><strong>Audience Avatars:</strong> Viewer persona data calibration.</p>
+            <p><strong>Editing Discounts:</strong> Exclusive 10% bonus off all video editing packages.</p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Feature 6: Monetization & Revenue -->
+      <details class="kalakaari-accordion-item">
+        <summary class="kalakaari-accordion-summary">
+          <span>💰 Monetization &amp; Revenue Growth <span class="kalakaari-accordion-subtext">(Ad Breaks, Memberships &amp; Store)</span></span>
+          <span style="color: #FF9B5D;">▾</span>
+        </summary>
+        <div class="kalakaari-accordion-content">
+          <div class="kalakaari-acc-col">
+            <h5>Starter Plan</h5>
+            <p><strong>Ad Placement:</strong> Mid-roll optimization for maximum RPM.</p>
+            <p><strong>Revenue Tracking:</strong> Monthly earnings health checks.</p>
+          </div>
+          <div class="kalakaari-acc-col">
+            <h5>Pro Plan</h5>
+            <p><strong>Channel Memberships:</strong> Tiers, perks, badges &amp; emoji setup.</p>
+            <p><strong>YouTube Shopping:</strong> Store tab &amp; merchandise product tagging.</p>
+            <p><strong>Supers Optimization:</strong> Super Thanks &amp; Super Chat engagement.</p>
+          </div>
+        </div>
+      </details>
+
     </div>
   </div>
 
@@ -1782,6 +2186,12 @@ transform:scaleY(0);
     ],
     traditional: [
       { name: "Traditional Video Editing", price: 800, suffix: "/hr" }
+    ],
+    channel: [
+      { name: "Starter Plan — Operations", price: 25000, suffix: "/mo" },
+      { name: "Pro Plan — Strategy & Growth", price: 45000, suffix: "/mo" },
+      { name: "SEO & Channel Audit", price: 8000, suffix: "/mo" },
+      { name: "Thumbnail Package", price: 800, suffix: "/thumb" }
     ]
   };
 
@@ -1789,7 +2199,8 @@ transform:scaleY(0);
     video: { label: "Quantity", unitText: "project", defaultQty: 1, showQty: false },
     album: { label: "Quantity (Sheets)", unitText: "sheets", defaultQty: 30, showQty: true },
     carousel: { label: "Quantity (Slides)", unitText: "slides", defaultQty: 5, showQty: true },
-    traditional: { label: "Duration (Hours)", unitText: "hours", defaultQty: 2, showQty: true }
+    traditional: { label: "Duration (Hours)", unitText: "hours", defaultQty: 2, showQty: true },
+    channel: { label: "Duration (Months / Units)", unitText: "months", defaultQty: 1, showQty: true }
   };
 
   let currentCategory = "video";
@@ -2040,7 +2451,7 @@ function playHeroYtVideo(wrapper, videoId) {
 }
 </script></div><div class="elementor-element elementor-element-5dedb43 e-con-full e-flex e-con e-child" data-id="5dedb43" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-9a0f9b5 elementor-widget elementor-widget-text-editor" data-id="9a0f9b5" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p>Join thousands of<br>top creators!</p></div></div></div><div class="elementor-element elementor-element-34ee126 e-con-full e-flex e-con e-child" data-id="34ee126" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-3b24cc3 elementor-widget elementor-widget-button" data-id="3b24cc3" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> <a class="elementor-button elementor-button-link elementor-size-sm" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20editing%20services." target="_blank"> <span class="elementor-button-content-wrapper"> <span class="elementor-button-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-arrow-icon" data-svg-id="arrow_41" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg> </span> <span class="elementor-button-text">Get Started</span> </span> </a></div></div></div><div class="elementor-element elementor-element-741fc01 elementor-widget elementor-widget-button" data-id="741fc01" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> <a class="elementor-button elementor-button-link elementor-size-sm" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20book%20a%20call." target="_blank"> <span class="elementor-button-content-wrapper"> <span class="elementor-button-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-arrow-icon" data-svg-id="arrow_42" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg> </span> <span class="elementor-button-text">Book a Call</span> </span> </a></div></div></div></div></div></div></div><div class="elementor-element elementor-element-9785634 e-con-full e-flex e-con e-child" data-id="9785634" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-fd85bc8 elementor-widget__width-inherit elementor-widget elementor-widget-html" data-id="fd85bc8" data-element_type="widget" data-e-type="widget" data-widget_type="html.default"><div class="elementor-widget-container"><div data-elementor-type="container" data-elementor-id="91645" class="elementor elementor-91645" data-elementor-post-type="elementor_library"><div class="elementor-element elementor-element-5ac6176f e-con-full e-flex e-con e-child" data-id="5ac6176f" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-48595a67 e-flex e-con-boxed e-con e-child" data-id="48595a67" data-element_type="container" data-e-type="container"><div class="e-con-inner"><div class="elementor-element elementor-element-6b2af377 elementor-widget elementor-widget-heading" data-id="6b2af377" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">What The FAQ?</h2></div></div></div></div><div class="elementor-element elementor-element-7b8f01c6 e-flex e-con-boxed e-con e-child" data-id="7b8f01c6" data-element_type="container" data-e-type="container"><div class="e-con-inner"><div class="elementor-element elementor-element-5cf72235 elementor-widget elementor-widget-n-accordion" data-id="5cf72235" data-element_type="widget" data-e-type="widget" data-settings="{&quot;default_state&quot;:&quot;all_collapsed&quot;,&quot;n_accordion_animation_duration&quot;:{&quot;unit&quot;:&quot;ms&quot;,&quot;size&quot;:200,&quot;sizes&quot;:[]},&quot;max_items_expended&quot;:&quot;one&quot;}" data-widget_type="nested-accordion.default"><div class="elementor-widget-container"><div class="e-n-accordion" aria-label="Accordion. Open links with Enter or Space, close with Escape, and navigate with Arrow Keys"> <details id="e-n-accordion-item-1550" class="e-n-accordion-item"> <summary class="e-n-accordion-item-title" data-accordion-index="1" tabindex="0" aria-expanded="false" aria-controls="e-n-accordion-item-1550"> <span class="e-n-accordion-item-title-header"><div class="e-n-accordion-item-title-text"> How does your pricing work?</div></span> <span class="e-n-accordion-item-title-icon"> <span class="e-opened"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_109" data-name="Layer 1" viewBox="0 0 16 2"><path d="M15,2H1A1,1,0,0,1,1,0H15a1,1,0,0,1,0,2Z"></path></svg></span> <span class="e-closed"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_110" data-name="Layer 1" viewBox="0 0 16 16"><path d="M15,9H1A1,1,0,0,1,1,7H15a1,1,0,0,1,0,2Z"></path><path d="M8,16a1,1,0,0,1-1-1V1A1,1,0,0,1,9,1V15A1,1,0,0,1,8,16Z"></path></svg></span> </span> </summary><div role="region" aria-labelledby="e-n-accordion-item-1550" class="elementor-element elementor-element-27bf79a5 e-con-full e-flex e-con e-child" data-id="27bf79a5" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-1e049f75 elementor-widget elementor-widget-text-editor" data-id="1e049f75" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"> You can order one video at a time or a discounted package of videos. Our standard pricing for long-form video editing is as low as $278 per video when you purchase a package of 8 videos. Short-form videos start at $80 in a package of 30. Think of packages as your inventory of videos. <br><br> Our pricing is also based on the amount of raw footage you submit per order. Standard pricing includes up to 60 minutes and 20 GB of raw footage for long-form videos. If your raw footage is longer there is an additional fee. <br><br> Plus, you can purchase add-ons such as thumbnails or vertical reformats for short-form platforms when you submit a new video order for $43 per thumbnail or vertical reformat. <br><br> We also offer YouTube channel management. This means we run and grow your channel for you — from strategy advice to managing video uploads and SEO to providing YouTube analytics reports. Our channel management services are designed to work together with our video editing services as the ultimate all-in-one solution for creators and businesses and are priced as a separate subscription for as low as $1,266 per month.</div></div></div> </details> <details id="e-n-accordion-item-1551" class="e-n-accordion-item"> <summary class="e-n-accordion-item-title" data-accordion-index="2" tabindex="-1" aria-expanded="false" aria-controls="e-n-accordion-item-1551"> <span class="e-n-accordion-item-title-header"><div class="e-n-accordion-item-title-text"> What types of videos do you edit?</div></span> <span class="e-n-accordion-item-title-icon"> <span class="e-opened"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_111" data-name="Layer 1" viewBox="0 0 16 2"><path d="M15,2H1A1,1,0,0,1,1,0H15a1,1,0,0,1,0,2Z"></path></svg></span> <span class="e-closed"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_112" data-name="Layer 1" viewBox="0 0 16 16"><path d="M15,9H1A1,1,0,0,1,1,7H15a1,1,0,0,1,0,2Z"></path><path d="M8,16a1,1,0,0,1-1-1V1A1,1,0,0,1,9,1V15A1,1,0,0,1,8,16Z"></path></svg></span> </span> </summary><div role="region" aria-labelledby="e-n-accordion-item-1551" class="elementor-element elementor-element-2c4c737d e-con-full e-flex e-con e-child" data-id="2c4c737d" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-10e89de6 elementor-widget elementor-widget-text-editor" data-id="10e89de6" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"> Pretty much any type of video you can think of! This includes advertisements, beauty &amp; fashion, compilations, cooking, fitness, haul and product reviews, interviews, lifestyle content, online courses, real estate tours, podcasts, talking heads, trainings, travel, tutorials, vlogs, video essays… just to name a few. <br><br> Currently, we DO NOT edit: wedding videos or 2D or 3D animations. We do not provide voiceover services but we CAN edit your voiceover videos.</div></div></div> </details> <details id="e-n-accordion-item-1552" class="e-n-accordion-item"> <summary class="e-n-accordion-item-title" data-accordion-index="3" tabindex="-1" aria-expanded="false" aria-controls="e-n-accordion-item-1552"> <span class="e-n-accordion-item-title-header"><div class="e-n-accordion-item-title-text"> How do I share my footage?</div></span> <span class="e-n-accordion-item-title-icon"> <span class="e-opened"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_113" data-name="Layer 1" viewBox="0 0 16 2"><path d="M15,2H1A1,1,0,0,1,1,0H15a1,1,0,0,1,0,2Z"></path></svg></span> <span class="e-closed"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_114" data-name="Layer 1" viewBox="0 0 16 16"><path d="M15,9H1A1,1,0,0,1,1,7H15a1,1,0,0,1,0,2Z"></path><path d="M8,16a1,1,0,0,1-1-1V1A1,1,0,0,1,9,1V15A1,1,0,0,1,8,16Z"></path></svg></span> </span> </summary><div role="region" aria-labelledby="e-n-accordion-item-1552" class="elementor-element elementor-element-7294ef17 e-con-full e-flex e-con e-child" data-id="7294ef17" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-1c1a9fe9 elementor-widget elementor-widget-text-editor" data-id="1c1a9fe9" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"> When you submit a new video order you can upload your raw footage directly to our our client portal or a share a link to your own cloud storage. our client portal is the software we built from scratch to make submitting and tracking your videos fast and easy.</div></div></div> </details> <details id="e-n-accordion-item-1553" class="e-n-accordion-item"> <summary class="e-n-accordion-item-title" data-accordion-index="4" tabindex="-1" aria-expanded="false" aria-controls="e-n-accordion-item-1553"> <span class="e-n-accordion-item-title-header"><div class="e-n-accordion-item-title-text"> What video editing software do you use?</div></span> <span class="e-n-accordion-item-title-icon"> <span class="e-opened"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_115" data-name="Layer 1" viewBox="0 0 16 2"><path d="M15,2H1A1,1,0,0,1,1,0H15a1,1,0,0,1,0,2Z"></path></svg></span> <span class="e-closed"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_116" data-name="Layer 1" viewBox="0 0 16 16"><path d="M15,9H1A1,1,0,0,1,1,7H15a1,1,0,0,1,0,2Z"></path><path d="M8,16a1,1,0,0,1-1-1V1A1,1,0,0,1,9,1V15A1,1,0,0,1,8,16Z"></path></svg></span> </span> </summary><div role="region" aria-labelledby="e-n-accordion-item-1553" class="elementor-element elementor-element-4ee28f74 e-con-full e-flex e-con e-child" data-id="4ee28f74" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-153eb4ec elementor-widget elementor-widget-text-editor" data-id="153eb4ec" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"> Our professional video editors use Premiere Pro and After Effects. We built our our client portal from scratch to make submitting your orders, sharing your footage, communicating with your team, and tracking your orders fast and easy.</div></div></div> </details> <details id="e-n-accordion-item-1554" class="e-n-accordion-item"> <summary class="e-n-accordion-item-title" data-accordion-index="5" tabindex="-1" aria-expanded="false" aria-controls="e-n-accordion-item-1554"> <span class="e-n-accordion-item-title-header"><div class="e-n-accordion-item-title-text"> Will I have the same video editor for every order?</div></span> <span class="e-n-accordion-item-title-icon"> <span class="e-opened"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_117" data-name="Layer 1" viewBox="0 0 16 2"><path d="M15,2H1A1,1,0,0,1,1,0H15a1,1,0,0,1,0,2Z"></path></svg></span> <span class="e-closed"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_118" data-name="Layer 1" viewBox="0 0 16 16"><path d="M15,9H1A1,1,0,0,1,1,7H15a1,1,0,0,1,0,2Z"></path><path d="M8,16a1,1,0,0,1-1-1V1A1,1,0,0,1,9,1V15A1,1,0,0,1,8,16Z"></path></svg></span> </span> </summary><div role="region" aria-labelledby="e-n-accordion-item-1554" class="elementor-element elementor-element-4e8b193a e-con-full e-flex e-con e-child" data-id="4e8b193a" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-49fa930f elementor-widget elementor-widget-text-editor" data-id="49fa930f" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"> You bet! You have the same dedicated video manager, video editor, thumbnail artist (if you order thumbnails), and YouTube channel manager (if you sign up for YouTube Channel Management) for every video.</div></div></div> </details> <details id="e-n-accordion-item-1555" class="e-n-accordion-item"> <summary class="e-n-accordion-item-title" data-accordion-index="6" tabindex="-1" aria-expanded="false" aria-controls="e-n-accordion-item-1555"> <span class="e-n-accordion-item-title-header"><div class="e-n-accordion-item-title-text"> Do I have full ownership of the videos?</div></span> <span class="e-n-accordion-item-title-icon"> <span class="e-opened"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_119" data-name="Layer 1" viewBox="0 0 16 2"><path d="M15,2H1A1,1,0,0,1,1,0H15a1,1,0,0,1,0,2Z"></path></svg></span> <span class="e-closed"><svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_120" data-name="Layer 1" viewBox="0 0 16 16"><path d="M15,9H1A1,1,0,0,1,1,7H15a1,1,0,0,1,0,2Z"></path><path d="M8,16a1,1,0,0,1-1-1V1A1,1,0,0,1,9,1V15A1,1,0,0,1,8,16Z"></path></svg></span> </span> </summary><div role="region" aria-labelledby="e-n-accordion-item-1555" class="elementor-element elementor-element-609390f1 e-con-full e-flex e-con e-child" data-id="609390f1" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="elementor-element elementor-element-128270a8 elementor-widget elementor-widget-text-editor" data-id="128270a8" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"> Yes, of course! You maintain full rights and ownership of all videos and deliverables.</div></div></div> </details></div></div></div></div></div></div></div></div></div></div></div></div></div></div></main><footer data-elementor-type="footer" data-elementor-id="81781" class="elementor elementor-81781 elementor-location-footer" data-elementor-post-type="elementor_library"><div class="elementor-element elementor-element-c0eccf5 e-flex e-con-boxed e-con e-parent" data-id="c0eccf5" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="e-con-inner"><div class="elementor-element elementor-element-ccf178f e-con-full e-flex e-con e-child" data-id="ccf178f" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-bea6bb6 elementor-widget__width-inherit elementor-widget elementor-widget-image" data-id="bea6bb6" data-element_type="widget" data-e-type="widget" data-widget_type="image.default"><div class="elementor-widget-container"> <a href="#top" style="display: inline-block; text-decoration: none;" aria-label="Kalakaari Studios">
   <img src="./img/kalakaari-logo-light.svg" alt="Kalakaari Studio logo" class="kalakaari-footer-logo" width="1054" height="361" style="height: 42px; width: auto; max-width: 185px; object-fit: contain; display: block;" loading="lazy">
-</a></div></div><div class="elementor-element elementor-element-e1d57a1 elementor-view-default elementor-widget elementor-widget-icon" data-id="e1d57a1" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"> <a class="elementor-icon" href="#top"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_121" data-name="Layer 1" viewBox="0 0 310.86 310.86"><defs><style>.cls-1{fill:#191919;}.cls-2{fill:#a3a3a3;}</style></defs><circle class="cls-1" cx="155.43" cy="155.43" r="155.43"></circle><path class="cls-2" d="M155.43,128.62A18.32,18.32,0,0,0,142.37,134l-34.62,34.62A8,8,0,1,0,119,179.91l34.62-34.62c1.28-1.27,2.32-1.28,3.59,0l34.63,34.63a8,8,0,1,0,11.27-11.26L168.5,134a18.38,18.38,0,0,0-13.06-5.41Z"></path></svg> </a></div></div></div></div><div class="elementor-element elementor-element-9b78a2e e-con-full e-flex e-con e-child" data-id="9b78a2e" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-f5199a7 e-con-full e-flex e-con e-child" data-id="f5199a7" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-319ea67 e-con-full e-flex e-con e-child" data-id="319ea67" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-c4736f3 e-con-full e-flex e-con e-child" data-id="c4736f3" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-2f7184b elementor-widget elementor-widget-heading" data-id="2f7184b" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Information</h2></div></div><div class="elementor-element elementor-element-ac56438 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="ac56438" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="mailto:info@kalakaaristudios.com"> <span class="elementor-icon-list-text">info@kalakaaristudios.com</span> </a></li></ul></div></div></div><div class="elementor-element elementor-element-6f71dee e-con-full e-flex e-con e-child" data-id="6f71dee" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-7e3e278 elementor-widget elementor-widget-heading" data-id="7e3e278" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Blog &amp; Guest Posts</h2></div></div><div class="elementor-element elementor-element-7fb03b2 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="7fb03b2" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="mailto:blog@kalakaaristudios.com"> <span class="elementor-icon-list-text">blog@kalakaaristudios.com</span> </a></li></ul></div></div></div><div class="elementor-element elementor-element-9b7558c e-con-full e-flex e-con e-child" data-id="9b7558c" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-842372d elementor-widget elementor-widget-heading" data-id="842372d" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Support</h2></div></div><div class="elementor-element elementor-element-e314220 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="e314220" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="mailto:support@kalakaaristudios.com"> <span class="elementor-icon-list-text">support@kalakaaristudios.com</span> </a></li></ul></div></div></div></div><div class="elementor-element elementor-element-d96c668 e-con-full e-flex e-con e-child" data-id="d96c668" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-0fd277a elementor-widget elementor-widget-button" data-id="0fd277a" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> <a class="elementor-button elementor-button-link elementor-size-sm" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20editing%20services." target="_blank" id="footer_getstarted"> <span class="elementor-button-content-wrapper"> <span class="elementor-button-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-arrow-icon" data-svg-id="arrow_43" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg> </span> <span class="elementor-button-text">Get Started</span> </span> </a></div></div></div><div class="elementor-element elementor-element-2bdcde5 elementor-hidden-mobile elementor-widget elementor-widget-button" data-id="2bdcde5" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> <a class="elementor-button elementor-button-link elementor-size-sm" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20book%20a%20call." target="_blank" id="footer_book_call"> <span class="elementor-button-content-wrapper"> <span class="elementor-button-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-arrow-icon" data-svg-id="arrow_44" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg> </span> <span class="elementor-button-text">Book a Call</span> </span> </a></div></div></div><div class="elementor-element elementor-element-b210bd1 elementor-hidden-mobile elementor-widget elementor-widget-button" data-id="b210bd1" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> </div></div></div><div class="elementor-element elementor-element-eb37d81 elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-button" data-id="eb37d81" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> <a class="elementor-button elementor-button-link elementor-size-sm" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20book%20a%20call." target="_blank"> <span class="elementor-button-content-wrapper"> <span class="elementor-button-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-arrow-icon" data-svg-id="arrow_45" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg> </span> <span class="elementor-button-text">Book a Call</span> </span> </a></div></div></div><div class="elementor-element elementor-element-1460f28 elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-button" data-id="1460f28" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> </div></div></div></div></div></div><div class="elementor-element elementor-element-3b05406 e-con-full e-flex e-con e-child" data-id="3b05406" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-c32b787 e-con-full e-flex e-con e-child" data-id="c32b787" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-c3ce897 elementor-widget elementor-widget-heading" data-id="c3ce897" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Samples</h2></div></div><div class="elementor-element elementor-element-b33a806 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="b33a806" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="#pricing"> <span class="elementor-icon-list-text">Pricing</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">About Us</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">Example Videos</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">Client Case Studies</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">Creator Burnout Study</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">YouTube Monetization Guide</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Agents</span> </a></li></ul></div></div></div><div class="elementor-element elementor-element-87539da e-con-full e-flex e-con e-child" data-id="87539da" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-196d9b1 elementor-widget elementor-widget-heading" data-id="196d9b1" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Services</h2></div></div><div class="elementor-element elementor-element-59ea334 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="59ea334" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="#long-form-video-section"> <span class="elementor-icon-list-text">Long-Form Video Editing</span> </a></li><li class="elementor-icon-list-item"> <a href="#photos-albums-portrait-section"> <span class="elementor-icon-list-text">Short-Form Video Editing</span> </a></li><li class="elementor-icon-list-item"> <a href="#long-form-video-section"> <span class="elementor-icon-list-text">YouTube Channel Management</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">YouTube SEO Services</span> </a></li></ul></div></div></div><div class="elementor-element elementor-element-34a9f19 e-con-full e-flex e-con e-child" data-id="34a9f19" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-0fe5388 elementor-widget elementor-widget-heading" data-id="0fe5388" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Use Cases</h2></div></div><div class="elementor-element elementor-element-edbde01 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="edbde01" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="#long-form-video-section"> <span class="elementor-icon-list-text">For Content Creators</span> </a></li><li class="elementor-icon-list-item"> <a href="#long-form-video-section"> <span class="elementor-icon-list-text">For Businesses</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Podcasters</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Real Estate</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Course Creators</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Medical Professionals</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Legal Professionals</span> </a></li></ul></div></div></div></div><div class="elementor-element elementor-element-b7c33f9 e-con-full e-flex e-con e-child" data-id="b7c33f9" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-baca6ae elementor-widget elementor-widget-text-editor" data-id="baca6ae" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p>Copyright © Kalakaari Studios Inc 2020 to 2026. All Rights Reserved.</p></div></div><div class="elementor-element elementor-element-efc23ed elementor-widget elementor-widget-text-editor" data-id="efc23ed" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services.">Privacy Policy.</a> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services.">Terms and Conditions.</a></div></div></div></div></div></footer> <script type="speculationrules"> {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/hello-elementor-child/*","/wp-content/themes/hello-elementor/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]} </script> <script defer="" src="./js/js_lp39fhz2.js"></script><link rel="stylesheet" id="elementor-post-82099-css" href="./css/post-82099.css" media="all"><link rel="stylesheet" id="elementor-post-93282-css" href="./css/post-93282.css" media="all"><link rel="stylesheet" id="elementor-post-82107-css" href="./css/post-82107.css" media="all"><link rel="stylesheet" id="elementor-post-78859-css" href="./css/post-78859.css" media="all"><link rel="stylesheet" id="swiper-css" href="./css/swiper.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="e-swiper-css" href="./css/e-swiper.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="widget-nested-carousel-css" href="./css/widget-nested-carousel.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="elementor-post-85117-css" href="./css/post-85117.css" media="all"><link rel="stylesheet" id="widget-rating-css" href="./css/widget-rating.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="elementor-post-90811-css" href="./css/post-90811.css" media="all"><link rel="stylesheet" id="elementor-post-91083-css" href="./css/post-91083.css" media="all"><link rel="stylesheet" id="elementor-post-87690-css" href="./css/post-87690.css" media="all"><link rel="stylesheet" id="elementor-post-87693-css" href="./css/post-87693.css" media="all"><link rel="stylesheet" id="elementor-post-91574-css" href="./css/post-91574.css" media="all"><link rel="stylesheet" id="widget-nested-tabs-css" href="./css/custom-widget-nested-tabs.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="elementor-post-87221-css" href="./css/post-87221.css" media="all"><link rel="stylesheet" id="widget-divider-css" href="./css/widget-divider.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="elementor-post-87814-css" href="./css/post-87814.css" media="all"><link rel="stylesheet" id="elementor-post-87887-css" href="./css/post-87887.css" media="all"><link rel="stylesheet" id="elementor-post-81641-css" href="./css/post-81641.css" media="all"><link rel="stylesheet" id="elementor-post-81644-css" href="./css/post-81644.css" media="all"><link rel="stylesheet" id="elementor-post-81648-css" href="./css/post-81648.css" media="all"><link rel="stylesheet" id="elementor-post-81653-css" href="./css/post-81653.css" media="all"><link rel="stylesheet" id="elementor-post-81656-css" href="./css/post-81656.css" media="all"><link rel="stylesheet" id="elementor-post-81660-css" href="./css/post-81660.css" media="all"><link rel="stylesheet" id="elementor-post-81664-css" href="./css/post-81664.css" media="all"><link rel="stylesheet" id="elementor-post-81667-css" href="./css/post-81667.css" media="all"><link rel="stylesheet" id="elementor-post-81671-css" href="./css/post-81671.css" media="all"><link rel="stylesheet" id="elementor-post-91645-css" href="./css/post-91645.css" media="all"> <script id="hello-theme-frontend-js" src="./js/hello-frontend.js" defer=""></script> <script id="googlesitekit-consent-mode-js" src="./js/googlesitekit-consent-mode-755f1678e260138d789e.js" defer=""></script> <script id="elementor-webpack-runtime-js" src="./js/webpack.runtime.min.js" defer=""></script> <script id="elementor-frontend-modules-js" src="./js/frontend-modules.min.js" defer=""></script> <script id="jquery-ui-core-js-before" defer="" src="./js/js_7a0tqun8.js"></script> <script id="jquery-ui-core-js" src="./js/core.min.js" defer=""></script> <script id="elementor-frontend-js-before" defer="" src="./js/js_he5t1ibv.js"></script> <script id="elementor-frontend-js" src="./js/frontend.min.js" defer=""></script> <script id="e-sticky-js" src="./js/jquery.sticky.min.js" defer=""></script> <script id="smartmenus-js" src="./js/jquery.smartmenus.min.js" defer=""></script> <script id="lottie-js" src="./js/lottie.min.js" defer=""></script> <script id="wp-consent-api-js-extra" defer="" src="./js/js_btpv3unn.js"></script> <script id="wp-consent-api-js" src="./js/wp-consent-api.min.js" defer=""></script> <script id="swiper-js" src="./js/swiper.min.js" defer=""></script> <script id="elementor-pro-webpack-runtime-js" src="./js/webpack-pro.runtime.min.js" defer=""></script> <script id="wp-hooks-js" src="./js/hooks.min.js"></script> <script id="wp-i18n-js" src="./js/i18n.min.js"></script> <script id="wp-i18n-js-after" defer="" src="./js/js_oclv2ao3.js"></script> <script id="elementor-pro-frontend-js-before" defer="" src="./js/js_r6hz574d.js"></script> <script id="elementor-pro-frontend-js" src="./js/frontend.min.js" defer=""></script> <script id="pro-elements-handlers-js" src="./js/elements-handlers.min.js" defer=""></script> <script defer="" src="./js/js_qhv7nniz.js"></script> <script id="perfmatters-delayed-scripts-js">(function(){window.pmDC=0;window.pmDT=15;if(window.pmDT){var e=setTimeout(d,window.pmDT*1e3)}const t=["keydown","mousedown","mousemove","wheel","touchmove","touchstart","touchend"];const n={normal:[],defer:[],async:[]};const o=[];const i=[];var r=false;var a="";window.pmIsClickPending=false;t.forEach(function(e){window.addEventListener(e,d,{passive:true})});if(window.pmDC){window.addEventListener("touchstart",b,{passive:true});window.addEventListener("mousedown",b)}function d(){if(typeof e!=="undefined"){clearTimeout(e)}t.forEach(function(e){window.removeEventListener(e,d,{passive:true})});if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",s)}else{s()}}async function s(){c();u();f();m();await w(n.normal);await w(n.defer);await w(n.async);await p();document.querySelectorAll("link[data-pmdelayedstyle]").forEach(function(e){e.setAttribute("href",e.getAttribute("data-pmdelayedstyle"))});window.dispatchEvent(new Event("perfmatters-allScriptsLoaded")),E().then(()=>{h()})}function c(){let o={};function e(t,e){function n(e){return o[t].delayedEvents.indexOf(e)>=0?"perfmatters-"+e:e}if(!o[t]){o[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},delayedEvents:[]};t.addEventListener=function(){arguments[0]=n(arguments[0]);o[t].originalFunctions.add.apply(t,arguments)};t.removeEventListener=function(){arguments[0]=n(arguments[0]);o[t].originalFunctions.remove.apply(t,arguments)}}o[t].delayedEvents.push(e)}function t(t,n){const e=t[n];Object.defineProperty(t,n,{get:!e?function(){}:e,set:function(e){t["perfmatters"+n]=e}})}e(document,"DOMContentLoaded");e(window,"DOMContentLoaded");e(window,"load");e(document,"readystatechange");t(document,"onreadystatechange");t(window,"onload")}function u(){let n=window.jQuery;Object.defineProperty(window,"jQuery",{get(){return n},set(t){if(t&&t.fn&&!o.includes(t)){t.fn.ready=t.fn.init.prototype.ready=function(e){if(r){e.bind(document)(t)}else{document.addEventListener("perfmatters-DOMContentLoaded",function(){e.bind(document)(t)})}};const e=t.fn.on;t.fn.on=t.fn.init.prototype.on=function(){if(this[0]===window){function t(e){e=e.split(" ");e=e.map(function(e){if(e==="load"||e.indexOf("load.")===0){return"perfmatters-jquery-load"}else{return e}});e=e.join(" ");return e}if(typeof arguments[0]=="string"||arguments[0]instanceof String){arguments[0]=t(arguments[0])}else if(typeof arguments[0]=="object"){Object.keys(arguments[0]).forEach(function(e){delete Object.assign(arguments[0],{[t(e)]:arguments[0][e]})[e]})}}return e.apply(this,arguments),this};o.push(t)}n=t}})}function f(){document.querySelectorAll("script[type=pmdelayedscript]").forEach(function(e){if(e.hasAttribute("src")){if(e.hasAttribute("defer")&&e.defer!==false){n.defer.push(e)}else if(e.hasAttribute("async")&&e.async!==false){n.async.push(e)}else{n.normal.push(e)}}else{n.normal.push(e)}})}function m(){var o=document.createDocumentFragment();[...n.normal,...n.defer,...n.async].forEach(function(e){var t=e.getAttribute("src");if(t){var n=document.createElement("link");n.href=t;if(e.getAttribute("data-perfmatters-type")=="module"){n.rel="modulepreload"}else{n.rel="preload";n.as="script"}o.appendChild(n)}});document.head.appendChild(o)}async function w(e){var t=e.shift();if(t){await l(t);return w(e)}return Promise.resolve()}async function l(t){await v();return new Promise(function(e){const n=document.createElement("script");[...t.attributes].forEach(function(e){let t=e.nodeName;if(t!=="type"){if(t==="data-perfmatters-type"){t="type"}n.setAttribute(t,e.nodeValue)}});if(t.hasAttribute("src")){n.addEventListener("load",e);n.addEventListener("error",e)}else{n.text=t.text;e()}t.parentNode?t.parentNode.replaceChild(n,t):e()})}async function p(){r=true;await v();document.dispatchEvent(new Event("perfmatters-DOMContentLoaded"));await v();window.dispatchEvent(new Event("perfmatters-DOMContentLoaded"));await v();document.dispatchEvent(new Event("perfmatters-readystatechange"));await v();if(document.perfmattersonreadystatechange){document.perfmattersonreadystatechange()}await v();window.dispatchEvent(new Event("perfmatters-load"));await v();if(window.perfmattersonload){window.perfmattersonload()}await v();o.forEach(function(e){e(window).trigger("perfmatters-jquery-load")})}async function v(){return new Promise(function(e){requestAnimationFrame(e)})}function h(){window.removeEventListener("touchstart",b,{passive:true});window.removeEventListener("mousedown",b);i.forEach(e=>{if(e.target.outerHTML===a){e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:true,cancelable:true}))}})}function E(){return new Promise(e=>{window.pmIsClickPending?g=e:e()})}function y(){window.pmIsClickPending=true}function g(){window.pmIsClickPending=false}function L(e){e.target.removeEventListener("click",L);C(e.target,"pm-onclick","onclick");i.push(e),e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();g()}function b(e){if(e.target.tagName!=="HTML"){if(!a){a=e.target.outerHTML}window.addEventListener("touchend",A);window.addEventListener("mouseup",A);window.addEventListener("touchmove",k,{passive:true});window.addEventListener("mousemove",k);e.target.addEventListener("click",L);C(e.target,"onclick","pm-onclick");y()}}function k(e){window.removeEventListener("touchend",A);window.removeEventListener("mouseup",A);window.removeEventListener("touchmove",k,{passive:true});window.removeEventListener("mousemove",k);e.target.removeEventListener("click",L);C(e.target,"pm-onclick","onclick");g()}function A(e){window.removeEventListener("touchend",A);window.removeEventListener("mouseup",A);window.removeEventListener("touchmove",k,{passive:true});window.removeEventListener("mousemove",k)}function C(e,t,n){if(e.hasAttribute&&e.hasAttribute(t)){event.target.setAttribute(n,event.target.getAttribute(t));event.target.removeAttribute(t)}}})();(function(){var e,a,s;function t(){(e=document.createElement("span")).id="elementor-device-mode",e.setAttribute("class","elementor-screen-only"),document.body.appendChild(e),requestAnimationFrame(n)}function n(){a=o(getComputedStyle(e,":after").content.replace(/"/g,"")),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(e=>{let t=e.getBoundingClientRect();if(t.bottom>=0&&t.top<=window.innerHeight)try{i(e)}catch(e){}})}function i(e){let t=JSON.parse(e.dataset.settings),n=t._animation_delay||t.animation_delay||0,i=t[a.find(e=>t[e])];if("none"===i)return void e.classList.remove("elementor-invisible");e.classList.remove(i),s&&e.classList.remove(s),s=i;let o=setTimeout(()=>{e.classList.remove("elementor-invisible"),e.classList.add("animated",i),l(e,t)},n);window.addEventListener("perfmatters-startLoading",function(){clearTimeout(o)})}function o(e="mobile"){let n=[""];switch(e){case"mobile":n.unshift("_mobile");case"tablet":n.unshift("_tablet");case"desktop":n.unshift("_desktop")}let i=[];return["animation","_animation"].forEach(t=>{n.forEach(e=>{i.push(t+e)})}),i}function l(e,t){o().forEach(e=>delete t[e]),e.dataset.settings=JSON.stringify(t)}document.addEventListener("DOMContentLoaded",t)})();</script><span id="elementor-device-mode" class="elementor-screen-only"></span><svg style="display: none;" class="e-font-icon-svg-symbols"></svg>
+</a></div></div><div class="elementor-element elementor-element-e1d57a1 elementor-view-default elementor-widget elementor-widget-icon" data-id="e1d57a1" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default"><div class="elementor-widget-container"><div class="elementor-icon-wrapper"> <a class="elementor-icon" href="#top"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-layer-icon" data-svg-id="layer_121" data-name="Layer 1" viewBox="0 0 310.86 310.86"><defs><style>.cls-1{fill:#191919;}.cls-2{fill:#a3a3a3;}</style></defs><circle class="cls-1" cx="155.43" cy="155.43" r="155.43"></circle><path class="cls-2" d="M155.43,128.62A18.32,18.32,0,0,0,142.37,134l-34.62,34.62A8,8,0,1,0,119,179.91l34.62-34.62c1.28-1.27,2.32-1.28,3.59,0l34.63,34.63a8,8,0,1,0,11.27-11.26L168.5,134a18.38,18.38,0,0,0-13.06-5.41Z"></path></svg> </a></div></div></div></div><div class="elementor-element elementor-element-9b78a2e e-con-full e-flex e-con e-child" data-id="9b78a2e" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-f5199a7 e-con-full e-flex e-con e-child" data-id="f5199a7" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-319ea67 e-con-full e-flex e-con e-child" data-id="319ea67" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-c4736f3 e-con-full e-flex e-con e-child" data-id="c4736f3" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-2f7184b elementor-widget elementor-widget-heading" data-id="2f7184b" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Information</h2></div></div><div class="elementor-element elementor-element-ac56438 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="ac56438" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="mailto:info@kalakaaristudios.com"> <span class="elementor-icon-list-text">info@kalakaaristudios.com</span> </a></li></ul></div></div></div><div class="elementor-element elementor-element-6f71dee e-con-full e-flex e-con e-child" data-id="6f71dee" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-7e3e278 elementor-widget elementor-widget-heading" data-id="7e3e278" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Blog &amp; Guest Posts</h2></div></div><div class="elementor-element elementor-element-7fb03b2 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="7fb03b2" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="mailto:blog@kalakaaristudios.com"> <span class="elementor-icon-list-text">blog@kalakaaristudios.com</span> </a></li></ul></div></div></div><div class="elementor-element elementor-element-9b7558c e-con-full e-flex e-con e-child" data-id="9b7558c" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-842372d elementor-widget elementor-widget-heading" data-id="842372d" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Support</h2></div></div><div class="elementor-element elementor-element-e314220 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="e314220" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="mailto:support@kalakaaristudios.com"> <span class="elementor-icon-list-text">support@kalakaaristudios.com</span> </a></li></ul></div></div></div></div><div class="elementor-element elementor-element-d96c668 e-con-full e-flex e-con e-child" data-id="d96c668" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-0fd277a elementor-widget elementor-widget-button" data-id="0fd277a" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> <a class="elementor-button elementor-button-link elementor-size-sm" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20editing%20services." target="_blank" id="footer_getstarted"> <span class="elementor-button-content-wrapper"> <span class="elementor-button-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-arrow-icon" data-svg-id="arrow_43" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg> </span> <span class="elementor-button-text">Get Started</span> </span> </a></div></div></div><div class="elementor-element elementor-element-2bdcde5 elementor-hidden-mobile elementor-widget elementor-widget-button" data-id="2bdcde5" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> <a class="elementor-button elementor-button-link elementor-size-sm" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20book%20a%20call." target="_blank" id="footer_book_call"> <span class="elementor-button-content-wrapper"> <span class="elementor-button-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-arrow-icon" data-svg-id="arrow_44" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg> </span> <span class="elementor-button-text">Book a Call</span> </span> </a></div></div></div><div class="elementor-element elementor-element-b210bd1 elementor-hidden-mobile elementor-widget elementor-widget-button" data-id="b210bd1" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> </div></div></div><div class="elementor-element elementor-element-eb37d81 elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-button" data-id="eb37d81" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> <a class="elementor-button elementor-button-link elementor-size-sm" href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20book%20a%20call." target="_blank"> <span class="elementor-button-content-wrapper"> <span class="elementor-button-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="svg-arrow-icon" data-svg-id="arrow_45" viewBox="0 0 38.45 40.24"><path d="M15.2,36l4.24,4.24L37.66,22a2.69,2.69,0,0,0,0-3.8L19.44,0,15.2,4.24,28.08,17.12H0v6H28.08Z"></path></svg> </span> <span class="elementor-button-text">Book a Call</span> </span> </a></div></div></div><div class="elementor-element elementor-element-1460f28 elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-button" data-id="1460f28" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"><div class="elementor-widget-container"><div class="elementor-button-wrapper"> </div></div></div></div></div></div><div class="elementor-element elementor-element-3b05406 e-con-full e-flex e-con e-child" data-id="3b05406" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-c32b787 e-con-full e-flex e-con e-child" data-id="c32b787" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-c3ce897 elementor-widget elementor-widget-heading" data-id="c3ce897" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Samples</h2></div></div><div class="elementor-element elementor-element-b33a806 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="b33a806" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="#pricing"> <span class="elementor-icon-list-text">Pricing</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">About Us</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">Example Videos</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">Client Case Studies</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">Creator Burnout Study</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">YouTube Monetization Guide</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Agents</span> </a></li></ul></div></div></div><div class="elementor-element elementor-element-87539da e-con-full e-flex e-con e-child" data-id="87539da" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-196d9b1 elementor-widget elementor-widget-heading" data-id="196d9b1" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Services</h2></div></div><div class="elementor-element elementor-element-59ea334 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="59ea334" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="#long-form-video-section"> <span class="elementor-icon-list-text">Long-Form Video Editing</span> </a></li><li class="elementor-icon-list-item"> <a href="#photos-albums-portrait-section"> <span class="elementor-icon-list-text">Short-Form Video Editing</span> </a></li><li class="elementor-icon-list-item"> <a href="#channel-management"><span class="elementor-icon-list-text">YouTube Channel Management</span></a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">YouTube SEO Services</span> </a></li></ul></div></div></div><div class="elementor-element elementor-element-34a9f19 e-con-full e-flex e-con e-child" data-id="34a9f19" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-0fe5388 elementor-widget elementor-widget-heading" data-id="0fe5388" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Use Cases</h2></div></div><div class="elementor-element elementor-element-edbde01 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="edbde01" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default"><div class="elementor-widget-container"><ul class="elementor-icon-list-items"><li class="elementor-icon-list-item"> <a href="#long-form-video-section"> <span class="elementor-icon-list-text">For Content Creators</span> </a></li><li class="elementor-icon-list-item"> <a href="#long-form-video-section"> <span class="elementor-icon-list-text">For Businesses</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Podcasters</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Real Estate</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Course Creators</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Medical Professionals</span> </a></li><li class="elementor-icon-list-item"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services."> <span class="elementor-icon-list-text">For Legal Professionals</span> </a></li></ul></div></div></div></div><div class="elementor-element elementor-element-b7c33f9 e-con-full e-flex e-con e-child" data-id="b7c33f9" data-element_type="container" data-e-type="container"><div class="elementor-element elementor-element-baca6ae elementor-widget elementor-widget-text-editor" data-id="baca6ae" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p>Copyright © Kalakaari Studios Inc 2020 to 2026. All Rights Reserved.</p></div></div><div class="elementor-element elementor-element-efc23ed elementor-widget elementor-widget-text-editor" data-id="efc23ed" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services.">Privacy Policy.</a> <a href="https://wa.me/918654989156?text=Hello%20Kalakaari%20Studios!%20I%20want%20to%20inquire%20about%20your%20services.">Terms and Conditions.</a></div></div></div></div></div></footer> <script type="speculationrules"> {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/hello-elementor-child/*","/wp-content/themes/hello-elementor/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]} </script> <script defer="" src="./js/js_lp39fhz2.js"></script><link rel="stylesheet" id="elementor-post-82099-css" href="./css/post-82099.css" media="all"><link rel="stylesheet" id="elementor-post-93282-css" href="./css/post-93282.css" media="all"><link rel="stylesheet" id="elementor-post-82107-css" href="./css/post-82107.css" media="all"><link rel="stylesheet" id="elementor-post-78859-css" href="./css/post-78859.css" media="all"><link rel="stylesheet" id="swiper-css" href="./css/swiper.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="e-swiper-css" href="./css/e-swiper.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="widget-nested-carousel-css" href="./css/widget-nested-carousel.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="elementor-post-85117-css" href="./css/post-85117.css" media="all"><link rel="stylesheet" id="widget-rating-css" href="./css/widget-rating.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="elementor-post-90811-css" href="./css/post-90811.css" media="all"><link rel="stylesheet" id="elementor-post-91083-css" href="./css/post-91083.css" media="all"><link rel="stylesheet" id="elementor-post-87690-css" href="./css/post-87690.css" media="all"><link rel="stylesheet" id="elementor-post-87693-css" href="./css/post-87693.css" media="all"><link rel="stylesheet" id="elementor-post-91574-css" href="./css/post-91574.css" media="all"><link rel="stylesheet" id="widget-nested-tabs-css" href="./css/custom-widget-nested-tabs.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="elementor-post-87221-css" href="./css/post-87221.css" media="all"><link rel="stylesheet" id="widget-divider-css" href="./css/widget-divider.min.css" media="all" onload="this.media='all';this.onload=null;"><link rel="stylesheet" id="elementor-post-87814-css" href="./css/post-87814.css" media="all"><link rel="stylesheet" id="elementor-post-87887-css" href="./css/post-87887.css" media="all"><link rel="stylesheet" id="elementor-post-81641-css" href="./css/post-81641.css" media="all"><link rel="stylesheet" id="elementor-post-81644-css" href="./css/post-81644.css" media="all"><link rel="stylesheet" id="elementor-post-81648-css" href="./css/post-81648.css" media="all"><link rel="stylesheet" id="elementor-post-81653-css" href="./css/post-81653.css" media="all"><link rel="stylesheet" id="elementor-post-81656-css" href="./css/post-81656.css" media="all"><link rel="stylesheet" id="elementor-post-81660-css" href="./css/post-81660.css" media="all"><link rel="stylesheet" id="elementor-post-81664-css" href="./css/post-81664.css" media="all"><link rel="stylesheet" id="elementor-post-81667-css" href="./css/post-81667.css" media="all"><link rel="stylesheet" id="elementor-post-81671-css" href="./css/post-81671.css" media="all"><link rel="stylesheet" id="elementor-post-91645-css" href="./css/post-91645.css" media="all"> <script id="hello-theme-frontend-js" src="./js/hello-frontend.js" defer=""></script> <script id="googlesitekit-consent-mode-js" src="./js/googlesitekit-consent-mode-755f1678e260138d789e.js" defer=""></script> <script id="elementor-webpack-runtime-js" src="./js/webpack.runtime.min.js" defer=""></script> <script id="elementor-frontend-modules-js" src="./js/frontend-modules.min.js" defer=""></script> <script id="jquery-ui-core-js-before" defer="" src="./js/js_7a0tqun8.js"></script> <script id="jquery-ui-core-js" src="./js/core.min.js" defer=""></script> <script id="elementor-frontend-js-before" defer="" src="./js/js_he5t1ibv.js"></script> <script id="elementor-frontend-js" src="./js/frontend.min.js" defer=""></script> <script id="e-sticky-js" src="./js/jquery.sticky.min.js" defer=""></script> <script id="smartmenus-js" src="./js/jquery.smartmenus.min.js" defer=""></script> <script id="lottie-js" src="./js/lottie.min.js" defer=""></script> <script id="wp-consent-api-js-extra" defer="" src="./js/js_btpv3unn.js"></script> <script id="wp-consent-api-js" src="./js/wp-consent-api.min.js" defer=""></script> <script id="swiper-js" src="./js/swiper.min.js" defer=""></script> <script id="elementor-pro-webpack-runtime-js" src="./js/webpack-pro.runtime.min.js" defer=""></script> <script id="wp-hooks-js" src="./js/hooks.min.js"></script> <script id="wp-i18n-js" src="./js/i18n.min.js"></script> <script id="wp-i18n-js-after" defer="" src="./js/js_oclv2ao3.js"></script> <script id="elementor-pro-frontend-js-before" defer="" src="./js/js_r6hz574d.js"></script> <script id="elementor-pro-frontend-js" src="./js/frontend.min.js" defer=""></script> <script id="pro-elements-handlers-js" src="./js/elements-handlers.min.js" defer=""></script> <script defer="" src="./js/js_qhv7nniz.js"></script> <script id="perfmatters-delayed-scripts-js">(function(){window.pmDC=0;window.pmDT=15;if(window.pmDT){var e=setTimeout(d,window.pmDT*1e3)}const t=["keydown","mousedown","mousemove","wheel","touchmove","touchstart","touchend"];const n={normal:[],defer:[],async:[]};const o=[];const i=[];var r=false;var a="";window.pmIsClickPending=false;t.forEach(function(e){window.addEventListener(e,d,{passive:true})});if(window.pmDC){window.addEventListener("touchstart",b,{passive:true});window.addEventListener("mousedown",b)}function d(){if(typeof e!=="undefined"){clearTimeout(e)}t.forEach(function(e){window.removeEventListener(e,d,{passive:true})});if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",s)}else{s()}}async function s(){c();u();f();m();await w(n.normal);await w(n.defer);await w(n.async);await p();document.querySelectorAll("link[data-pmdelayedstyle]").forEach(function(e){e.setAttribute("href",e.getAttribute("data-pmdelayedstyle"))});window.dispatchEvent(new Event("perfmatters-allScriptsLoaded")),E().then(()=>{h()})}function c(){let o={};function e(t,e){function n(e){return o[t].delayedEvents.indexOf(e)>=0?"perfmatters-"+e:e}if(!o[t]){o[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},delayedEvents:[]};t.addEventListener=function(){arguments[0]=n(arguments[0]);o[t].originalFunctions.add.apply(t,arguments)};t.removeEventListener=function(){arguments[0]=n(arguments[0]);o[t].originalFunctions.remove.apply(t,arguments)}}o[t].delayedEvents.push(e)}function t(t,n){const e=t[n];Object.defineProperty(t,n,{get:!e?function(){}:e,set:function(e){t["perfmatters"+n]=e}})}e(document,"DOMContentLoaded");e(window,"DOMContentLoaded");e(window,"load");e(document,"readystatechange");t(document,"onreadystatechange");t(window,"onload")}function u(){let n=window.jQuery;Object.defineProperty(window,"jQuery",{get(){return n},set(t){if(t&&t.fn&&!o.includes(t)){t.fn.ready=t.fn.init.prototype.ready=function(e){if(r){e.bind(document)(t)}else{document.addEventListener("perfmatters-DOMContentLoaded",function(){e.bind(document)(t)})}};const e=t.fn.on;t.fn.on=t.fn.init.prototype.on=function(){if(this[0]===window){function t(e){e=e.split(" ");e=e.map(function(e){if(e==="load"||e.indexOf("load.")===0){return"perfmatters-jquery-load"}else{return e}});e=e.join(" ");return e}if(typeof arguments[0]=="string"||arguments[0]instanceof String){arguments[0]=t(arguments[0])}else if(typeof arguments[0]=="object"){Object.keys(arguments[0]).forEach(function(e){delete Object.assign(arguments[0],{[t(e)]:arguments[0][e]})[e]})}}return e.apply(this,arguments),this};o.push(t)}n=t}})}function f(){document.querySelectorAll("script[type=pmdelayedscript]").forEach(function(e){if(e.hasAttribute("src")){if(e.hasAttribute("defer")&&e.defer!==false){n.defer.push(e)}else if(e.hasAttribute("async")&&e.async!==false){n.async.push(e)}else{n.normal.push(e)}}else{n.normal.push(e)}})}function m(){var o=document.createDocumentFragment();[...n.normal,...n.defer,...n.async].forEach(function(e){var t=e.getAttribute("src");if(t){var n=document.createElement("link");n.href=t;if(e.getAttribute("data-perfmatters-type")=="module"){n.rel="modulepreload"}else{n.rel="preload";n.as="script"}o.appendChild(n)}});document.head.appendChild(o)}async function w(e){var t=e.shift();if(t){await l(t);return w(e)}return Promise.resolve()}async function l(t){await v();return new Promise(function(e){const n=document.createElement("script");[...t.attributes].forEach(function(e){let t=e.nodeName;if(t!=="type"){if(t==="data-perfmatters-type"){t="type"}n.setAttribute(t,e.nodeValue)}});if(t.hasAttribute("src")){n.addEventListener("load",e);n.addEventListener("error",e)}else{n.text=t.text;e()}t.parentNode?t.parentNode.replaceChild(n,t):e()})}async function p(){r=true;await v();document.dispatchEvent(new Event("perfmatters-DOMContentLoaded"));await v();window.dispatchEvent(new Event("perfmatters-DOMContentLoaded"));await v();document.dispatchEvent(new Event("perfmatters-readystatechange"));await v();if(document.perfmattersonreadystatechange){document.perfmattersonreadystatechange()}await v();window.dispatchEvent(new Event("perfmatters-load"));await v();if(window.perfmattersonload){window.perfmattersonload()}await v();o.forEach(function(e){e(window).trigger("perfmatters-jquery-load")})}async function v(){return new Promise(function(e){requestAnimationFrame(e)})}function h(){window.removeEventListener("touchstart",b,{passive:true});window.removeEventListener("mousedown",b);i.forEach(e=>{if(e.target.outerHTML===a){e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:true,cancelable:true}))}})}function E(){return new Promise(e=>{window.pmIsClickPending?g=e:e()})}function y(){window.pmIsClickPending=true}function g(){window.pmIsClickPending=false}function L(e){e.target.removeEventListener("click",L);C(e.target,"pm-onclick","onclick");i.push(e),e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();g()}function b(e){if(e.target.tagName!=="HTML"){if(!a){a=e.target.outerHTML}window.addEventListener("touchend",A);window.addEventListener("mouseup",A);window.addEventListener("touchmove",k,{passive:true});window.addEventListener("mousemove",k);e.target.addEventListener("click",L);C(e.target,"onclick","pm-onclick");y()}}function k(e){window.removeEventListener("touchend",A);window.removeEventListener("mouseup",A);window.removeEventListener("touchmove",k,{passive:true});window.removeEventListener("mousemove",k);e.target.removeEventListener("click",L);C(e.target,"pm-onclick","onclick");g()}function A(e){window.removeEventListener("touchend",A);window.removeEventListener("mouseup",A);window.removeEventListener("touchmove",k,{passive:true});window.removeEventListener("mousemove",k)}function C(e,t,n){if(e.hasAttribute&&e.hasAttribute(t)){event.target.setAttribute(n,event.target.getAttribute(t));event.target.removeAttribute(t)}}})();(function(){var e,a,s;function t(){(e=document.createElement("span")).id="elementor-device-mode",e.setAttribute("class","elementor-screen-only"),document.body.appendChild(e),requestAnimationFrame(n)}function n(){a=o(getComputedStyle(e,":after").content.replace(/"/g,"")),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(e=>{let t=e.getBoundingClientRect();if(t.bottom>=0&&t.top<=window.innerHeight)try{i(e)}catch(e){}})}function i(e){let t=JSON.parse(e.dataset.settings),n=t._animation_delay||t.animation_delay||0,i=t[a.find(e=>t[e])];if("none"===i)return void e.classList.remove("elementor-invisible");e.classList.remove(i),s&&e.classList.remove(s),s=i;let o=setTimeout(()=>{e.classList.remove("elementor-invisible"),e.classList.add("animated",i),l(e,t)},n);window.addEventListener("perfmatters-startLoading",function(){clearTimeout(o)})}function o(e="mobile"){let n=[""];switch(e){case"mobile":n.unshift("_mobile");case"tablet":n.unshift("_tablet");case"desktop":n.unshift("_desktop")}let i=[];return["animation","_animation"].forEach(t=>{n.forEach(e=>{i.push(t+e)})}),i}function l(e,t){o().forEach(e=>delete t[e]),e.dataset.settings=JSON.stringify(t)}document.addEventListener("DOMContentLoaded",t)})();</script><span id="elementor-device-mode" class="elementor-screen-only"></span><svg style="display: none;" class="e-font-icon-svg-symbols"></svg>
 <script type="text/javascript" id="" charset="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","821981501003626");fbq("track","PageView");</script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=821981501003626&amp;ev=PageView&amp;noscript=1"></noscript>
 
