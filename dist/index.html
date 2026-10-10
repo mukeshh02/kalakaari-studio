@@ -1403,6 +1403,7 @@ transform:scaleY(0);
   #pricing {
     scroll-margin-top: 110px;
     padding-top: 30px !important;
+    background-color: #0B0C0E !important;
   }
   .kalakaari-calc-section {
     width: 100%;
@@ -1419,9 +1420,9 @@ transform:scaleY(0);
   }
   .kalakaari-calc-tc {
     font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     letter-spacing: 2px;
-    color: #c8a24a;
+    color: #FF9B5D;
     text-transform: uppercase;
     margin-bottom: 12px;
     display: inline-flex;
@@ -1440,11 +1441,13 @@ transform:scaleY(0);
   .kalakaari-calc-title em {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
-    font-weight: 400;
-    color: #dfb960 !important;
+    font-weight: 600;
+    background: linear-gradient(90deg, #FF9B5D, #FB686A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     letter-spacing: 0;
     padding-bottom: 2px;
-    border-bottom: 2px solid #c8a24a;
+    border-bottom: 2px solid #FF9B5D;
   }
   .kalakaari-calc-desc {
     color: #94a3b8 !important;
@@ -1460,51 +1463,48 @@ transform:scaleY(0);
     align-items: stretch;
   }
   .kalakaari-calc-box {
-    background: #101218;
+    background: #12141a;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     padding: 38px 34px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
   }
   .kalakaari-cat-tabs {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
     margin-bottom: 32px;
   }
   .kalakaari-cat-tab {
     font-family: 'Space Mono', monospace !important;
-    font-size: 0.72rem !important;
-    letter-spacing: 1.2px !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 1px !important;
     text-transform: uppercase !important;
-    padding: 12px 20px !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 8px !important;
-    color: #94a3b8 !important;
-    background: #171a23 !important;
-    background-color: #171a23 !important;
+    padding: 11px 22px !important;
+    border: 1px solid #2D3242 !important;
+    border-radius: 30px !important;
+    color: #A0AEC0 !important;
+    background: rgba(18, 20, 26, 0.8) !important;
     cursor: pointer !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     font-weight: 600 !important;
     outline: none !important;
   }
   .kalakaari-cat-tab:hover {
-    border-color: rgba(200, 162, 74, 0.5) !important;
+    border-color: #FF9B5D !important;
     color: #ffffff !important;
-    background: rgba(200, 162, 74, 0.12) !important;
-    background-color: rgba(200, 162, 74, 0.12) !important;
+    background: rgba(255, 155, 93, 0.12) !important;
   }
   .kalakaari-cat-tab.active {
-    background: #c8a24a !important;
-    background-color: #c8a24a !important;
-    color: #090a0f !important;
-    border-color: #c8a24a !important;
-    font-weight: 800 !important;
-    box-shadow: 0 4px 18px rgba(200, 162, 74, 0.35) !important;
+    background: linear-gradient(135deg, #FF9B5D, #FB686A) !important;
+    color: #0E0E0E !important;
+    border: 1px solid #FF9B5D !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 18px rgba(255, 155, 93, 0.4) !important;
   }
   .kalakaari-calc-field {
     margin-bottom: 24px;
@@ -1514,10 +1514,10 @@ transform:scaleY(0);
   }
   .kalakaari-calc-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #c8a24a;
+    color: #FF9B5D;
     font-weight: 700;
   }
   .kalakaari-calc-select,
@@ -1525,8 +1525,8 @@ transform:scaleY(0);
     width: 100%;
     box-sizing: border-box;
     background: #171a23;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 10px;
+    border: 1px solid #2d3242;
+    border-radius: 12px;
     padding: 15px 18px;
     font-family: 'Inter', sans-serif;
     font-size: 0.98rem;
@@ -1537,7 +1537,7 @@ transform:scaleY(0);
     -webkit-appearance: none;
   }
   .kalakaari-calc-select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23c8a24a' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FF9B5D' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 18px center;
     padding-right: 48px;
@@ -1550,12 +1550,12 @@ transform:scaleY(0);
   }
   .kalakaari-calc-select:focus,
   .kalakaari-calc-input:focus {
-    border-color: #c8a24a;
-    box-shadow: 0 0 0 3px rgba(200, 162, 74, 0.2);
+    border-color: #FF9B5D;
+    box-shadow: 0 0 0 3px rgba(255, 155, 93, 0.2);
   }
   .kalakaari-est-box {
-    background: radial-gradient(ellipse at 50% 0%, rgba(200, 162, 74, 0.18), #11131a 75%);
-    border: 1px solid rgba(200, 162, 74, 0.35);
+    background: radial-gradient(ellipse at 50% 0%, rgba(255, 155, 93, 0.18), #12141a 75%);
+    border: 1px solid rgba(255, 155, 93, 0.35);
     border-radius: 20px;
     padding: 44px 34px;
     text-align: center;
@@ -1564,7 +1564,7 @@ transform:scaleY(0);
     justify-content: center;
     align-items: center;
     position: relative;
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(200, 162, 74, 0.25);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 155, 93, 0.25);
     box-sizing: border-box;
   }
   .kalakaari-est-lbl {
@@ -1576,12 +1576,16 @@ transform:scaleY(0);
   }
   .kalakaari-est-amt {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 4.2rem;
-    font-weight: 600;
-    color: #dfb960;
+    font-size: 4.4rem;
+    font-weight: 700;
+    color: #FF9B5D;
+    background: linear-gradient(135deg, #FF9B5D, #FB686A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     line-height: 1;
     margin: 16px 0 10px 0;
-    text-shadow: 0 4px 22px rgba(200, 162, 74, 0.38);
+    text-shadow: none;
+    filter: drop-shadow(0 4px 18px rgba(255, 155, 93, 0.4));
   }
   .kalakaari-est-sub {
     font-size: 0.95rem;
@@ -1598,23 +1602,23 @@ transform:scaleY(0);
     gap: 8px;
     width: 100%;
     padding: 16px 28px;
-    background: linear-gradient(135deg, #c8a24a, #dfb960);
-    color: #090a0f !important;
+    background: linear-gradient(135deg, #FF9B5D, #FB686A);
+    color: #0E0E0E !important;
     font-family: 'Inter', sans-serif;
     font-size: 1.02rem;
     font-weight: 700;
-    border-radius: 12px;
+    border-radius: 30px;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 8px 24px rgba(200, 162, 74, 0.35);
+    box-shadow: 0 8px 24px rgba(255, 155, 93, 0.35);
     box-sizing: border-box;
     border: none;
   }
   .kalakaari-est-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 34px rgba(200, 162, 74, 0.5);
-    background: linear-gradient(135deg, #dfb960, #f2ce77);
+    box-shadow: 0 14px 34px rgba(255, 155, 93, 0.55);
+    background: linear-gradient(135deg, #ffa873, #fc7a7c);
     color: #000000 !important;
   }
   .kalakaari-quick-grid {
@@ -1624,7 +1628,7 @@ transform:scaleY(0);
     margin-top: 48px;
   }
   .kalakaari-qcard {
-    background: #101218;
+    background: #12141a;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 18px;
     padding: 32px 28px;
@@ -1635,7 +1639,7 @@ transform:scaleY(0);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   }
   .kalakaari-qcard:hover {
-    border-color: rgba(200, 162, 74, 0.45);
+    border-color: rgba(255, 155, 93, 0.45);
     transform: translateY(-4px);
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
   }
@@ -1653,7 +1657,7 @@ transform:scaleY(0);
     margin: 0 0 24px 0;
   }
   .kalakaari-qcard a {
-    color: #dfb960;
+    color: #FF9B5D;
     font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
