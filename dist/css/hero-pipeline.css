@@ -1,0 +1,487 @@
+/* ==========================================================================
+   Kalakaari Studios - Clean Hero 3D Workflow + Self-Explanatory 3-Step Bar
+   ========================================================================== */
+
+/* Container Overrides: Prevent container clipping of characters and bottom pill */
+.hero-image-container,
+.elementor-element-0790dca,
+.lp4-hero-graphic-container {
+  overflow: visible !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.hero-two-step-workflow {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 6px 0 8px 0;
+  isolation: isolate;
+  user-select: none;
+}
+
+/* Luxury Ambient Radial Glow */
+.h2s-ambient-glow {
+  position: absolute;
+  inset: -12% -6%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(241, 38, 32, 0.14) 0%, rgba(255, 120, 82, 0.06) 45%, transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(36px);
+}
+
+/* Stage Layout - Grounded at Bottom Baseline */
+.h2s-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+/* Character Common */
+.h2s-char-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
+}
+
+/* --------------------------------------------------------------------------
+   1. CAMERAMAN UNIT (Left Side - Full Body Standing)
+   -------------------------------------------------------------------------- */
+.h2s-cameraman-unit {
+  position: relative;
+  flex: 0 0 36%;
+  max-width: 295px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.h2s-cameraman-unit::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 20%;
+  width: 60%;
+  height: 14px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.25) 55%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(5px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.h2s-cameraman-motion {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  will-change: transform;
+  transform-origin: 50% 92%;
+  animation: cameramanContinuousShoot 7.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+@keyframes cameramanContinuousShoot {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  16% { transform: translate3d(12px, -8px, 0) rotate(2deg) scale(1.025); }
+  34% { transform: translate3d(15px, 3px, 0) rotate(1deg) scale(1.015); }
+  50% { transform: translate3d(2px, -4px, 0) rotate(-1deg) scale(0.99); }
+  68% { transform: translate3d(-12px, -6px, 0) rotate(-2.4deg) scale(1.02); }
+  84% { transform: translate3d(-6px, 5px, 0) rotate(-0.6deg) scale(1.01); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
+.h2s-camera-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.h2s-rec-light {
+  position: absolute;
+  top: 11%;
+  left: 25.5%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff2222;
+  box-shadow: 0 0 10px #ff2222, 0 0 4px #ffffff;
+  animation: recDotBlink 1.1s steps(1) infinite;
+}
+
+@keyframes recDotBlink {
+  0%, 54% { opacity: 1; transform: scale(1); }
+  55%, 100% { opacity: 0.15; transform: scale(0.85); }
+}
+
+.h2s-lens-flare {
+  position: absolute;
+  top: 13.5%;
+  left: 19.5%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 235, 170, 0.8) 0%, rgba(255, 120, 82, 0.35) 45%, transparent 70%);
+  animation: lensFlareShimmer 3.4s ease-in-out infinite;
+}
+
+@keyframes lensFlareShimmer {
+  0%, 75% { opacity: 0; transform: scale(0.4); }
+  85% { opacity: 0.95; transform: scale(1.35); }
+  94% { opacity: 0.25; transform: scale(0.85); }
+  100% { opacity: 0; transform: scale(0.4); }
+}
+
+/* --------------------------------------------------------------------------
+   2. DATA STREAM ARROW UNIT (Center - Curves from Camera to Monitor)
+   -------------------------------------------------------------------------- */
+.h2s-stream-unit {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 115px;
+  max-width: 225px;
+  height: 155px;
+  margin-bottom: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h2s-stream-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.h2s-track-bg {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 2.5;
+  stroke-dasharray: 4 6;
+  fill: none;
+}
+
+.h2s-track-flow {
+  stroke: url(#h2sFlowGrad);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 10 14;
+  fill: none;
+  animation: streamPulseDashes 1.25s linear infinite;
+}
+
+@keyframes streamPulseDashes {
+  to { stroke-dashoffset: -48; }
+}
+
+.h2s-arrow-head {
+  will-change: transform, opacity;
+  animation: arrowHeadPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes arrowHeadPulse {
+  0% { transform: translate(252px, 70px) rotate(-16deg) scale(0.9); opacity: 0.8; }
+  100% { transform: translate(252px, 70px) rotate(-16deg) scale(1.2); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   3. EDITOR UNIT (Right Side - Complete Uncropped Workstation on Floor)
+   -------------------------------------------------------------------------- */
+.h2s-editor-unit {
+  position: relative;
+  flex: 0 0 50%;
+  max-width: 430px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.h2s-editor-unit::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 10%;
+  width: 80%;
+  height: 16px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.28) 60%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(5px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.h2s-editor-motion {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  will-change: transform;
+  transform-origin: 50% 92%;
+  animation: editorWorkLoop 5.8s ease-in-out infinite;
+}
+
+@keyframes editorWorkLoop {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  30% { transform: translate3d(2px, -3px, 0) scale(1.008); }
+  65% { transform: translate3d(-3px, 2px, 0) scale(0.995); }
+}
+
+.h2s-editor-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.h2s-screen-glow {
+  position: absolute;
+  top: 6%;
+  right: 28%;
+  width: 110px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(241, 38, 32, 0.15) 50%, transparent 80%);
+  filter: blur(14px);
+  animation: monitorScreenGlow 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes monitorScreenGlow {
+  0% { opacity: 0.55; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.65; transform: scale(0.95); }
+}
+
+.h2s-timeline-scrubber {
+  position: absolute;
+  top: 17%;
+  right: 33%;
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(180deg, #ff4b3e, #38bdf8);
+  box-shadow: 0 0 10px #38bdf8, 0 0 4px #ff4b3e;
+  border-radius: 2px;
+  animation: timelinePlayheadSweep 2.2s linear infinite;
+}
+
+@keyframes timelinePlayheadSweep {
+  0% { transform: translateX(-34px); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateX(26px); opacity: 0; }
+}
+
+.h2s-vu-meter {
+  position: absolute;
+  top: 21%;
+  right: 25.5%;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+}
+
+.h2s-vu-meter i {
+  display: block;
+  width: 2px;
+  background: #10b981;
+  border-radius: 1px;
+  box-shadow: 0 0 4px #10b981;
+  animation: vuBounce 0.6s ease-in-out infinite alternate;
+}
+
+.h2s-vu-meter i:nth-child(1) { height: 60%; animation-delay: 0.1s; }
+.h2s-vu-meter i:nth-child(2) { height: 90%; animation-delay: 0.25s; }
+.h2s-vu-meter i:nth-child(3) { height: 75%; animation-delay: 0.4s; }
+.h2s-vu-meter i:nth-child(4) { height: 45%; animation-delay: 0.15s; }
+
+@keyframes vuBounce {
+  0% { transform: scaleY(0.4); opacity: 0.6; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   4. SLEEK BOTTOM 3-STEP WORKFLOW PILL
+   -------------------------------------------------------------------------- */
+.h2s-tagline-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.h2s-tagline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 22px;
+  background: rgba(18, 20, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(241, 38, 32, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.h2s-tagline-pill:hover {
+  background: rgba(24, 26, 34, 0.92);
+  border-color: rgba(255, 120, 82, 0.38);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.55), 0 0 26px rgba(241, 38, 32, 0.18);
+  transform: translateY(-1px);
+}
+
+.h2s-tag-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.h2s-step-shoot { color: #f3f4f6; }
+.h2s-step-edit { color: #ff9d66; }
+.h2s-step-deliver { color: #34d399; }
+
+.h2s-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.h2s-dot-rec {
+  background: #ff2a2a;
+  box-shadow: 0 0 8px #ff2a2a;
+  animation: recDotBlink 1.1s steps(1) infinite;
+}
+
+.h2s-dot-edit {
+  background: #ff7852;
+  box-shadow: 0 0 8px #ff7852;
+}
+
+.h2s-dot-deliver {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.h2s-tag-arrow {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.38);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   LEFT-SIDE HERO QUICK SERVICE PILLS (Instant Scan Clarity)
+   -------------------------------------------------------------------------- */
+.kalakaari-hero-service-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 4px 0;
+}
+
+a.kalakaari-hero-service-pill,
+.kalakaari-hero-service-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 13px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f3f4f6 !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+a.kalakaari-hero-service-pill:hover,
+.kalakaari-hero-service-pill:hover {
+  background: rgba(255, 120, 82, 0.15) !important;
+  border-color: rgba(255, 120, 82, 0.48) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVENESS (Mobile & Tablet)
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero-two-step-workflow {
+    max-width: 720px;
+  }
+  .h2s-cameraman-unit {
+    flex: 0 0 38%;
+  }
+  .h2s-editor-unit {
+    flex: 0 0 43%;
+  }
+  .h2s-stream-unit {
+    min-width: 90px;
+    height: 130px;
+    margin-bottom: 70px;
+  }
+  .h2s-tagline-pill {
+    padding: 7px 18px;
+    gap: 10px;
+  }
+  .kalakaari-hero-service-pills {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-two-step-workflow {
+    padding: 6px 0 12px 0;
+  }
+  .h2s-stage {
+    gap: 4px;
+    align-items: flex-end;
+  }
+  .h2s-cameraman-unit {
+    flex: 0 0 40%;
+    max-width: 155px;
+  }
+  .h2s-editor-unit {
+    flex: 0 0 44%;
+    max-width: 170px;
+  }
+  .h2s-stream-unit {
+    flex: 1 1 auto;
+    min-width: 55px;
+    max-width: 105px;
+    height: 95px;
+    margin-bottom: 42px;
+  }
+  .h2s-tagline-pill {
+    padding: 6px 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .h2s-tag-step {
+    font-size: 10.5px;
+    gap: 5px;
+  }
+}

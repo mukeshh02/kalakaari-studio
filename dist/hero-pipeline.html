@@ -1,0 +1,103 @@
+<div class="hero-two-step-workflow" aria-label="Kalakaari Studios Workflow: 1. You Shoot, 2. We Edit, 3. Ready for Client">
+  <!-- Subtle Ambient Glow Backdrop -->
+  <div class="h2s-ambient-glow" aria-hidden="true"></div>
+
+  <div class="h2s-stage">
+    <!-- LEFT: The 3D Cameraman Character (Continuous Shoot Motion) -->
+    <div class="h2s-cameraman-unit">
+      <div class="h2s-cameraman-motion">
+        <img src="./img/hero-cameraman.png" alt="Videographer shooting wedding footage" class="h2s-char-img h2s-cameraman-img" width="360" height="734" loading="eager" />
+        
+        <!-- Live Camera FX Overlays -->
+        <div class="h2s-camera-fx" aria-hidden="true">
+          <span class="h2s-rec-light"></span>
+          <span class="h2s-lens-flare"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER: Animated Glowing Data Flow Arrow -->
+    <div class="h2s-stream-unit" aria-hidden="true">
+      <svg class="h2s-stream-svg" viewBox="0 0 280 180" fill="none" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="h2sFlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ff4b3e" />
+            <stop offset="50%" stop-color="#ff7852" />
+            <stop offset="100%" stop-color="#ff9d66" />
+          </linearGradient>
+          <filter id="h2sGlow" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur stdDeviation="3.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <path class="h2s-track-bg" d="M 10 35 C 90 8, 180 115, 252 70" />
+        <path class="h2s-track-flow" d="M 10 35 C 90 8, 180 115, 252 70" filter="url(#h2sGlow)" />
+
+        <circle class="h2s-data-packet packet-1" r="5" fill="#ffffff" filter="url(#h2sGlow)">
+          <animateMotion path="M 10 35 C 90 8, 180 115, 252 70" dur="1.7s" repeatCount="indefinite" />
+        </circle>
+        <circle class="h2s-data-packet packet-2" r="4.2" fill="#ff7852" filter="url(#h2sGlow)">
+          <animateMotion path="M 10 35 C 90 8, 180 115, 252 70" dur="1.7s" begin="0.42s" repeatCount="indefinite" />
+        </circle>
+        <circle class="h2s-data-packet packet-3" r="5" fill="#ffaa6b" filter="url(#h2sGlow)">
+          <animateMotion path="M 10 35 C 90 8, 180 115, 252 70" dur="1.7s" begin="0.85s" repeatCount="indefinite" />
+        </circle>
+        <circle class="h2s-data-packet packet-4" r="3.8" fill="#ffffff" filter="url(#h2sGlow)">
+          <animateMotion path="M 10 35 C 90 8, 180 115, 252 70" dur="1.7s" begin="1.28s" repeatCount="indefinite" />
+        </circle>
+
+        <g class="h2s-arrow-head" transform="translate(252, 70) rotate(-16)">
+          <polygon points="-14,-8 4,0 -14,8 -8,0" fill="#ff9d66" filter="url(#h2sGlow)" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- RIGHT: The 3D Editor Character (Active Workstation & Screen Playback) -->
+    <div class="h2s-editor-unit">
+      <div class="h2s-editor-motion">
+        <img src="./img/hero-editor.png" alt="Studio editor working on dual monitors" class="h2s-char-img h2s-editor-img" width="540" height="536" loading="eager" />
+
+        <!-- Live Workstation FX Overlays on Monitors -->
+        <div class="h2s-editor-fx" aria-hidden="true">
+          <div class="h2s-screen-glow"></div>
+          <div class="h2s-timeline-scrubber"></div>
+          <div class="h2s-vu-meter">
+            <i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sleek Bottom 3-Step Tagline Bar -->
+  <div class="h2s-tagline-bar" aria-label="1. You Shoot, 2. We Edit, 3. Ready for Client">
+    <div class="h2s-tagline-pill">
+      <span class="h2s-tag-step h2s-step-shoot">
+        <span class="h2s-dot h2s-dot-rec"></span>
+        <span class="h2s-label">1. You Shoot</span>
+      </span>
+      <span class="h2s-tag-arrow" aria-hidden="true">
+        <svg width="18" height="10" viewBox="0 0 22 12" fill="none">
+          <path d="M1 6H19M19 6L14 1M19 6L14 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="h2s-tag-step h2s-step-edit">
+        <span class="h2s-dot h2s-dot-edit"></span>
+        <span class="h2s-label">2. We Edit</span>
+      </span>
+      <span class="h2s-tag-arrow" aria-hidden="true">
+        <svg width="18" height="10" viewBox="0 0 22 12" fill="none">
+          <path d="M1 6H19M19 6L14 1M19 6L14 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="h2s-tag-step h2s-step-deliver">
+        <span class="h2s-dot h2s-dot-deliver"></span>
+        <span class="h2s-label">3. Ready for Client</span>
+      </span>
+    </div>
+  </div>
+</div>

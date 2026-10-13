@@ -23,7 +23,7 @@
       slow: 1.15,
       capsuleDrop: 0.65,
       capsuleExpand: 0.6,
-      themeFade: 0.85,
+      themeFade: 0.62,
       countUp: 1.6,
     },
     eases: {
@@ -32,7 +32,7 @@
       bounce: 'back.out(1.7)',
       softBounce: 'back.out(1.3)',
       elastic: 'elastic.out(1, 0.6)',
-      pillExpand: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      pillExpand: 'expo.out',
       splitReveal: 'power4.out',
       pop: 'back.out(1.6)',
     },
@@ -189,21 +189,25 @@
   }
 
   // --------------------------------------------------------------------------
-  // 2. SMOOTH SCROLL (LENIS) INTEGRATION - DISABLED ON TOUCH DEVICES
+  // 2. SILK SMOOTH SCROLL (LENIS) INTEGRATION
   // --------------------------------------------------------------------------
   let lenisInstance = null;
   function initLenis() {
-    if (typeof window.Lenis === 'undefined' || prefersReduced || isMobile || isTouchDevice) return;
+    if (typeof window.Lenis === 'undefined' || prefersReduced) return;
 
     try {
       lenisInstance = new window.Lenis({
-        duration: 1.1,
+        duration: 1.25,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
+        gestureOrientation: 'vertical',
         smoothWheel: true,
-        smoothTouch: false,
-        wheelMultiplier: 1.0,
+        wheelMultiplier: 0.95,
+        touchMultiplier: 1.2,
+        infinite: false,
       });
+
+      window.lenis = lenisInstance;
 
       lenisInstance.on('scroll', ScrollTrigger.update);
 
@@ -211,6 +215,23 @@
         lenisInstance.raf(time * 1000);
       });
       gsap.ticker.lagSmoothing(0);
+
+      // Smooth scroll for all on-page anchors
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          if (!href || href === '#' || href === '#top') {
+            e.preventDefault();
+            lenisInstance.scrollTo(0, { duration: 1.2 });
+            return;
+          }
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            lenisInstance.scrollTo(target, { offset: -95, duration: 1.2 });
+          }
+        });
+      });
     } catch (e) {
       console.warn('[Kalakaari Motion] Lenis init skipped:', e);
     }
@@ -366,12 +387,17 @@
   // --------------------------------------------------------------------------
   // 5. NAVBAR MOTION & HERO MASTER LOAD TIMELINE (FIX A: CURTAIN OVERLAY)
   // --------------------------------------------------------------------------
-  async function initHeroSection() {
+  function initHeroSection() {
     const heroSection = document.querySelector('.elementor-element-f1a913c') || document.querySelector('main');
+    const heroCardContainer = document.querySelector('[data-id="fcd6bfc"]');
+    const servicesSection = document.querySelector('[data-id="82e95b1"]') || document.getElementById('services-overview-section');
+    const belowFoldSections = document.querySelectorAll(
+      '#long-form-video-section, #photos-albums-portrait-section, [data-id="160c280e"], #how-it-works, [data-id="e46edad"], #pricing, footer'
+    );
     const pillHeader = document.querySelector('.elementor-element-b2e2be6');
-    const navLogo = document.querySelector('.elementor-element-a274151');
-    const navLinks = document.querySelectorAll('.elementor-element-5334454 .e-n-menu-item');
-    const desktopCta = document.querySelector('.kalakaari-desktop-cta-btn');
+    const navLogo = document.querySelector('.studio-brand, .elementor-element-a274151');
+    const navLinks = document.querySelectorAll('.studio-desktop-nav .studio-services-trigger, .studio-desktop-nav a, .elementor-element-5334454 .e-n-menu-item');
+    const desktopCta = document.querySelector('.studio-header-cta, .kalakaari-desktop-cta-btn');
     const mobileBurger = document.querySelector('#kalakaari-header-hamburger-btn');
 
     const heroHeadline = document.querySelector('.elementor-element-cd9ba84 h1, h1.elementor-headline');
@@ -380,14 +406,16 @@
     const heroReviewBadge = document.querySelector('.elementor-element-1b976183') || document.querySelector('.elementor-element-561b6221');
     const heroShowcase = document.querySelector('.hero-image-container') || document.querySelector('.elementor-element-0790dca');
 
-    const curtain = document.getElementById('kalakaari-theme-curtain');
-
     if (prefersReduced) {
-      if (curtain && curtain.parentNode) curtain.parentNode.removeChild(curtain);
+      document.documentElement.classList.add('site-ready', 'nav-expanded', 'hero-intro-complete');
       document.body.removeAttribute('style');
       document.documentElement.removeAttribute('style');
-      if (pillHeader) gsap.set(pillHeader, { opacity: 1, y: 0, scaleX: 1 });
+      if (pillHeader) gsap.set(pillHeader, { opacity: 1, y: 0 });
+      if (heroCardContainer) gsap.set(heroCardContainer, { opacity: 1, y: 0, pointerEvents: 'auto' });
+      if (servicesSection) gsap.set(servicesSection, { opacity: 1, y: 0, pointerEvents: 'auto' });
+      if (belowFoldSections.length) gsap.set(belowFoldSections, { opacity: 1, pointerEvents: 'auto' });
       if (heroSection) gsap.set(heroSection, { opacity: 1 });
+      initAllRemainingSections();
       return;
     }
 
@@ -399,25 +427,17 @@
       onComplete: () => {
         document.body.removeAttribute('style');
         document.documentElement.removeAttribute('style');
-        if (curtain && curtain.parentNode) curtain.parentNode.removeChild(curtain);
+        document.documentElement.classList.add('site-ready', 'nav-expanded', 'hero-intro-complete');
+        if (belowFoldSections.length) {
+          gsap.set(belowFoldSections, { opacity: 1, pointerEvents: 'auto' });
+        }
         clearGpuProps([pillHeader, heroHeadline, heroSubhead, heroShowcase]);
         initNavbarScrollReaction(pillHeader);
+        initAllRemainingSections();
+        initFailSafeVisibility();
         ScrollTrigger.refresh();
       }
     });
-
-    // FIX A: Whole hero theme/background fades in using curtain overlay - NEVER touch body filter/opacity
-    if (curtain) {
-      masterTl.to(curtain, {
-        opacity: 0,
-        duration: CONFIG.durations.themeFade,
-        ease: CONFIG.eases.theme,
-        onComplete: () => {
-          if (curtain && curtain.parentNode) curtain.parentNode.removeChild(curtain);
-          document.body.removeAttribute('style');
-        }
-      });
-    }
 
     // Ambient floating orbs (subtle, slow drift - desktop only)
     if (!isTouchDevice && window.innerWidth > 768) {
@@ -453,162 +473,346 @@
       }
     }
 
-    // b) Navbar appears as a small capsule falling from above screen with gravity feel + tiny bounce
+    // Pre-split headline and strictly hide all hero content & below-hero sections so NOTHING snaps in prematurely.
+    // Note: heroCardContainer ([data-id="fcd6bfc"]) background canvas stays at opacity: 1 from frame 0 so the background never flashes!
+    let headlineWords = null;
+    const headlineContainer = heroHeadline ? (heroHeadline.closest('.elementor-element-cd9ba84') || heroHeadline) : null;
+    if (heroHeadline) {
+      headlineWords = splitTextIntoWords(heroHeadline);
+      if (headlineWords && headlineWords.length) {
+        gsap.set([headlineContainer, heroHeadline], { opacity: 1, visibility: 'visible' });
+        gsap.set(headlineWords, { yPercent: 110, opacity: 0, rotateZ: isNarrow ? 0 : 1.5 });
+      } else {
+        gsap.set(heroHeadline, { opacity: 0, y: 24 });
+      }
+    }
+    if (heroCardContainer) gsap.set(heroCardContainer, { opacity: 1, y: 0, pointerEvents: 'auto' });
+    if (servicesSection) gsap.set(servicesSection, { opacity: 1, y: 0, pointerEvents: 'auto' });
+    if (belowFoldSections.length) gsap.set(belowFoldSections, { opacity: 1, pointerEvents: 'auto' });
+    if (heroSubhead) gsap.set(heroSubhead, { opacity: 0, y: 20 });
+    if (heroBtns && heroBtns.length) gsap.set(heroBtns, { opacity: 0, y: 16 });
+    const showcaseSubItems = heroShowcase
+      ? heroShowcase.querySelectorAll('.h2s-stage, .h2s-tagline-bar')
+      : [];
+    if (heroShowcase) {
+      gsap.set(heroShowcase, { opacity: 0, scale: 0.97, y: isNarrow ? 14 : 20 });
+      if (showcaseSubItems.length) {
+        gsap.set(showcaseSubItems, { opacity: 0, y: 14 });
+      }
+    }
+    if (heroReviewBadge) gsap.set(heroReviewBadge, { opacity: 0 });
+    const heroArrowSvgInit = document.getElementById('kalakaari-hero-arrow-svg');
+    if (heroArrowSvgInit) gsap.set(heroArrowSvgInit, { opacity: 0, visibility: 'hidden' });
+    const trustedStripInit = document.querySelector('.elementor-element-850f210') || document.querySelector('.trusted-by-carousel-dark');
+    if (trustedStripInit) gsap.set(trustedStripInit, { opacity: 0 });
+
+    // b) Premium Entrance: Sleek floating dot / tablet capsule drops from above and morphs open
     if (pillHeader) {
       setGpuProps(pillHeader);
       gsap.set(pillHeader, { transformOrigin: 'center center' });
-      pillHeader.style.overflow = 'hidden';
 
-      if (navLogo) gsap.set(navLogo, { opacity: 0 });
-      if (navLinks.length) gsap.set(navLinks, { opacity: 0 });
-      if (desktopCta) gsap.set(desktopCta, { autoAlpha: 0, scale: 0.8, pointerEvents: 'none' });
-      if (mobileBurger) gsap.set(mobileBurger, { autoAlpha: 0, scale: 0.8, pointerEvents: 'none' });
+      // Identify inner header elements with accurate modern & legacy selectors
+      const brandLogo = pillHeader.querySelector('.studio-brand, .elementor-element-a274151');
+      const desktopNav = pillHeader.querySelector('.studio-desktop-nav, .elementor-element-5334454');
+      const navItems = desktopNav ? desktopNav.querySelectorAll('.studio-services-trigger, a, .e-n-menu-item') : [];
+      const desktopCtaBtn = pillHeader.querySelector('.studio-header-cta, .kalakaari-desktop-cta-btn');
+      const mobileBurgerBtn = pillHeader.querySelector('#kalakaari-header-hamburger-btn');
 
-      masterTl.fromTo(
-        pillHeader,
-        { y: -100, scaleX: 0.18, opacity: 0, boxShadow: '0 0 0 rgba(255, 155, 93, 0)' },
-        {
-          y: 0,
-          scaleX: 0.18,
-          opacity: 1,
-          boxShadow: '0 0 35px rgba(255, 155, 93, 0.75)',
-          duration: CONFIG.durations.capsuleDrop,
-          ease: CONFIG.eases.bounce
-        },
-        curtain ? '-=0.3' : 0
-      );
+      // Create glowing accent dot inside the pill capsule
+      let introDot = pillHeader.querySelector('.kalakaari-nav-intro-dot');
+      if (!introDot) {
+        introDot = document.createElement('div');
+        introDot.className = 'kalakaari-nav-intro-dot';
+        introDot.setAttribute('aria-hidden', 'true');
+        pillHeader.appendChild(introDot);
+      }
 
-      // c) Capsule expands horizontally into full navbar
+      // Hide real navigation items during initial compact dot/tablet state
+      if (brandLogo) gsap.set(brandLogo, { opacity: 0, x: -14, visibility: 'hidden', pointerEvents: 'none' });
+      if (desktopNav) gsap.set(desktopNav, { opacity: 0, visibility: 'hidden', pointerEvents: 'none' });
+      if (navItems.length) gsap.set(navItems, { opacity: 0, y: -8 });
+      if (desktopCtaBtn) gsap.set(desktopCtaBtn, { opacity: 0, x: 14, scale: 0.94, visibility: 'hidden', pointerEvents: 'none' });
+      if (mobileBurgerBtn) gsap.set(mobileBurgerBtn, { opacity: 0, scale: 0.85, visibility: 'hidden', pointerEvents: 'none' });
+
+      // Measure target natural responsive width, height, and padding BEFORE adding .nav-intro-animating
+      const targetRect = pillHeader.getBoundingClientRect();
+      const isSmall = window.innerWidth <= 1024;
+      const targetWidth = (targetRect && targetRect.width > 100)
+        ? targetRect.width
+        : (isSmall ? Math.min(window.innerWidth * 0.92, 800) : Math.min(1400, window.innerWidth - 48));
+      const targetHeight = (targetRect && targetRect.height > 40)
+        ? targetRect.height
+        : (isSmall ? 58 : 66);
+      const targetPadY = isSmall ? 8 : 10;
+      const targetPadX = isSmall ? (window.innerWidth <= 767 ? 16 : 18) : 24;
+
+      const startDotSize = isSmall ? 52 : 56;
+      const tabletWidth = isSmall ? 84 : 108;
+
+      pillHeader.classList.add('nav-intro-animating');
+      pillHeader.style.setProperty('--nav-intro-width', startDotSize + 'px');
+      pillHeader.style.setProperty('--nav-intro-height', startDotSize + 'px');
+      pillHeader.style.setProperty('--nav-intro-pad-y', '0px');
+      pillHeader.style.setProperty('--nav-intro-pad-x', '0px');
+      pillHeader.style.setProperty('--nav-glow-alpha', '0.62');
+      pillHeader.style.setProperty('--nav-glow-blur', '38px');
+      pillHeader.style.setProperty('--nav-border-alpha', '0.42');
+
+      gsap.set(pillHeader, {
+        y: -90,
+        opacity: 0
+      });
+
+      // 1) The glowing dot capsule drops cleanly from above the screen
       masterTl.to(
         pillHeader,
         {
-          scaleX: 1,
-          boxShadow: '0 10px 35px rgba(0, 0, 0, 0.65)',
-          duration: CONFIG.durations.capsuleExpand,
-          ease: CONFIG.eases.pillExpand,
-          onComplete: () => {
-            pillHeader.style.overflow = 'visible';
-            document.documentElement.classList.add('nav-expanded');
-          }
-        }
+          y: 0,
+          opacity: 1,
+          duration: 0.44,
+          ease: 'power3.out'
+        },
+        0.00
       );
 
-      // Nav items pop in
-      const navMain = [];
-      if (navLogo) navMain.push(navLogo);
-      if (navLinks.length) navMain.push(...navLinks);
+      // 2) On landing, stretch from compact circular dot into a sleek tablet capsule shape
+      const morphState = {
+        width: startDotSize,
+        height: startDotSize,
+        padY: 0,
+        padX: 0,
+        glowAlpha: 0.62,
+        glowBlur: 38,
+        borderAlpha: 0.42
+      };
 
-      if (navMain.length) {
-        masterTl.fromTo(
-          navMain,
-          { opacity: 0, y: -10, scale: 0.92 },
+      masterTl.to(
+        morphState,
+        {
+          width: tabletWidth,
+          height: targetHeight,
+          duration: 0.24,
+          ease: 'power2.inOut',
+          onUpdate: () => {
+            pillHeader.style.setProperty('--nav-intro-width', morphState.width.toFixed(2) + 'px');
+            pillHeader.style.setProperty('--nav-intro-height', morphState.height.toFixed(2) + 'px');
+          }
+        },
+        0.38
+      );
+
+      // 3) Smooth, organic horizontal expansion from tablet into full navbar width using true expo.out deceleration
+      masterTl.to(
+        morphState,
+        {
+          width: targetWidth,
+          padY: targetPadY,
+          padX: targetPadX,
+          duration: 0.84,
+          ease: 'expo.out',
+          onUpdate: () => {
+            pillHeader.style.setProperty('--nav-intro-width', morphState.width.toFixed(2) + 'px');
+            pillHeader.style.setProperty('--nav-intro-pad-y', morphState.padY.toFixed(2) + 'px');
+            pillHeader.style.setProperty('--nav-intro-pad-x', morphState.padX.toFixed(2) + 'px');
+          },
+          onStart: () => {
+            if (introDot) {
+              gsap.to(introDot, { opacity: 0, scale: 0.2, duration: 0.24, ease: 'power2.out' });
+            }
+          },
+          onComplete: () => {
+            // Dimensions & padding already match settled state 100%, so removing class causes ZERO jump
+            pillHeader.classList.remove('nav-intro-animating');
+            pillHeader.style.removeProperty('--nav-intro-width');
+            pillHeader.style.removeProperty('--nav-intro-height');
+            pillHeader.style.removeProperty('--nav-intro-pad-y');
+            pillHeader.style.removeProperty('--nav-intro-pad-x');
+            pillHeader.style.overflow = 'visible';
+            pillHeader.style.willChange = 'auto';
+            if (introDot && introDot.parentNode) introDot.remove();
+            document.documentElement.classList.add('nav-expanded');
+          }
+        },
+        0.62
+      );
+
+      // 4) Smooth, lingering neon shadow decay: instead of snapping off, the warm orange neon aura
+      //    gently breathes down over 1.85s into a rich, permanent luxury ambient halo (0.24)
+      masterTl.to(
+        morphState,
+        {
+          glowAlpha: 0.24,
+          glowBlur: 28,
+          borderAlpha: 0.22,
+          duration: 1.85,
+          ease: 'sine.inOut',
+          onUpdate: () => {
+            pillHeader.style.setProperty('--nav-glow-alpha', morphState.glowAlpha.toFixed(3));
+            pillHeader.style.setProperty('--nav-glow-blur', morphState.glowBlur.toFixed(1) + 'px');
+            pillHeader.style.setProperty('--nav-border-alpha', morphState.borderAlpha.toFixed(3));
+          }
+        },
+        1.15
+      );
+
+      // 5) Elegant staggered reveal of Logo, Navigation links, and CTA inside the Menu
+      if (brandLogo) {
+        masterTl.to(
+          brandLogo,
           {
             opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.45,
-            stagger: CONFIG.staggers.tight,
-            ease: CONFIG.eases.softBounce
+            x: 0,
+            visibility: 'visible',
+            pointerEvents: 'auto',
+            duration: 0.50,
+            ease: 'power3.out'
           },
-          '-=0.15'
+          0.90
         );
       }
 
-      // FIX 2: CTA button and mobile burger pop in strictly AFTER capsule expands
-      const ctaButtons = [];
-      if (desktopCta) ctaButtons.push(desktopCta);
-      if (mobileBurger) ctaButtons.push(mobileBurger);
+      if (desktopNav) {
+        masterTl.set(desktopNav, { visibility: 'visible', pointerEvents: 'auto' }, 0.90);
+        masterTl.to(desktopNav, { opacity: 1, duration: 0.40, ease: 'power2.out' }, 0.90);
+      }
 
-      if (ctaButtons.length) {
-        masterTl.fromTo(
-          ctaButtons,
-          { autoAlpha: 0, scale: 0.8, pointerEvents: 'none' },
+      if (navItems.length) {
+        masterTl.to(
+          navItems,
           {
-            autoAlpha: 1,
-            scale: 1,
+            opacity: 1,
+            y: 0,
             pointerEvents: 'auto',
-            duration: 0.45,
-            ease: 'back.out(1.7)'
+            duration: 0.44,
+            stagger: 0.05,
+            ease: 'power3.out'
           },
-          '-=0.1'
+          0.94
+        );
+      }
+
+      if (desktopCtaBtn) {
+        masterTl.to(
+          desktopCtaBtn,
+          {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            visibility: 'visible',
+            pointerEvents: 'auto',
+            duration: 0.50,
+            ease: 'power3.out'
+          },
+          1.04
+        );
+      }
+
+      if (mobileBurgerBtn) {
+        masterTl.to(
+          mobileBurgerBtn,
+          {
+            opacity: 1,
+            scale: 1,
+            visibility: 'visible',
+            pointerEvents: 'auto',
+            duration: 0.46,
+            ease: 'back.out(1.4)'
+          },
+          1.04
         );
       }
     }
 
-    // d) Rest of the hero flies in:
-    // Split headline "You Shoot, We Edit"
+    // =========================================================================
+    // SEAMLESS TOP-TO-DOWN CHOREOGRAPHY (ONE-BY-ONE AFTER MENU OPENS)
+    // =========================================================================
+
+    // 1) Level 1 (Directly below Menu): Headline reveals word by word
     if (heroHeadline) {
-      const words = splitTextIntoWords(heroHeadline);
-      if (words && words.length) {
-        masterTl.fromTo(
-          words,
-          { yPercent: 120, opacity: 0, rotateZ: isNarrow ? 0 : 2 },
+      if (headlineWords && headlineWords.length) {
+        masterTl.to(
+          headlineWords,
           {
             yPercent: 0,
             opacity: 1,
             rotateZ: 0,
-            duration: 0.75,
-            stagger: 0.08,
-            ease: CONFIG.eases.splitReveal,
+            duration: 0.50,
+            stagger: 0.05,
+            ease: 'power3.out',
             clearProps: isNarrow ? 'transform,opacity,visibility,filter' : ''
           },
-          '-=0.2'
+          0.45
         );
       } else {
-        masterTl.fromTo(
-          heroHeadline,
-          { y: CONFIG.distance.medium, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
-          '-=0.2'
+        masterTl.to(
+          headlineContainer,
+          { y: 0, opacity: 1, duration: 0.48, ease: 'power3.out', clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
+          0.45
         );
       }
     }
 
-    // Paragraph fades from below
+    // 2) Level 2 (Directly below Headline): Paragraph glides up smoothly
     if (heroSubhead) {
-      masterTl.fromTo(
+      masterTl.to(
         heroSubhead,
-        { y: CONFIG.distance.small, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.55, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
-        '-=0.4'
+        { y: 0, opacity: 1, duration: 0.48, ease: 'power3.out', clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
+        0.58
       );
     }
 
-    // CTAs: "Start My Edit" & "Book a Call"
+    // 3) Level 3 (Directly below Paragraph): CTA Buttons cascade in one by one
+    const btnContainer = document.querySelector('.elementor-element-3e6d869');
+    if (btnContainer) {
+      masterTl.set(btnContainer, { opacity: 1, visibility: 'visible' }, 0.65);
+    }
     if (heroBtns && heroBtns.length >= 2) {
       masterTl.fromTo(
         heroBtns[0],
-        { x: isNarrow ? 0 : -CONFIG.distance.medium, y: isNarrow ? 20 : 0, opacity: 0 },
-        { x: 0, y: 0, opacity: 1, duration: 0.55, ease: CONFIG.eases.bounce, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
-        '-=0.3'
+        { x: isNarrow ? 0 : -14, y: 14, opacity: 0 },
+        { x: 0, y: 0, opacity: 1, duration: 0.45, ease: 'power3.out', clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
+        0.68
       );
       masterTl.fromTo(
         heroBtns[1],
-        { x: isNarrow ? 0 : CONFIG.distance.medium, y: isNarrow ? 20 : 0, opacity: 0 },
-        { x: 0, y: 0, opacity: 1, duration: 0.55, ease: CONFIG.eases.bounce, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
-        '-=0.45'
+        { x: isNarrow ? 0 : 14, y: 14, opacity: 0 },
+        { x: 0, y: 0, opacity: 1, duration: 0.45, ease: 'power3.out', clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
+        0.74
       );
     } else if (heroBtns && heroBtns.length === 1) {
       masterTl.fromTo(
         heroBtns[0],
-        { scale: 0.85, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.5, ease: CONFIG.eases.bounce, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
-        '-=0.3'
+        { scale: 0.92, y: 14, opacity: 0 },
+        { scale: 1, y: 0, opacity: 1, duration: 0.45, ease: CONFIG.eases.bounce, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
+        0.68
       );
     }
 
-    // Video/showcase card scales in with soft parallax
+    // 4) Level 4: Hero Right-Side Showcase glides in right alongside the text
     if (heroShowcase) {
-      masterTl.fromTo(
+      masterTl.to(
         heroShowcase,
-        { scale: 0.91, opacity: 0, y: isNarrow ? 20 : CONFIG.distance.medium },
-        { scale: 1, opacity: 1, y: 0, duration: 0.85, ease: CONFIG.eases.smooth, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
-        '-=0.5'
+        { scale: 1, opacity: 1, y: 0, duration: 0.55, ease: 'power3.out', clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
+        0.50
       );
+      if (showcaseSubItems.length) {
+        masterTl.to(
+          showcaseSubItems,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.50,
+            stagger: 0.08,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity'
+          },
+          0.55
+        );
+      }
 
       if (!isNarrow) {
         gsap.to(heroShowcase, {
-          y: 30,
+          y: 24,
           ease: 'none',
           scrollTrigger: {
             trigger: heroSection || document.body,
@@ -620,7 +824,12 @@
       }
     }
 
-    // FIX 1: "How it works" arrow + text reveal immediately after video card
+    // 5) Initialize all sections immediately so scrolling down never hits hidden sections
+    document.documentElement.classList.add('site-ready');
+    initAllRemainingSections();
+    initFailSafeVisibility();
+
+    // 6) Optional Badges & Trust Elements
     const heroArrowSvg = document.getElementById('kalakaari-hero-arrow-svg');
     if (heroArrowSvg) {
       const clipRect = document.getElementById('hero-arrow-clip-rect');
@@ -633,16 +842,16 @@
       if (clipRect) {
         masterTl.to(clipRect, {
           attr: { width: 32 },
-          duration: 0.7,
+          duration: 0.5,
           ease: 'power2.out'
-        }, '-=0.2');
+        }, 1.35);
       }
 
       if (textChars.length) {
         masterTl.fromTo(textChars,
           { opacity: 0, y: -2 },
-          { opacity: 1, y: 0, duration: 0.35, stagger: 0.03, ease: 'power1.out' },
-          '-=0.4'
+          { opacity: 1, y: 0, duration: 0.3, stagger: 0.03, ease: 'power1.out' },
+          1.40
         );
       }
 
@@ -661,24 +870,22 @@
       });
     }
 
-    // 4.9 Google review badges drop in with a bounce
     if (heroReviewBadge) {
       masterTl.fromTo(
         heroReviewBadge,
-        { y: -30, opacity: 0, scale: 0.9 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: CONFIG.eases.bounce, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
-        '-=0.4'
+        { y: -20, opacity: 0, scale: 0.92 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: CONFIG.eases.bounce, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
+        1.40
       );
     }
 
-    // "Trusted by" logo strip
     const trustedStrip = document.querySelector('.elementor-element-850f210') || document.querySelector('.trusted-by-carousel-dark');
     if (trustedStrip) {
       masterTl.fromTo(
         trustedStrip,
-        { y: 35, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: CONFIG.eases.smooth, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
-        '-=0.3'
+        { y: 25, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: CONFIG.eases.smooth, clearProps: isNarrow ? 'transform,opacity,visibility,filter' : '' },
+        1.45
       );
       registerIdleAnimation(trustedStrip, {
         onPause: () => trustedStrip.classList.add('is-offscreen'),
@@ -686,18 +893,25 @@
       });
     }
 
-    if (document.fonts && document.fonts.ready) {
-      try {
-        await Promise.race([
-          document.fonts.ready,
-          new Promise(r => setTimeout(r, 250))
-        ]);
-      } catch (e) {}
+    const loader = document.getElementById('kalakaari-theme-curtain');
+    if (loader && !prefersReduced) {
+      setTimeout(() => {
+        document.documentElement.classList.remove('intro-pending');
+        gsap.to(loader, {
+          opacity: 0,
+          duration: 0.25,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            loader.remove();
+          }
+        });
+        masterTl.play(0);
+      }, 120);
+    } else {
+      document.documentElement.classList.remove('intro-pending');
+      if (loader) loader.remove();
+      masterTl.play(0);
     }
-    masterTl.play();
-    setTimeout(() => {
-      document.documentElement.classList.add('nav-expanded');
-    }, 1200);
   }
 
   // --------------------------------------------------------------------------
@@ -706,7 +920,7 @@
   function initNavbarScrollReaction(pillHeader) {
     if (!pillHeader || prefersReduced) return;
 
-    const desktopCta = document.querySelector('.kalakaari-desktop-cta-btn');
+    const desktopCta = document.querySelector('.studio-header-cta, .kalakaari-desktop-cta-btn');
 
     ScrollTrigger.create({
       start: 'top -120',
@@ -810,7 +1024,7 @@
         }
       });
 
-      tl.fromTo(aboutSection, { opacity: 0 }, { opacity: 1, duration: CONFIG.durations.themeFade, ease: CONFIG.eases.theme });
+      // Keep aboutSection container visible
 
       if (heading) {
         const words = splitTextIntoWords(heading);
@@ -845,7 +1059,7 @@
         }
       });
 
-      tl.fromTo(aboutSection, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power2.out', clearProps: 'opacity' });
+      // Keep aboutSection container visible
 
       if (heading) {
         tl.fromTo(heading, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, clearProps: 'transform,opacity,visibility,filter' }, '-=0.3');
@@ -894,7 +1108,7 @@
         }
       });
 
-      tl.fromTo(testimSection, { opacity: 0 }, { opacity: 1, duration: CONFIG.durations.themeFade });
+      // Keep testimSection container visible
 
       if (titleBadge) {
         tl.fromTo(
@@ -931,7 +1145,7 @@
         }
       });
 
-      tl.fromTo(testimSection, { opacity: 0 }, { opacity: 1, duration: 0.5, clearProps: 'opacity' });
+      // Keep testimSection container visible
 
       if (titleBadge) {
         tl.fromTo(
@@ -969,7 +1183,7 @@
     if (!wwdSection || prefersReduced) return;
 
     const title = wwdSection.querySelector('h2, .elementor-heading-title');
-    const cards = wwdSection.querySelectorAll('[data-id="8c6df60"], [data-id="2ff0f382"], [data-id="63538b6b"], [data-id="833ab9d"], [data-id="34d0133e"], [data-id="6464a037"]');
+    const cards = wwdSection.querySelectorAll('.studio-service');
 
     const mm = gsap.matchMedia();
 
@@ -983,7 +1197,7 @@
         }
       });
 
-      tl.fromTo(wwdSection, { opacity: 0 }, { opacity: 1, duration: CONFIG.durations.themeFade });
+      // Container stays visible with signature background; animate content
 
       if (title) {
         tl.fromTo(title, { y: -CONFIG.distance.small, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: CONFIG.eases.bounce }, '-=0.4');
@@ -1028,7 +1242,7 @@
         }
       });
 
-      tl.fromTo(wwdSection, { opacity: 0 }, { opacity: 1, duration: 0.5, clearProps: 'opacity' });
+      // Container stays visible on mobile
 
       if (title) {
         tl.fromTo(title, { y: -15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: CONFIG.eases.bounce, clearProps: 'transform,opacity,visibility,filter' }, '-=0.3');
@@ -1076,7 +1290,7 @@
         }
       });
 
-      tl.fromTo(section, { opacity: 0 }, { opacity: 1, duration: CONFIG.durations.themeFade });
+      // Video section container remains visible
 
       if (heading) {
         tl.fromTo(
@@ -1130,7 +1344,7 @@
         }
       });
 
-      tl.fromTo(section, { opacity: 0 }, { opacity: 1, duration: 0.5, clearProps: 'opacity' });
+      // Video section container remains visible
 
       if (heading) {
         tl.fromTo(
@@ -1183,7 +1397,7 @@
         }
       });
 
-      tl.fromTo(section, { opacity: 0 }, { opacity: 1, duration: CONFIG.durations.themeFade });
+      // Album section container remains visible
 
       if (heading) {
         tl.fromTo(
@@ -1198,35 +1412,21 @@
         tl.fromTo(
           cards,
           {
-            rotateY: 25,
-            x: 40,
+            y: 30,
             opacity: 0,
-            transformPerspective: 1000,
-            transformOrigin: 'left center'
+            scale: 0.95
           },
           {
-            rotateY: 0,
-            x: 0,
+            y: 0,
             opacity: 1,
-            duration: 0.85,
-            stagger: CONFIG.staggers.normal,
-            ease: CONFIG.eases.smooth
+            scale: 1,
+            duration: 0.65,
+            stagger: 0.08,
+            ease: CONFIG.eases.smooth,
+            clearProps: 'transform,opacity,visibility,filter'
           },
           '-=0.25'
         );
-
-        const badges = Array.from(section.querySelectorAll('*')).filter(el => {
-          return el.textContent && el.textContent.includes('ALBUM SPREAD');
-        });
-
-        if (badges.length) {
-          tl.fromTo(
-            badges,
-            { scale: 0, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.5, stagger: 0.08, ease: CONFIG.eases.pop },
-            '-=0.4'
-          );
-        }
       }
     });
 
@@ -1240,7 +1440,7 @@
         }
       });
 
-      tl.fromTo(section, { opacity: 0 }, { opacity: 1, duration: 0.5, clearProps: 'opacity' });
+      // Album section container remains visible
 
       if (heading) {
         tl.fromTo(
@@ -1295,7 +1495,7 @@
         }
       });
 
-      tl.fromTo(hiwSection, { opacity: 0 }, { opacity: 1, duration: CONFIG.durations.themeFade });
+      // Keep hiwSection container visible
 
       if (title) {
         tl.fromTo(title, { y: -CONFIG.distance.medium, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: CONFIG.eases.bounce }, '-=0.4');
@@ -1335,7 +1535,7 @@
         }
       });
 
-      tl.fromTo(hiwSection, { opacity: 0 }, { opacity: 1, duration: 0.5, clearProps: 'opacity' });
+      // Keep hiwSection container visible
 
       if (title) {
         tl.fromTo(title, { y: -15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: CONFIG.eases.bounce, clearProps: 'transform,opacity,visibility,filter' }, '-=0.3');
@@ -1451,7 +1651,7 @@
         }
       });
 
-      tl.fromTo(pricingSection, { opacity: 0 }, { opacity: 1, duration: CONFIG.durations.themeFade });
+      // Pricing section container remains visible
 
       if (title) {
         tl.fromTo(title, { y: -CONFIG.distance.medium, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, ease: CONFIG.eases.bounce }, '-=0.4');
@@ -1516,7 +1716,7 @@
         }
       });
 
-      tl.fromTo(pricingSection, { opacity: 0 }, { opacity: 1, duration: 0.5, clearProps: 'opacity' });
+      // Pricing section container remains visible
 
       if (title) {
         tl.fromTo(title, { y: -15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: CONFIG.eases.bounce, clearProps: 'transform,opacity,visibility,filter' }, '-=0.3');
@@ -1810,9 +2010,13 @@
   // --------------------------------------------------------------------------
   // 19. FIX D: FAIL-SAFE VISIBILITY SAFETY NET (CONTENT NEVER STAYS HIDDEN)
   // --------------------------------------------------------------------------
+  let failSafeInitialized = false;
   function initFailSafeVisibility() {
+    if (failSafeInitialized) return;
+    failSafeInitialized = true;
+
     // 1. IntersectionObserver safety net: any element entering viewport that
-    // stays hidden (> 1.2s) is automatically forced visible
+    // stays hidden (> 1.5s after intro completes) is automatically forced visible
     if ('IntersectionObserver' in window) {
       const failSafeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1826,7 +2030,7 @@
                 el.style.transform = 'none';
                 el.style.visibility = 'visible';
               }
-            }, 1200);
+            }, 1500);
           }
         });
       }, { threshold: 0.05, rootMargin: '60px 0px 60px 0px' });
@@ -1838,48 +2042,30 @@
       );
       animatedElements.forEach(el => failSafeObserver.observe(el));
     }
+  }
 
-    // 2. Global timeout safety net: 2.5s after load, ensure all content is visible
+  function initGlobalIntroSafetyFallback() {
     const globalSafetyCheck = () => {
-      document.body.removeAttribute('style');
-      document.documentElement.removeAttribute('style');
-      const allAnimTargets = document.querySelectorAll('[data-anim], [class*="kalakaari-"]');
-      allAnimTargets.forEach(el => {
-        const comp = window.getComputedStyle(el);
-        if (parseFloat(comp.opacity) < 0.1) {
-          el.classList.add('kalakaari-force-visible');
-        }
-      });
+      if (!document.documentElement.classList.contains('site-ready')) {
+        document.documentElement.classList.add('site-ready', 'nav-expanded', 'hero-intro-complete');
+        initAllRemainingSections();
+        initFailSafeVisibility();
+        document.body.removeAttribute('style');
+        document.documentElement.removeAttribute('style');
+      }
     };
 
-    window.addEventListener('load', () => setTimeout(globalSafetyCheck, 2500));
-    if (document.readyState === 'complete') setTimeout(globalSafetyCheck, 2500);
+    window.addEventListener('load', () => setTimeout(globalSafetyCheck, 6000));
+    if (document.readyState === 'complete') setTimeout(globalSafetyCheck, 6000);
   }
 
   // --------------------------------------------------------------------------
-  // 20. MASTER BOOTSTRAPPER & LIFECYCLE
+  // 20. REMAINING SECTIONS INITIALIZER (TRIGGERED AFTER HERO MASTER TIMELINE)
   // --------------------------------------------------------------------------
-  function initAll() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-      console.warn('[Kalakaari Motion] GSAP/ScrollTrigger not loaded. Animations gracefully bypassed.');
-      document.body.removeAttribute('style');
-      document.documentElement.removeAttribute('style');
-      return;
-    }
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // FIX C: Prevent mobile browser toolbar show/hide from restarting triggers
-    ScrollTrigger.config({ ignoreMobileResize: true });
-
-    // Progressive enhancement: add js-anim to <html>
-    document.documentElement.classList.add('js-anim');
-
-    // Initialize components
-    initLenis();
-    initProgressBar();
-    initCursor();
-    initHeroSection();
+  let remainingSectionsInitialized = false;
+  function initAllRemainingSections() {
+    if (remainingSectionsInitialized) return;
+    remainingSectionsInitialized = true;
     initAboutSection();
     initTestimonialsSection();
     initWhatWeDoSection();
@@ -1892,7 +2078,42 @@
     initFinalCtaSection();
     initFooterSection();
     initDataAnimEngine();
-    initFailSafeVisibility();
+    ScrollTrigger.refresh();
+  }
+
+  // --------------------------------------------------------------------------
+  // 21. MASTER BOOTSTRAPPER & LIFECYCLE
+  // --------------------------------------------------------------------------
+  function initAll() {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      console.warn('[Kalakaari Motion] GSAP/ScrollTrigger not loaded. Animations gracefully bypassed.');
+      document.documentElement.classList.add('site-ready', 'nav-expanded', 'hero-intro-complete');
+      document.body.removeAttribute('style');
+      document.documentElement.removeAttribute('style');
+      initAllRemainingSections();
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // FIX C: Prevent mobile browser toolbar show/hide from restarting triggers
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
+    // Progressive enhancement: add js-anim to <html>
+    document.documentElement.classList.add('js-anim');
+
+    // Initialize core top-level engines
+    initLenis();
+    initProgressBar();
+    initCursor();
+    initHeroSection();
+    initGlobalIntroSafetyFallback();
 
     // Refresh ScrollTrigger calculations after all images/fonts/assets load
     window.addEventListener('load', () => {

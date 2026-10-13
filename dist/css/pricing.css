@@ -1,0 +1,222 @@
+#pricing { background: #0b0c0e !important; padding: 88px 24px 96px !important; }
+.studio-pricing-shell { width: min(100%, 1220px); margin: 0 auto; color: #fff; font-family: Inter, system-ui, sans-serif; }
+.studio-pricing-heading { max-width: 760px; margin: 0 auto 38px; text-align: center; }
+.studio-pricing-eyebrow { margin: 0 0 12px !important; color: #ff875d !important; font: 700 12px/1.3 'Poppins', sans-serif !important; letter-spacing: .18em; }
+.studio-pricing-heading h2 { margin: 0 0 12px !important; color: #fff !important; font: 700 clamp(34px,4vw,56px)/1.12 Inter,system-ui,sans-serif !important; letter-spacing: -.04em; }
+.studio-pricing-heading > p:last-child { margin: 0 !important; color: #aeb4bd !important; font-size: clamp(15px,1.4vw,18px) !important; line-height: 1.55 !important; }
+
+/* Level 1: Primary Service Switcher Track */
+.studio-pricing-tabs-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 22px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  box-sizing: border-box;
+}
+.studio-pricing-tabs-wrap::-webkit-scrollbar { display: none; }
+
+.studio-pricing-tabs {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 auto;
+  flex: none;
+  padding: 5px;
+  background: #191b20;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  isolation: isolate;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* Sliding Pill Glider for Level 1 */
+.studio-tab-glider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.2);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.2s ease;
+}
+
+.studio-pricing-tabs button {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  min-height: 44px;
+  margin: 0 !important;
+  padding: 10px 20px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  color: #9ca3af !important;
+  box-shadow: none !important;
+  font: 600 14px/1.2 Inter,system-ui,sans-serif !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .22s ease;
+}
+.studio-pricing-tabs button:hover { color: #ffffff !important; }
+.studio-pricing-tabs button[aria-selected="true"] { color: #101114 !important; font-weight: 700 !important; }
+
+/* Level 2: Sub-Toggle Switcher Track (Replacing dropdown) */
+.studio-pricing-subtabs-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 36px auto;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.studio-pricing-subtabs {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 4px;
+  background: #14161a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  isolation: isolate;
+  user-select: none;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.studio-pricing-subtabs::-webkit-scrollbar { display: none; }
+
+/* Sliding Pill Glider for Level 2 */
+.studio-subtab-glider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.2s ease;
+}
+
+.studio-pricing-subtabs button {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  min-height: 38px;
+  margin: 0 !important;
+  padding: 8px 18px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  color: #9ca3af !important;
+  box-shadow: none !important;
+  font: 600 13.5px/1.2 Inter,system-ui,sans-serif !important;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .22s ease;
+}
+.studio-pricing-subtabs button:hover { color: #ffffff !important; }
+.studio-pricing-subtabs button[aria-selected="true"] { color: #101114 !important; font-weight: 700 !important; }
+
+/* Handwritten Cursive "Save up to 15%" Callout (TastyEdits Image 3 style) */
+.studio-save-callout {
+  display: inline-block;
+  margin: 14px auto 0 auto;
+  color: #ff9b5d;
+  font-family: 'Caveat', cursive, sans-serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  user-select: none;
+}
+
+/* Cards Grid */
+.studio-pricing-cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.studio-price-card { min-width: 0; display: flex; flex-direction: column; padding: clamp(24px,2.6vw,36px); border: 1px solid rgba(255,255,255,.1); border-radius: 26px; background: linear-gradient(145deg,#1a1d22,#16181c); box-shadow: 0 18px 44px rgba(0,0,0,.17); transition: transform .25s ease, border-color .25s ease; }
+.studio-price-card:hover { transform: translateY(-3px); }
+.studio-price-card.is-featured { border-color: rgba(255,125,86,.4); background: linear-gradient(145deg,#211e1e,#17191c); }
+.studio-price-discount { align-self: start; display: inline-block; padding: 9px 14px; border-radius: 999px; background: #0c0e12; color: #ff7c5c; font-size: 13px; font-weight: 700; }
+.studio-price-card h3 { margin: 28px 0 4px !important; color: #fff !important; font: 700 clamp(21px,2vw,26px)/1.2 Inter,system-ui,sans-serif !important; }
+.studio-price-quantity { margin: 0 0 24px !important; color: #cbd0d8 !important; font-size: 16px !important; font-weight: 600; }
+.studio-price-rate { display: flex; align-items: baseline; gap: 8px; margin-bottom: 25px; color: #fff; }
+.studio-price-rate strong { font: 700 clamp(34px,3.4vw,52px)/1 Inter,system-ui,sans-serif; letter-spacing: -.05em; }
+.studio-price-rate span { color: #b4bac3; font-size: 14px; font-weight: 600; }
+.studio-price-total { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.11); }
+.studio-price-total span { color: #b4bac3; font-size: 13px; }
+.studio-price-total strong { color: #fff; font-size: 20px; white-space: nowrap; }
+.studio-price-savings { min-height: 23px; margin: 10px 0 26px !important; color: #ff9a70 !important; font-size: 13px !important; font-weight: 600; }
+.studio-price-cta { display: flex; align-items: center; justify-content: center; gap: 14px; width: 100%; min-height: 48px; margin-top: auto; padding: 12px 14px; border-radius: 999px; background: linear-gradient(100deg,#f12620,#ff7852); color: #fff !important; font-size: 14px; font-weight: 700; text-align: center; text-decoration: none; transition: filter .2s ease,transform .2s ease; }
+.studio-price-cta:hover, .studio-price-cta:focus-visible { color: #fff !important; filter: brightness(1.08); transform: translateY(-2px); }
+.studio-pricing-note { max-width: 850px; margin: 26px auto 0 !important; color: #9198a3 !important; font-size: 13px !important; line-height: 1.6 !important; text-align: center; }
+.studio-pricing-note a { color: #ff9a70 !important; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 900px) {
+  .studio-pricing-cards { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+  .studio-price-card { padding: 28px; }
+}
+
+@media (max-width: 640px) {
+  #pricing { padding: 66px 16px 76px !important; }
+  .studio-pricing-heading { margin-bottom: 26px; }
+  .studio-pricing-tabs-wrap {
+    justify-content: flex-start;
+    padding: 6px 16px;
+    margin: 0 -16px 22px -16px;
+    width: calc(100% + 32px);
+  }
+  .studio-pricing-tabs {
+    padding: 4px;
+    margin: 0;
+  }
+  .studio-pricing-tabs button {
+    min-height: 40px;
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+  }
+  .studio-pricing-subtabs-wrap {
+    margin: 0 auto 28px auto;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .studio-pricing-subtabs {
+    display: inline-flex;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .studio-pricing-subtabs::-webkit-scrollbar { display: none; }
+  .studio-pricing-subtabs button {
+    min-height: 36px;
+    padding: 7px 14px !important;
+    font-size: 12.5px !important;
+  }
+  .studio-save-callout {
+    font-size: 20px;
+    margin-top: 12px;
+  }
+  .studio-price-rate strong { font-size: 42px; }
+}

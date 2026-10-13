@@ -30,7 +30,7 @@ const mimeTypes = {
 function createServer(port) {
   const server = http.createServer((req, res) => {
     let reqPath = decodeURIComponent(req.url.split('?')[0]);
-    if (reqPath === '/') reqPath = '/index.html';
+    if (reqPath.endsWith('/')) reqPath += 'index.html';
 
     const filePath = path.join(distDir, reqPath);
 
