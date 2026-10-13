@@ -407,13 +407,9 @@ wrap: nowrap !important;
  background-color: #E41417 !important;
 }
 /* Hero video container adjustments */
-.hero-image-container {
- aspect-ratio: 4 / 3 !important;
-}
+.hero-image-container { aspect-ratio: auto !important; height: auto !important; }
 @media only screen and (min-width: 1024px) and (max-width: 1400px) {
- .hero-image-container {
- aspect-ratio: 16 / 9 !important;
-}
+ .hero-image-container { aspect-ratio: auto !important; height: auto !important; }
  } </style><script src="./js/background-slideshow.min.js" async=""></script><script src="./js/background-video.min.js" async=""></script><script src="./js/text-editor.min.js" async=""></script><script src="./js/video.min.js" async=""></script><script src="./js/nested-tabs.min.js" async=""></script><script src="./js/nested-accordion.min.js" async=""></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&amp;family=Yatra+One&amp;display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script><style id="kalakaari-global-theme">
 html, body {
   background-color: #0B0C0E !important;
@@ -3148,45 +3144,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div></div></main>
 </section>
 
-<script>(() => {
-  const trigger = document.querySelector('.studio-services-trigger');
-  const panel = document.getElementById('studio-services-menu');
-  const header = document.querySelector('header [data-id="b2e2be6"]');
-  if (!trigger || !panel || !header) return;
-
-  let closeTimer;
-  const open = () => {
-    clearTimeout(closeTimer);
-    panel.removeAttribute('inert');
-    panel.classList.add('is-open');
-    trigger.setAttribute('aria-expanded', 'true');
-  };
-  const close = () => {
-    clearTimeout(closeTimer);
-    panel.classList.remove('is-open');
-    panel.setAttribute('inert', '');
-    trigger.setAttribute('aria-expanded', 'false');
-  };
-  const scheduleClose = () => { closeTimer = setTimeout(close, 180); };
-
-  trigger.addEventListener('click', open);
-  trigger.addEventListener('mouseenter', open);
-  header.addEventListener('mouseenter', () => clearTimeout(closeTimer));
-  header.addEventListener('mouseleave', scheduleClose);
-  document.addEventListener('pointerdown', (event) => {
-    if (!header.contains(event.target)) close();
-  });
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && panel.classList.contains('is-open')) {
-      close();
-      trigger.focus();
-    }
-  });
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 1024) close();
-  });
-})();
-</script><script>(() => {
+<script src="./js/navigation.js" defer></script><script>(() => {
   const tabsWrap = document.querySelector('.studio-pricing-tabs-wrap');
   const tabsTrack = document.querySelector('.studio-pricing-tabs');
   const tabs = [...document.querySelectorAll('.studio-pricing-tabs [role="tab"]')];

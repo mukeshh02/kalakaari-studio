@@ -5,12 +5,18 @@
 /* Container Overrides: Prevent container clipping of characters and bottom pill */
 .hero-image-container,
 .elementor-element-0790dca,
-.lp4-hero-graphic-container {
+.lp4-hero-graphic-container,
+[data-id="0790dca"],
+[data-id="0254a6f"] {
   overflow: visible !important;
   border-radius: 0 !important;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  aspect-ratio: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
 }
 
 .hero-two-step-workflow {
@@ -453,35 +459,150 @@ a.kalakaari-hero-service-pill:hover,
 
 @media (max-width: 640px) {
   .hero-two-step-workflow {
-    padding: 6px 0 12px 0;
+    padding: 4px 0 18px 0 !important;
+    overflow: visible !important;
   }
   .h2s-stage {
     gap: 4px;
     align-items: flex-end;
   }
   .h2s-cameraman-unit {
-    flex: 0 0 40%;
-    max-width: 155px;
+    flex: 0 0 38%;
+    max-width: 145px;
   }
   .h2s-editor-unit {
-    flex: 0 0 44%;
-    max-width: 170px;
+    flex: 0 0 46%;
+    max-width: 180px;
   }
   .h2s-stream-unit {
     flex: 1 1 auto;
-    min-width: 55px;
-    max-width: 105px;
-    height: 95px;
-    margin-bottom: 42px;
+    min-width: 44px;
+    max-width: 90px;
+    height: 85px;
+    margin-bottom: 38px;
+  }
+  .h2s-tagline-bar {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 16px !important;
+    margin-bottom: 6px !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 10 !important;
   }
   .h2s-tagline-pill {
-    padding: 6px 12px;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px 14px !important;
+    gap: 7px !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    background: rgba(18, 20, 26, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 16px rgba(241, 38, 32, 0.14) !important;
   }
   .h2s-tag-step {
-    font-size: 10.5px;
-    gap: 5px;
+    font-size: 10.5px !important;
+    gap: 4px !important;
+    white-space: nowrap !important;
   }
+  .h2s-dot {
+    width: 6px !important;
+    height: 6px !important;
+  }
+  .h2s-tag-arrow {
+    display: inline-flex !important;
+  }
+  .h2s-tag-arrow svg {
+    width: 13px !important;
+    height: 8px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .h2s-tagline-pill {
+    padding: 7px 10px !important;
+    gap: 5px !important;
+  }
+  .h2s-tag-step {
+    font-size: 9.5px !important;
+    gap: 3px !important;
+  }
+  .h2s-tag-arrow svg {
+    width: 11px !important;
+    height: 7px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FLOATING NAVBAR FADE-ON-SCROLL & TOP CONTENT FADE MASK
+   As soon as the website scrolls behind the top floating menu, it gently
+   fades down so reading is unobstructed, and wakes up on hover/touch/scroll-up.
+   -------------------------------------------------------------------------- */
+header .elementor-element.elementor-element-b2e2be6 {
+  transition:
+    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.35s ease,
+    border-color 0.35s ease !important;
+  will-change: opacity, transform;
+}
+
+/* Website scrolled behind floating menu: subtle faded state */
+header .elementor-element.elementor-element-b2e2be6.is-scrolled {
+  opacity: 0.42 !important;
+  background-color: rgba(18, 19, 23, 0.78) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Actively scrolling down: even cleaner fade */
+header .elementor-element.elementor-element-b2e2be6.is-scrolled.is-scrolling-down {
+  opacity: 0.28 !important;
+  transform: translateY(-2px) scale(0.99) !important;
+}
+
+/* Hover, touch, focus, or menu open: instant full 100% visibility */
+header .elementor-element.elementor-element-b2e2be6:hover,
+header .elementor-element.elementor-element-b2e2be6:focus-within,
+header .elementor-element.elementor-element-b2e2be6:active,
+header .elementor-element.elementor-element-b2e2be6.is-touched,
+header .elementor-element.elementor-element-b2e2be6.menu-open {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  background-color: rgba(22, 23, 27, 0.94) !important;
+  border-color: rgba(255, 195, 160, 0.24) !important;
+  box-shadow:
+    0 16px 45px rgba(0, 0, 0, 0.85),
+    0 0 28px rgba(255, 145, 85, 0.24) !important;
+}
+
+/* Top viewport gradient mask so website text fades smoothly behind the floating menu */
+.studio-top-fade-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 96px;
+  background: linear-gradient(
+    180deg,
+    #08090b 0%,
+    #08090b 36px,
+    rgba(8, 9, 11, 0.92) 56px,
+    rgba(8, 9, 11, 0.45) 78px,
+    rgba(8, 9, 11, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 99990;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.studio-top-fade-vignette.is-active {
+  opacity: 1;
 }

@@ -627,6 +627,7 @@
             pillHeader.style.removeProperty('--nav-intro-height');
             pillHeader.style.removeProperty('--nav-intro-pad-y');
             pillHeader.style.removeProperty('--nav-intro-pad-x');
+            pillHeader.style.removeProperty('opacity');
             pillHeader.style.overflow = 'visible';
             pillHeader.style.willChange = 'auto';
             if (introDot && introDot.parentNode) introDot.remove();

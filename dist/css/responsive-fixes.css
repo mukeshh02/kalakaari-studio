@@ -189,7 +189,7 @@ html, body {
   max-width: 100% !important;
   margin: 0 !important;
   padding-top: clamp(82px, 10vh, 96px) !important;
-  padding-bottom: clamp(38px, 5vh, 52px) !important;
+  padding-bottom: clamp(48px, 6.5vh, 68px) !important;
   padding-inline: clamp(20px, 4vw, 52px) !important;
   border-radius: 0 0 36px 36px !important;
   background:
@@ -199,7 +199,7 @@ html, body {
     linear-gradient(180deg, #101114 0%, #131418 50%, #17181d 100%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75) !important;
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 
 [data-id="fcd6bfc"] > .e-con-inner {
@@ -351,7 +351,7 @@ html, body {
 #kalakaari-est-book { color: #fff !important; }
 
 [data-id="d0b5e00"] { display: none !important; }
-.hero-image-container { display: block !important; min-width: 0; text-decoration: none; overflow: hidden; border-radius: 30px; }
+.hero-image-container { display: block !important; min-width: 0; text-decoration: none; overflow: visible !important; border-radius: 0 !important; aspect-ratio: auto !important; height: auto !important; }
 .studio-hero-gallery { position: relative; display: grid; grid-template-columns: 1.1fr .72fr; gap: 12px; width: 100%; aspect-ratio: 1.32; padding: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.13); border-radius: 30px; background: #211b1b; }
 .studio-hero-photo { min-width: 0; min-height: 0; overflow: hidden; border-radius: 20px; background: #201717; }
 .studio-hero-photo img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
@@ -410,18 +410,18 @@ html, body {
   .studio-header-cta { display: none; }
   header #kalakaari-header-hamburger-btn { display: inline-flex !important; justify-self: end; margin: 0 !important; }
   [data-id="f1a913c"] { min-height: auto !important; }
-  [data-id="fcd6bfc"] { padding-top: clamp(74px, 11vh, 88px) !important; gap: 24px !important; }
+  [data-id="fcd6bfc"] { padding-top: clamp(74px, 11vh, 88px) !important; padding-bottom: 42px !important; gap: 24px !important; overflow: visible !important; }
   [data-id="fcd6bfc"] > .e-con-inner { flex-direction: column !important; text-align: center !important; gap: 28px !important; }
   [data-id="fcd6bfc"] .elementor-element-f01e3e3,
-  [data-id="fcd6bfc"] .elementor-element-0254a6f { flex: 1 1 100% !important; max-width: 100% !important; width: 100% !important; }
+  [data-id="fcd6bfc"] .elementor-element-0254a6f { flex: 1 1 100% !important; max-width: 100% !important; width: 100% !important; overflow: visible !important; }
   .elementor-element-3e6d869 { justify-content: center !important; }
-  .hero-image-container { width: 100%; max-width: 520px; margin: 12px auto 0; }
+  .hero-image-container { width: 100%; max-width: 520px; margin: 12px auto 0; overflow: visible !important; aspect-ratio: auto !important; height: auto !important; }
 }
 @media (max-width: 767px) {
   #studio-service-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 24px 14px !important; padding-inline: 16px; }
   #studio-service-grid .studio-service { padding: 0 4px 8px !important; }
   .studio-service-art { height: 150px; margin-bottom: 14px; }
-  [data-id="fcd6bfc"] { padding-inline: 20px !important; }
+  [data-id="fcd6bfc"] { padding-inline: 16px !important; padding-bottom: 44px !important; }
   .studio-hero-gallery { aspect-ratio: 1.18; gap: 8px; padding: 8px; border-radius: 22px; }
   .studio-hero-photo { border-radius: 14px; }
   .studio-hero-gallery-label { left: 16px; right: 16px; bottom: 16px; padding: 10px 12px; }
