@@ -9,8 +9,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const page = await browser.newPage();
   await page.setViewport({ width: 1400, height: 800 });
 
-  await page.goto('http://127.0.0.1:8080/', { waitUntil: 'domcontentloaded', timeout: 5000 }).catch(() => {});
-  await new Promise(r => setTimeout(r, 1000));
+  await page.goto('http://127.0.0.1:8080/', { waitUntil: 'networkidle0', timeout: 15000 }).catch(() => {});
+  await new Promise(r => setTimeout(r, 2500));
 
   await page.screenshot({ path: path.join(__dirname, 'dist', 'header_verify_screenshot.png') });
   console.log('Header verification screenshot captured!');
